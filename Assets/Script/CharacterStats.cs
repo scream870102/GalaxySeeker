@@ -10,10 +10,10 @@ public class CharacterStats : ScriptableObject {
     public Stat damage;
     public Stat armor;
     public event System.Action OnHealthReachedZero;
-    protected void Awake ( ) {
+    protected virtual void Awake ( ) {
         currentHealth = maxHealth.Value;
     }
-    protected void OnEnable() {
+    protected virtual void OnEnable() {
         currentHealth = maxHealth.Value;
     }
     // Damage the character
