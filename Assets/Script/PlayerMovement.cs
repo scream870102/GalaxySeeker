@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 [RequireComponent (typeof (Rigidbody2D))]
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : PlayerComponent {
     //
     //
     //drag ref
@@ -23,8 +23,6 @@ public class PlayerMovement : MonoBehaviour {
     protected Rigidbody2D rb = null;
     //transform for foot
     public Transform detectGround = null;
-    private Player parent = null;
-    public Player Parent { set { if (parent == null) parent = value; } }
     //
     //
     //field
@@ -47,12 +45,11 @@ public class PlayerMovement : MonoBehaviour {
         detectGround = transform.Find ("Foot");
     }
 
-    void Update ( ) {
-        if (parent == null)
-            return;
+    override protected void Update ( ) {
+        base.Update();
         IsGrounded ( );
         //if player on ground set speed to airspeed
-        moveHorizontal = Input.GetAxisRaw ("Horizontal") * (bGround?parent.Stats.walkSpeed.Value : parent.Stats.airSpeed.Value);
+        moveHorizontal = Input.GetAxisRaw ("Horizontal") * (bGround?Parent.Stats.walkSpeed.Value : Parent.Stats.airSpeed.Value);
         //if player hit jump button call jump method
         if (Input.GetButtonDown ("Jump")) {
             Jump ( );
@@ -60,9 +57,8 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     //keep detect ground and call Move and Jump function 
-    protected virtual void FixedUpdate ( ) {
-        if (parent == null)
-            return;
+    override protected void FixedUpdate ( ) {
+        base.FixedUpdate();
         Move ( );
         InJump ( );
     }
@@ -77,14 +73,14 @@ public class PlayerMovement : MonoBehaviour {
     protected virtual void Move ( ) {
         if (moveHorizontal > 0) {
             bFacingRight = true;
-            parent.State = "WALK";
+            Parent.State = "WALK";
         }
         else if (moveHorizontal < 0) {
             bFacingRight = false;
-            parent.State = "WALK";
+            Parent.State = "WALK";
         }
-        else if (moveHorizontal == 0 && parent.State=="WALK") {
-        	parent.State = "IDLE";
+        else if (moveHorizontal == 0 && Parent.State=="WALK") {
+        	Parent.State = "IDLE";
         }
         Vector2 targetVelocity = new Vector2 (moveHorizontal * Time.fixedDeltaTime, rb.velocity.y);
         rb.velocity = Vector2.SmoothDamp (rb.velocity, targetVelocity, ref refVelocity, smoothDamp);
@@ -93,11 +89,11 @@ public class PlayerMovement : MonoBehaviour {
     //if can jump add force to rigidbody  call in fixed update
     protected virtual void InJump ( ) {
         if (bJump) {
-            parent.State = "JUMP";
+            Parent.State = "JUMP";
             Vector2 temp = rb.velocity;
             temp.y = 0.0f;
             rb.velocity = temp;
-            rb.AddForce (new Vector2 (0f, parent.Stats.jumpForce.Value), ForceMode2D.Impulse);
+            rb.AddForce (new Vector2 (0f, Parent.Stats.jumpForce.Value), ForceMode2D.Impulse);
             bJump = false;
         }
     }
@@ -110,8 +106,8 @@ public class PlayerMovement : MonoBehaviour {
                 foreach (Collider2D collider in colliders) {
                     if (collider != gameObject) {
                         bGround = true;
-                        if (parent.State == "JUMP")
-                        	parent.State = "IDLE";
+                        if (Parent.State == "JUMP")
+                        	Parent.State = "IDLE";
                     }
                     else
                         bGround = false;

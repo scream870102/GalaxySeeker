@@ -8,4 +8,5 @@ public class PlayerStats : CharacterStats
     public Stat jumpForce;
     public Stat attackPoint;
     public Stat airSpeed;
+    public Stat itemSpace;
 }
