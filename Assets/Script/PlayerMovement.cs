@@ -8,7 +8,7 @@ public class PlayerMovement : PlayerComponent {
     //
     //drag ref
     //
-    //define which layer is ground
+    ///<summary>define which layer is ground</summary>
     public List<LayerMask> groundLayer = new List<LayerMask> ( );
     //
     //
@@ -20,6 +20,7 @@ public class PlayerMovement : PlayerComponent {
     private Vector2 refVelocity = Vector2.zero;
     //
     //referrence
+    //rigidbody ref
     protected Rigidbody2D rb = null;
     //transform for foot
     public Transform detectGround = null;
@@ -31,12 +32,13 @@ public class PlayerMovement : PlayerComponent {
     protected bool bJump;
     //bool for on ground
     protected bool bGround;
+    ///<summary>if player now stand on the ground</summary>
     public bool IsGround { get { return bGround; } }
     //store horizontal velocity
     protected float moveHorizontal;
     //stoer what direction is player facing true=facing right direction false=facing left direction
     protected bool bFacingRight;
-    //property for player direction
+    /// <summary>if player now facing at right direction
     public bool IsPlayerFacingRight { get { return bFacingRight; } }
     //set all info from props
     //set detectGround
@@ -46,7 +48,7 @@ public class PlayerMovement : PlayerComponent {
     }
 
     override protected void Update ( ) {
-        base.Update();
+        base.Update ( );
         IsGrounded ( );
         //if player on ground set speed to airspeed
         moveHorizontal = Input.GetAxisRaw ("Horizontal") * (bGround?Parent.Stats.walkSpeed.Value : Parent.Stats.airSpeed.Value);
@@ -58,7 +60,7 @@ public class PlayerMovement : PlayerComponent {
 
     //keep detect ground and call Move and Jump function 
     override protected void FixedUpdate ( ) {
-        base.FixedUpdate();
+        base.FixedUpdate ( );
         Move ( );
         InJump ( );
     }
@@ -79,8 +81,8 @@ public class PlayerMovement : PlayerComponent {
             bFacingRight = false;
             Parent.State = "WALK";
         }
-        else if (moveHorizontal == 0 && Parent.State=="WALK") {
-        	Parent.State = "IDLE";
+        else if (moveHorizontal == 0 && Parent.State == "WALK") {
+            Parent.State = "IDLE";
         }
         Vector2 targetVelocity = new Vector2 (moveHorizontal * Time.fixedDeltaTime, rb.velocity.y);
         rb.velocity = Vector2.SmoothDamp (rb.velocity, targetVelocity, ref refVelocity, smoothDamp);
@@ -107,7 +109,7 @@ public class PlayerMovement : PlayerComponent {
                     if (collider != gameObject) {
                         bGround = true;
                         if (Parent.State == "JUMP")
-                        	Parent.State = "IDLE";
+                            Parent.State = "IDLE";
                     }
                     else
                         bGround = false;

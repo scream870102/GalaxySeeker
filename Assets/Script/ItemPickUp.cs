@@ -15,22 +15,22 @@ public class ItemPickUp : MonoBehaviour, IInteractable {
     private void Awake ( ) {
         col = GetComponent<Collider2D> ( );
     }
-    
+
     //if player press interact button then item will be picked up
     private void OnTriggerStay2D (Collider2D other) {
         if (other.gameObject.tag == "Player" && Input.GetButtonDown ("Interact")) {
-            owner=other.GetComponent<Player>();
+            owner = other.GetComponent<Player> ( );
             Interact ( );
         }
     }
 
-    // if this function been call then item will add to owner's inventory then gameObject will being Destroy
+    /// <summary> if this function been call then item will add to owner's inventory then gameObject will being Destroy</summary>
     public void Interact ( ) {
-        if(owner==null)
+        if (owner == null)
             return;
         Debug.Log ("Interacting with" + item.name);
-        owner.AddItem(Instantiate(item));
-        Destroy(this.gameObject);
-        
+        owner.AddItem (Instantiate (item));
+        Destroy (this.gameObject);
+
     }
 }
