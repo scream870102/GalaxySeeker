@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class Rope : Item {
     override protected void UsingItem ( ) {
-        Debug.Log ("Using Rope");
+        Debug.Log ("Using " + name);
         AlreadUsed ( );
     }
     override protected void Reset ( ) {
-        Debug.Log("Reset rope");
+        Debug.Log ("Reset "+ name);
     }
 }

@@ -24,18 +24,17 @@ public class Player : Character {
         stats.OnHealthReachedZero += Dead;
         SetComponent<PlayerMovement> (ref movement);
         SetComponent<PlayerEquipment> (ref equipment);
-
-    }
-
-    //callback function will call when player health reached zero
-    void Dead ( ) {
-        Debug.Log (stats.name + "already Dead");
     }
 
     //method to init all playerComponent
     void SetComponent<T> (ref T component) where T : PlayerComponent {
         component = GetComponent<T> ( );
         component.Parent = this;
+    }
+
+    //callback function will call when player health reached zero
+    void Dead ( ) {
+        Debug.Log (stats.name + "already Dead");
     }
 
     /// <summary>add a new item to equipment</summary>
