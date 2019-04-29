@@ -19,6 +19,7 @@ public class ItemPickUp : MonoBehaviour, IInteractable {
     //if player press interact button then item will be picked up
     private void OnTriggerStay2D (Collider2D other) {
         if (other.gameObject.tag == "Player" && Input.GetButtonDown ("Interact")) {
+            col.enabled = false;
             owner = other.GetComponent<Player> ( );
             Interact ( );
         }
@@ -28,8 +29,8 @@ public class ItemPickUp : MonoBehaviour, IInteractable {
     public void Interact ( ) {
         if (owner == null)
             return;
-        Debug.Log ("Interacting with" + item.name);
-        owner.AddItem (Instantiate (item));
+        Debug.Log ("Get the " + item.name);
+        owner.AddItem (ref item);
         Destroy (this.gameObject);
 
     }

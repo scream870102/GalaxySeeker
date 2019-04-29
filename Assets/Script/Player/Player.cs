@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>Class is top class of player</summary>
 public class Player : Character {
+    [SerializeField]
     //all stats of player include hp shield attackpoint and some constants
     protected PlayerStats stats;
     /// <summary>all player stats include all constants or some variables</summary>
@@ -21,8 +22,8 @@ public class Player : Character {
     //Add Dead function to OnHealthReachedZero
     private void Awake ( ) {
         stats.OnHealthReachedZero += Dead;
-        SetComponent<PlayerMovement> (movement);
-        SetComponent<PlayerEquipment> (equipment);
+        SetComponent<PlayerMovement> (ref movement);
+        SetComponent<PlayerEquipment> (ref equipment);
 
     }
 
@@ -32,15 +33,15 @@ public class Player : Character {
     }
 
     //method to init all playerComponent
-    void SetComponent<T> (T component) where T : PlayerComponent {
+    void SetComponent<T> (ref T component) where T : PlayerComponent {
         component = GetComponent<T> ( );
         component.Parent = this;
     }
 
     /// <summary>add a new item to equipment</summary>
     ///<remarks>will get false when there isn't more space in equipment</remarks>
-    public bool AddItem (Item item) {
-        return equipment.AddItem (item);
+    public bool AddItem (ref Item item) {
+        return equipment.AddItem (ref item);
     }
 
 }

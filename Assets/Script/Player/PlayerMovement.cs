@@ -53,7 +53,7 @@ public class PlayerMovement : PlayerComponent {
         //if player on ground set speed to airspeed
         moveHorizontal = Input.GetAxisRaw ("Horizontal") * (bGround?Parent.Stats.walkSpeed.Value : Parent.Stats.airSpeed.Value);
         //if player hit jump button call jump method
-        if (Input.GetButtonDown ("Jump")) {
+        if (Input.GetButtonDown ("Jump")&&IsGround) {
             Jump ( );
         }
     }

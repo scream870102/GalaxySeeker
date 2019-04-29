@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>playerStats is inherit from characterStats</summary>
 ///<remarks>You can set walkSpeed/jumpForce/attackPoint/airSpeed/itemSpace in this class</remarks>
+[System.Serializable]
 [CreateAssetMenu (fileName = "New PlayerStats", menuName = "Character/PlayerStats")]
 public class PlayerStats : CharacterStats {
     ///<summary>define how fast does player walk on the ground</summary>
