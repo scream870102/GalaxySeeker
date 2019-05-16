@@ -18,8 +18,26 @@
 - 替Item 新增event OnItemUsed 當物品使用完畢 通知PlayerEvenetory
 - 完成現有code註解
 ---
+## 190430
+- 針對道具的使用按鈕做定義`Use`(e)
+- 互動按紐`Interact`改成(q)
+- 新增替換道具按紐`Switch`(r)
+- 新增替換道具功能`PlayerEquipment.cs`
+---
+## 190516
+- RopeSystem 大致上完成
+    - 未完成
+        * 調整落下後力消失的問題
+        * 註解完成
+        * 調整繩子無法碰撞的問題
+    - 已完成
+        * 玩家獲得繩子道具以後 新增DistanceJoint2D到玩家身上
+        * 繩子LineRenderer新增
+        * 可以透過移動按鍵在空中擺蕩
+- `PlayerStats.cs`新增Stat:**swingForce** 可以用來調整玩家使用繩所在空中擺蕩的力值
+- 修正`PlayerMovement.cs`中造成Rope擺蕩中重力的異常(主要是不能令`rb.velocity=new Vector2(某值,rb.velocity.y);`由於值不停維持在同一個frame裡的velocity.y所以物理引擎所帶來的重力影響就被弱化了)
+- 新增一個`DrawNormalVector.cs`負責畫出角色法向量的script
 ### 未完成
-- 針對道具的使用按鈕做定義 `PlayerEquipment.cs`
 - 修改xmind `Galaxy Seeker.xmind`
 - 死亡的動作 `Player.cs`
 - Rope的實現 `Rope.cs`

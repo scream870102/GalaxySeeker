@@ -18,6 +18,8 @@ public class Player : Character {
     /// <summary>State define current player move state then animator change according to this
     //need to add some logic for state
     public string State;
+    public bool IsPlayerSwing { set { movement.IsPlayerSwing = value; } }
+    public Vector2 HookPoint { set { movement.HookPoint = value; } }
     //Get all ref when player Awake
     //Add Dead function to OnHealthReachedZero
     private void Awake ( ) {
@@ -41,6 +43,10 @@ public class Player : Character {
     ///<remarks>will get false when there isn't more space in equipment</remarks>
     public bool AddItem (ref Item item) {
         return equipment.AddItem (ref item);
+    }
+
+    public void AddForce (Vector2 force, ForceMode2D mode = ForceMode2D.Impulse) {
+        movement.AddForce (force, mode);
     }
 
 }

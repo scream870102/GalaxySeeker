@@ -40,11 +40,16 @@ public class PlayerMovement : PlayerComponent {
     protected bool bFacingRight;
     /// <summary>if player now facing at right direction
     public bool IsPlayerFacingRight { get { return bFacingRight; } }
+    private bool bSwing;
+    public bool IsPlayerSwing { get { return bSwing; } set { bSwing = value; } }
+    private Vector2 hookPoint;
+    public Vector2 HookPoint { set { hookPoint = value; } }
     //set all info from props
     //set detectGround
     private void Awake ( ) {
         rb = GetComponent<Rigidbody2D> ( );
         detectGround = transform.Find ("Foot");
+        bSwing = false;
     }
 
     override protected void Update ( ) {
@@ -53,7 +58,7 @@ public class PlayerMovement : PlayerComponent {
         //if player on ground set speed to airspeed
         moveHorizontal = Input.GetAxisRaw ("Horizontal") * (bGround?Parent.Stats.walkSpeed.Value : Parent.Stats.airSpeed.Value);
         //if player hit jump button call jump method
-        if (Input.GetButtonDown ("Jump")&&IsGround) {
+        if (Input.GetButtonDown ("Jump") && IsGround) {
             Jump ( );
         }
     }
@@ -73,19 +78,26 @@ public class PlayerMovement : PlayerComponent {
 
     //get horiziontal velocity and move rigidbody call in fixed update
     protected virtual void Move ( ) {
-        if (moveHorizontal > 0) {
-            bFacingRight = true;
-            Parent.State = "WALK";
+        if (IsPlayerSwing) {
+            if (moveHorizontal == 0)
+                return;
+            bFacingRight = moveHorizontal > 0;
+            Vector2 playerNormalVector = (hookPoint - (Vector2) transform.position).normalized;
+            Vector2 swingDir = IsPlayerFacingRight?new Vector2 (playerNormalVector.y, -playerNormalVector.x) : new Vector2 (-playerNormalVector.y, playerNormalVector.x);
+            rb.AddForce (swingDir * Parent.Stats.swingForce.Value, ForceMode2D.Force);
+            Debug.DrawLine (transform.position, (Vector2) transform.position + swingDir * 10.0f);
         }
-        else if (moveHorizontal < 0) {
-            bFacingRight = false;
-            Parent.State = "WALK";
+        else {
+            if (moveHorizontal == 0 && Parent.State == "WALK")
+                Parent.State = "IDLE";
+            else {
+                bFacingRight = moveHorizontal > 0;
+                Parent.State = "WALK";
+            }
+            Vector2 targetVelocity = new Vector2 (moveHorizontal * Time.fixedDeltaTime, rb.velocity.y);
+            rb.velocity = Vector2.SmoothDamp (rb.velocity, targetVelocity, ref refVelocity, smoothDamp);
         }
-        else if (moveHorizontal == 0 && Parent.State == "WALK") {
-            Parent.State = "IDLE";
-        }
-        Vector2 targetVelocity = new Vector2 (moveHorizontal * Time.fixedDeltaTime, rb.velocity.y);
-        rb.velocity = Vector2.SmoothDamp (rb.velocity, targetVelocity, ref refVelocity, smoothDamp);
+
     }
 
     //if can jump add force to rigidbody  call in fixed update
@@ -116,5 +128,8 @@ public class PlayerMovement : PlayerComponent {
                 }
             }
         }
+    }
+    public void AddForce (Vector2 force, ForceMode2D mode = ForceMode2D.Impulse) {
+        rb.AddForce (force, mode);
     }
 }

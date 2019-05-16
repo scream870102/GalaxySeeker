@@ -17,4 +17,5 @@ public class PlayerStats : CharacterStats {
     public Stat airSpeed;
     ///<summary>how many item can player equip</summary>
     public Stat itemSpace;
+    public Stat swingForce;
 }

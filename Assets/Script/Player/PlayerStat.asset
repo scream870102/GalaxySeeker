@@ -25,6 +25,8 @@ MonoBehaviour:
   attackPoint:
     baseValue: 100
   airSpeed:
-    baseValue: 50
+    baseValue: 75
   itemSpace:
     baseValue: 5
+  swingForce:
+    baseValue: 1

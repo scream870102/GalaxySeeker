@@ -9,7 +9,9 @@ public class Item : MonoBehaviour {
 	//field for player inventory
 	protected PlayerEquipment inventory = null;
 	/// <summary>which inventory of this item belongs to</summary>
-	public PlayerEquipment Inventory { set { if (inventory == null) inventory = value; } }
+	public PlayerEquipment Inventory { set { if (inventory == null) { inventory = value; Init ( ); owner = inventory.Parent; } } }
+	/// <summary>which gameObject need to initialize when item being taken by player
+	public GameObject itemGameObject;
 	/// <summary>item's name</summary>
 	new public string name = "New Item";
 	/// <summary> item icon</summary>
@@ -17,23 +19,22 @@ public class Item : MonoBehaviour {
 	/// <summary>if Item alreay used this event will invoke</summary>
 	/// <param name="string">item name</param>
 	public event System.Action<string> OnItemUsed;
-	//if Item is using now
-	protected bool bItemUsing;
+	// //if Item is using now
+	// protected bool bItemUsing;
+	protected bool bItemCanUse;
+	public bool IsItemCanUse { set { bItemCanUse = value; } }
+	protected SpriteRenderer spriteRenderer;
+	protected Player owner;
 
 	//when enable reset Item
 	private void OnEnable ( ) {
-		bItemUsing = false;
-		Reset ( );
-	}
-
-	/// <summary> Called when the item is being used</summary>
-	public void Use ( ) {
-		bItemUsing = true;
+		bItemCanUse = false;
+		spriteRenderer = GetComponent<SpriteRenderer> ( );
 	}
 
 	//if item state is using keep call UsingItem()
 	protected void Update ( ) {
-		if (!bItemUsing)
+		if (!bItemCanUse)
 			return;
 		UsingItem ( );
 	}
@@ -48,15 +49,10 @@ public class Item : MonoBehaviour {
 
 	///<summary>if item finish its action call this method to reset all field and invoke event OnItemUsed</summary>
 	protected void AlreadUsed ( ) {
-		bItemUsing = false;
 		Reset ( );
 		if (OnItemUsed != null)
 			OnItemUsed (name);
 	}
-	//define reset action 
-	//child class can override this method to add something need to reset
-	protected virtual void Reset ( ) { }
-
 	/// <summary>Item is being used and going to remove from hierachy</summary>
 	public void RemoveFromInventory ( ) {
 		if (inventory == null) {
@@ -64,7 +60,16 @@ public class Item : MonoBehaviour {
 			return;
 		}
 		inventory.RemoveItem (this);
+		RemoveItem ( );
 		Destroy (this);
 	}
+
+	//define reset action 
+	//child class can override this method to add something need to reset
+	protected virtual void Reset ( ) { }
+
+	protected virtual void RemoveItem ( ) { }
+
+	protected virtual void Init ( ) { spriteRenderer.enabled = false; }
 
 }
