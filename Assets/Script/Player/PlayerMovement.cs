@@ -40,9 +40,13 @@ public class PlayerMovement : PlayerComponent {
     protected bool bFacingRight;
     /// <summary>if player now facing at right direction
     public bool IsPlayerFacingRight { get { return bFacingRight; } }
+    // field if player is in swinging right now
     private bool bSwing;
+    /// <summary>Define player is swinging with rope right now</summary>
     public bool IsPlayerSwing { get { return bSwing; } set { bSwing = value; } }
+    // which position does rope hook at
     private Vector2 hookPoint;
+    /// <summary>make rope can tell hook point for player
     public Vector2 HookPoint { set { hookPoint = value; } }
     //set all info from props
     //set detectGround
@@ -78,6 +82,7 @@ public class PlayerMovement : PlayerComponent {
 
     //get horiziontal velocity and move rigidbody call in fixed update
     protected virtual void Move ( ) {
+        //when player is swinging chage its action mode
         if (IsPlayerSwing) {
             if (moveHorizontal == 0)
                 return;
@@ -85,8 +90,8 @@ public class PlayerMovement : PlayerComponent {
             Vector2 playerNormalVector = (hookPoint - (Vector2) transform.position).normalized;
             Vector2 swingDir = IsPlayerFacingRight?new Vector2 (playerNormalVector.y, -playerNormalVector.x) : new Vector2 (-playerNormalVector.y, playerNormalVector.x);
             rb.AddForce (swingDir * Parent.Stats.swingForce.Value, ForceMode2D.Force);
-            Debug.DrawLine (transform.position, (Vector2) transform.position + swingDir * 10.0f);
         }
+        //this section is normal move mode about player
         else {
             if (moveHorizontal == 0 && Parent.State == "WALK")
                 Parent.State = "IDLE";
@@ -94,8 +99,17 @@ public class PlayerMovement : PlayerComponent {
                 bFacingRight = moveHorizontal > 0;
                 Parent.State = "WALK";
             }
-            Vector2 targetVelocity = new Vector2 (moveHorizontal * Time.fixedDeltaTime, rb.velocity.y);
-            rb.velocity = Vector2.SmoothDamp (rb.velocity, targetVelocity, ref refVelocity, smoothDamp);
+            // if player stays on ground move it by modify rigidbody velocity
+            if (bGround) {
+                Vector2 targetVelocity = new Vector2 (moveHorizontal * Time.fixedDeltaTime, rb.velocity.y);
+                rb.velocity = Vector2.SmoothDamp (rb.velocity, targetVelocity, ref refVelocity, smoothDamp);
+            }
+            // when player stay in the air move it by add force
+            else if (!bGround) {
+                Vector2 force = new Vector2 (moveHorizontal * Time.fixedDeltaTime, 0f);
+                rb.AddForce (force, ForceMode2D.Force);
+            }
+
         }
 
     }
@@ -129,6 +143,8 @@ public class PlayerMovement : PlayerComponent {
             }
         }
     }
+
+    // public method make other can add force to player's rigidbody2d
     public void AddForce (Vector2 force, ForceMode2D mode = ForceMode2D.Impulse) {
         rb.AddForce (force, mode);
     }

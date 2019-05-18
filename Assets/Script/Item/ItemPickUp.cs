@@ -7,11 +7,11 @@ using UnityEngine;
 public class ItemPickUp : MonoBehaviour, IInteractable {
     //what is this item
     [SerializeField]
-    Item item = null;
+    private Item item = null;
     //collider for this item 
-    Collider2D col = null;
+    private Collider2D col = null;
     //owner of this item
-    Player owner = null;
+    private Player owner = null;
     private void Awake ( ) {
         col = GetComponent<Collider2D> ( );
     }

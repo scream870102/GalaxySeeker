@@ -36,11 +36,19 @@
         * 可以透過移動按鍵在空中擺蕩
 - `PlayerStats.cs`新增Stat:**swingForce** 可以用來調整玩家使用繩所在空中擺蕩的力值
 - 修正`PlayerMovement.cs`中造成Rope擺蕩中重力的異常(主要是不能令`rb.velocity=new Vector2(某值,rb.velocity.y);`由於值不停維持在同一個frame裡的velocity.y所以物理引擎所帶來的重力影響就被弱化了)
-- 新增一個`DrawNormalVector.cs`負責畫出角色法向量的script
+---
+## 190518
+- 調整從空中繩子脫落後 身上X方向的力消失的問題`PlayerMovement.cs`
+- 繩子本身不會有碰撞體 因此必須要再地圖上設計 防止玩家穿過
+- 開啟distanceJoint2D的enableCollision否者角色本身會穿過地形
+- 修正還在使用A道具的同時 就可以切換B道具並使用的
+- 整理目前為止的註解
+
 ### 未完成
 - 修改xmind `Galaxy Seeker.xmind`
 - 死亡的動作 `Player.cs`
 - Rope的實現 `Rope.cs`
 - `PlayerAnimation.cs`
+- 實現移除道具的功能`PlayerEquipment.cs`
 
 ---

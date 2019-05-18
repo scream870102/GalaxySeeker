@@ -17,5 +17,6 @@ public class PlayerStats : CharacterStats {
     public Stat airSpeed;
     ///<summary>how many item can player equip</summary>
     public Stat itemSpace;
+    ///<summary> define how many force wiil add to player when player is swing with rope
     public Stat swingForce;
 }

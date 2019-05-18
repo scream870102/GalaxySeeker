@@ -23,13 +23,12 @@ public class Item : MonoBehaviour {
 	// protected bool bItemUsing;
 	protected bool bItemCanUse;
 	public bool IsItemCanUse { set { bItemCanUse = value; } }
-	protected SpriteRenderer spriteRenderer;
+	//ref for player
 	protected Player owner;
 
 	//when enable reset Item
 	private void OnEnable ( ) {
 		bItemCanUse = false;
-		spriteRenderer = GetComponent<SpriteRenderer> ( );
 	}
 
 	//if item state is using keep call UsingItem()
@@ -45,6 +44,7 @@ public class Item : MonoBehaviour {
 		// Use the item
 		// Something may happen
 		//must call AlreadyUsed when finsh using item
+		//And if player is using item must call BeginUsing()
 	}
 
 	///<summary>if item finish its action call this method to reset all field and invoke event OnItemUsed</summary>
@@ -67,9 +67,17 @@ public class Item : MonoBehaviour {
 	//define reset action 
 	//child class can override this method to add something need to reset
 	protected virtual void Reset ( ) { }
-
+	//define the action before remove item from invetory
+	//can override
 	protected virtual void RemoveItem ( ) { }
-
-	protected virtual void Init ( ) { spriteRenderer.enabled = false; }
+	//define what action should do when item is being pick up by player 
+	//can override
+	protected virtual void Init ( ) { }
+	//when player is using item must call this method 
+	//this is to prevent player using over one item at the same time
+	//must call
+	protected void BeginUsing ( ) {
+		inventory.IsItemUsing = true;
+	}
 
 }

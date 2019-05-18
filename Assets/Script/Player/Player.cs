@@ -18,7 +18,9 @@ public class Player : Character {
     /// <summary>State define current player move state then animator change according to this
     //need to add some logic for state
     public string State;
+    // property to access movement is playerSwing
     public bool IsPlayerSwing { set { movement.IsPlayerSwing = value; } }
+    //properry to access the rope hookPoint it will be called when rope cast something
     public Vector2 HookPoint { set { movement.HookPoint = value; } }
     //Get all ref when player Awake
     //Add Dead function to OnHealthReachedZero
@@ -44,7 +46,7 @@ public class Player : Character {
     public bool AddItem (ref Item item) {
         return equipment.AddItem (ref item);
     }
-
+    /// <summary>add some force to player RigidBody2d </summary>
     public void AddForce (Vector2 force, ForceMode2D mode = ForceMode2D.Impulse) {
         movement.AddForce (force, mode);
     }
