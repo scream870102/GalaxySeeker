@@ -3,17 +3,17 @@ using System.Collections.Generic;
 
 using UnityEngine;
 /// <summary>item on map and can interact with player</summary>
-[RequireComponent (typeof (Collider2D))]
+[RequireComponent (typeof (Collider2D), typeof (Item))]
 public class ItemPickUp : MonoBehaviour, IInteractable {
     //what is this item
-    [SerializeField]
     private Item item = null;
     //collider for this item 
-    private Collider2D col = null;
+    public Collider2D col = null;
     //owner of this item
     private Player owner = null;
     private void Awake ( ) {
         col = GetComponent<Collider2D> ( );
+        item = GetComponent<Item> ( );
     }
 
     //if player press interact button then item will be picked up
@@ -29,9 +29,6 @@ public class ItemPickUp : MonoBehaviour, IInteractable {
     public void Interact ( ) {
         if (owner == null)
             return;
-        Debug.Log ("Get the " + item.name);
         owner.AddItem (ref item);
-        Destroy (this.gameObject);
-
     }
 }

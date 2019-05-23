@@ -39,11 +39,11 @@ public class PlayerMovement : PlayerComponent {
     //stoer what direction is player facing true=facing right direction false=facing left direction
     protected bool bFacingRight;
     /// <summary>if player now facing at right direction
-    public bool IsPlayerFacingRight { get { return bFacingRight; } }
+    public bool IsFacingRight { get { return bFacingRight; } }
     // field if player is in swinging right now
     private bool bSwing;
     /// <summary>Define player is swinging with rope right now</summary>
-    public bool IsPlayerSwing { get { return bSwing; } set { bSwing = value; } }
+    public bool IsSwing { get { return bSwing; } set { bSwing = value; } }
     // which position does rope hook at
     private Vector2 hookPoint;
     /// <summary>make rope can tell hook point for player
@@ -83,13 +83,13 @@ public class PlayerMovement : PlayerComponent {
     //get horiziontal velocity and move rigidbody call in fixed update
     protected virtual void Move ( ) {
         //when player is swinging chage its action mode
-        if (IsPlayerSwing) {
+        if (IsSwing) {
             if (moveHorizontal == 0)
                 return;
             bFacingRight = moveHorizontal > 0;
             Vector2 playerNormalVector = (hookPoint - (Vector2) transform.position).normalized;
-            Vector2 swingDir = IsPlayerFacingRight?new Vector2 (playerNormalVector.y, -playerNormalVector.x) : new Vector2 (-playerNormalVector.y, playerNormalVector.x);
-            rb.AddForce (swingDir * Parent.Stats.swingForce.Value, ForceMode2D.Force);
+            Vector2 swingDir = IsFacingRight?new Vector2 (playerNormalVector.y, -playerNormalVector.x) : new Vector2 (-playerNormalVector.y, playerNormalVector.x);
+            rb.AddForce (swingDir * Parent.Stats.swingForce.Value * Time.deltaTime, ForceMode2D.Force);
         }
         //this section is normal move mode about player
         else {

@@ -43,6 +43,16 @@
 - 開啟distanceJoint2D的enableCollision否者角色本身會穿過地形
 - 修正還在使用A道具的同時 就可以切換B道具並使用的
 - 整理目前為止的註解
+---
+## 190523
+- 完成噴射背包系統'Jetpack.cs'
+    * 噴射背包的cd還有force有待調整
+- 加上註解
+- 調整`PlayerEquipment.cs`中的部份結構以符合Jetpack
+- 調整`ItemPickup.cs`
+    * 將其改成只要掛上ItemPickup同時擁有trigger類型的collider以及item類別在上面 便可以讓物體可以被撿起來
+    * 只要物體被撿起會更改其Parent到角色並同時移除身上的ItemPickUp.cs跟collider
+    * 注意collider是用getComponent獲取 因此如果有兩個collider在身上需要透過手動做指定
 
 ### 未完成
 - 修改xmind `Galaxy Seeker.xmind`

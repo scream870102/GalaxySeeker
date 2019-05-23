@@ -29,16 +29,17 @@ public class PlayerEquipment : PlayerComponent {
     }
     ///<summary>add a new item into equipment</summary>
     ///<remarks>will get false when there isn't more space in equipment</remarks>
-    //must add item to player as a new component then init all the thing about new item
     public bool AddItem (ref Item item) {
         if (items.Count >= Parent.Stats.itemSpace.Value)
             return false;
-        GameObject itemGameObject = GameObject.Instantiate (item.itemGameObject);
-        if (itemGameObject != null) {
-            itemGameObject.transform.parent = this.transform;
-            Item newItem = itemGameObject.GetComponent<Item> ( );
-            InitNewItem (ref newItem, ref item);
-            items.Add (newItem);
+        ItemPickUp pickUpComponent = item.gameObject.GetComponent<ItemPickUp> ( );
+        if (pickUpComponent != null) {
+            Collider2D col = pickUpComponent.col;
+            Destroy (pickUpComponent);
+            Destroy (col);
+            item.transform.parent = this.gameObject.transform;
+            InitNewItem (ref item);
+            items.Add (item);
             items [currentItemIndex].IsItemCanUse = true;
             return true;
         }
@@ -55,20 +56,19 @@ public class PlayerEquipment : PlayerComponent {
     public void RemoveItem (Item item) {
         items.Remove (item);
     }
-
-    // set item name icon and set regist event
-    void InitNewItem (ref Item newItem, ref Item oldItem) {
-        newItem.name = oldItem.name;
-        newItem.icon = oldItem.icon;
-        newItem.OnItemUsed += OnItemAlreadyUsed;
-        newItem.Inventory = this;
-        Vector3 initPos = new Vector3 (.0f, .0f, .0f);
-        newItem.transform.localPosition = initPos;
+    //when a new item is goint to be add to inventory call this method
+    //subscribe OnItemUsed event
+    //set localPosition and set sprite
+    private void InitNewItem (ref Item item) {
+        item.OnItemUsed += OnItemAlreadyUsed;
+        item.Inventory = this;
+        item.transform.localPosition = item.InitPos;
+        item.spriteRenderer.sprite = item.icon;
     }
 
     //define if player switch item button how item switch
     //only can switch item when player isn't using any item 
-    void SwitchItem ( ) {
+    private void SwitchItem ( ) {
         if (Input.GetButtonDown ("Switch") && !bItemUsing) {
             items [currentItemIndex].IsItemCanUse = false;
             if (currentItemIndex < items.Count - 1)

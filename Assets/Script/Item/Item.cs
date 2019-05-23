@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 /// <summary>class define what an item has</summary>
 /// <remarks>inclue icon name and which inventory belongs</remarks>
+[RequireComponent (typeof (SpriteRenderer))]
 public class Item : MonoBehaviour {
-	[SerializeField]
 	//field for player inventory
 	protected PlayerEquipment inventory = null;
 	/// <summary>which inventory of this item belongs to</summary>
 	public PlayerEquipment Inventory { set { if (inventory == null) { inventory = value; Init ( ); owner = inventory.Parent; } } }
 	/// <summary>which gameObject need to initialize when item being taken by player
-	public GameObject itemGameObject;
+	//public GameObject itemGameObject;
 	/// <summary>item's name</summary>
 	new public string name = "New Item";
 	/// <summary> item icon</summary>
@@ -22,12 +22,20 @@ public class Item : MonoBehaviour {
 	// //if Item is using now
 	// protected bool bItemUsing;
 	protected bool bItemCanUse;
+	/// <summary>if this item can use right now</summary>
 	public bool IsItemCanUse { set { bItemCanUse = value; } }
 	//ref for player
 	protected Player owner;
+	/// <summary> when item being pick up which local pos it need to be</summary>
+	public Vector3 InitPos;
+	//ref for spriteRenderer
+	protected SpriteRenderer sr;
+	/// <summary>Proerty for spriteRenderer readOnly</summary>
+	public SpriteRenderer spriteRenderer { get { return sr; } }
 
 	//when enable reset Item
 	private void OnEnable ( ) {
+		sr = GetComponent<SpriteRenderer> ( );
 		bItemCanUse = false;
 	}
 

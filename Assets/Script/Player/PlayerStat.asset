@@ -21,7 +21,7 @@ MonoBehaviour:
   walkSpeed:
     baseValue: 100
   jumpForce:
-    baseValue: 8
+    baseValue: 5
   attackPoint:
     baseValue: 100
   airSpeed:
