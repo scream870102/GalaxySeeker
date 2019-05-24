@@ -25,7 +25,7 @@ public class Player : Character {
     /// <summary> if player standing on ground</summary>
     public bool IsOnGround { get { return movement.IsGround; } }
     /// <summary>Get rigidbody2d velocity</summary>
-    public Vector2 Velocity { get { return movement.Velocity; } }
+    public Vector2 Velocity { get { return movement.Velocity; } set { movement.Velocity = value; } }
     /// <summary>if player is flying state right now</summary>
     public bool IsFlying { set { movement.IsFlying = value; } }
     //Get all ref when player Awake

@@ -13,19 +13,19 @@ public class Rope : Item {
     //ref for LineRenderer
     private LineRenderer lineRenderer;
     //define if player is using rope right now
-    private bool bUsingRope;
+    private bool bUsing;
     public int swingForce;
 
     override protected void UsingItem ( ) {
         //if player hit using button then cast rope
-        if (Input.GetButtonDown ("Use") && !bUsingRope) {
+        if (Input.GetButtonDown ("Use") && !bUsing) {
             //call beginUsing to tell invetoru player is using rope right now
             BeginUsing ( );
             //hit store the ref of rope cast
             RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.up, ropeMaxCastDistance, ropeLayerMask);
             //if rope hit something then update it
             if (hit.collider != null) {
-                bUsingRope = true;
+                bUsing = true;
                 //add a vector force to player prevent player still stay on ground
                 owner.AddForce (new Vector2 (0f, 2f));
                 //change this boolean make playerMovement change its reaction different from other state
@@ -45,11 +45,11 @@ public class Rope : Item {
             }
         }
         //if player hit using button and rope is using now reset rope
-        else if (Input.GetButtonDown ("Use") && bUsingRope) {
+        else if (Input.GetButtonDown ("Use") && bUsing) {
             AlreadUsed ( );
         }
         //if rope is now using keep update lineRenderer about player position
-        else if (bUsingRope) {
+        else if (bUsing) {
             lineRenderer.SetPosition (1, transform.position);
         }
 
@@ -58,7 +58,7 @@ public class Rope : Item {
     //disable distancJoing on player and lineRenderer
     //tell player is not swinging right now
     override protected void Reset ( ) {
-        bUsingRope = false;
+        bUsing = false;
         distanceJoint.enabled = false;
         lineRenderer.enabled = false;
         lineRenderer.positionCount = 2;
@@ -76,7 +76,7 @@ public class Rope : Item {
         distanceJoint.enableCollision = true;
         distanceJoint.enabled = false;
         lineRenderer.enabled = false;
-        bUsingRope = false;
+        bUsing = false;
         owner.Stats.swingForce.baseValue = swingForce;
 
     }

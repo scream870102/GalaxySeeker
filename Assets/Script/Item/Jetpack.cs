@@ -16,26 +16,26 @@ public class Jetpack : Item {
     /// <summary>jetpack cooldown between each time</summary>
     public float cooldown;
     //if jetpack can use right now
-    private bool bCanUseJetPack;
+    private bool bCanUse;
     //store time of jetpack can use next time
-    private float nextCanUseJetpackTime;
+    private float nextCanUseTime;
     // if using jetpack rightnow
-    private bool bUsingJetPack;
+    private bool bUsing;
 
     override protected void UsingItem ( ) {
         //if player hit jump button on air start to using jetPack if it can use right now
-        if (Input.GetButtonDown ("Jump") && bCanUseJetPack && currentCapacityOfGas > 0f && !owner.IsOnGround) {
+        if (Input.GetButtonDown ("Jump") && bCanUse && currentCapacityOfGas > 0f && !owner.IsOnGround) {
             BeginUsing ( );
             owner.IsFlying = true;
-            bUsingJetPack = true;
-            bCanUseJetPack = false;
+            bUsing = true;
+            bCanUse = false;
         }
         //if player release button let pack enter cd
-        else if (Input.GetButtonUp ("Jump") && bUsingJetPack) {
+        else if (Input.GetButtonUp ("Jump") && bUsing) {
             ResetState ( );
         }
         //if player keep hold button keep add force to player
-        else if (Input.GetButton ("Jump") && bUsingJetPack) {
+        else if (Input.GetButton ("Jump") && bUsing) {
             if (currentCapacityOfGas <= 0f)
                 ResetState ( );
             //keep add force
@@ -50,19 +50,19 @@ public class Jetpack : Item {
 
         }
         //if over cd time make pack can use again
-        if (Time.time > nextCanUseJetpackTime && !bCanUseJetPack && !bUsingJetPack) {
-            bCanUseJetPack = true;
+        if (Time.time > nextCanUseTime && !bCanUse && !bUsing) {
+            bCanUse = true;
         }
         //if gas is full and in can use state tell player can swith item
-        if (bCanUseJetPack && currentCapacityOfGas >= capacityOfGas)
+        if (bCanUse && currentCapacityOfGas >= capacityOfGas)
             AlreadUsed ( );
 
     }
 
     //when player release button make jetpack enter cd
     private void ResetState ( ) {
-        bUsingJetPack = false;
-        nextCanUseJetpackTime = Time.time + cooldown;
+        bUsing = false;
+        nextCanUseTime = Time.time + cooldown;
         owner.IsFlying = false;
     }
 
@@ -75,8 +75,7 @@ public class Jetpack : Item {
     override protected void Init ( ) {
         sr.enabled = true;
         currentCapacityOfGas = capacityOfGas;
-        bCanUseJetPack = true;
-        Debug.Log (owner);
+        bCanUse = true;
         owner.Stats.flyingGasForce.baseValue = gasForce;
     }
 }

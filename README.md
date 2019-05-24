@@ -60,6 +60,8 @@
     * 把裝上背高的force設定移到PlayerMovemetn.cs中
 - 修改PlayerStats部份數值運作
     * `swingForce`&`flyingForce`會在撿拾到道具的時候被定義 預設值為0
+- 完成DASH球鞋`SpargeShoes.cs`
+    * 對於角色力的施加直接寫在shoes上 而非Playermovement上
 
 ### 未完成
 - 修改xmind `Galaxy Seeker.xmind`

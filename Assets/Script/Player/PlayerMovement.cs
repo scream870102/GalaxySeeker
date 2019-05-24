@@ -37,6 +37,7 @@ public class PlayerMovement : PlayerComponent {
     //store horizontal velocity
     protected float moveHorizontal;
     //stoer what direction is player facing true=facing right direction false=facing left direction
+    [SerializeField]
     protected bool bFacingRight;
     /// <summary>if player now facing at right direction
     public bool IsFacingRight { get { return bFacingRight; } }
@@ -49,7 +50,7 @@ public class PlayerMovement : PlayerComponent {
     /// <summary>make rope can tell hook point for player
     public Vector2 HookPoint { set { hookPoint = value; } }
     /// <summary>return player rigidbody2d velocity</summary>
-    public Vector2 Velocity { get { return rb.velocity; } }
+    public Vector2 Velocity { get { return rb.velocity; } set { rb.velocity = value; } }
     //if player is flying right now
     private bool bFlying;
     /// <summary>define player is flying with jetpack right now</summary>
@@ -104,7 +105,7 @@ public class PlayerMovement : PlayerComponent {
         }
         //this section is normal move mode about player
         else {
-            if (moveHorizontal == 0 && Parent.State == "WALK")
+            if (moveHorizontal == 0)
                 Parent.State = "IDLE";
             else {
                 bFacingRight = moveHorizontal > 0;
