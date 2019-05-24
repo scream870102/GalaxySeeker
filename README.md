@@ -53,11 +53,17 @@
     * 將其改成只要掛上ItemPickup同時擁有trigger類型的collider以及item類別在上面 便可以讓物體可以被撿起來
     * 只要物體被撿起會更改其Parent到角色並同時移除身上的ItemPickUp.cs跟collider
     * 注意collider是用getComponent獲取 因此如果有兩個collider在身上需要透過手動做指定
+---
+## 190524 
+- 修改噴色背包系統'Jetpack.cs'
+    * 將背包x方向會維持原訂速度不停前進的問題修正
+    * 把裝上背高的force設定移到PlayerMovemetn.cs中
+- 修改PlayerStats部份數值運作
+    * `swingForce`&`flyingForce`會在撿拾到道具的時候被定義 預設值為0
 
 ### 未完成
 - 修改xmind `Galaxy Seeker.xmind`
 - 死亡的動作 `Player.cs`
-- Rope的實現 `Rope.cs`
 - `PlayerAnimation.cs`
 - 實現移除道具的功能`PlayerEquipment.cs`
 

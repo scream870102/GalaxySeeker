@@ -9,7 +9,7 @@ public class Item : MonoBehaviour {
 	//field for player inventory
 	protected PlayerEquipment inventory = null;
 	/// <summary>which inventory of this item belongs to</summary>
-	public PlayerEquipment Inventory { set { if (inventory == null) { inventory = value; Init ( ); owner = inventory.Parent; } } }
+	public PlayerEquipment Inventory { set { if (inventory == null) { inventory = value; owner = inventory.Parent; Init ( ); } } }
 	/// <summary>which gameObject need to initialize when item being taken by player
 	//public GameObject itemGameObject;
 	/// <summary>item's name</summary>

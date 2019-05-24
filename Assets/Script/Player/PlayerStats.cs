@@ -19,4 +19,6 @@ public class PlayerStats : CharacterStats {
     public Stat itemSpace;
     ///<summary> define how many force wiil add to player when player is swing with rope
     public Stat swingForce;
+    /// <summary> define how many force will add to player when playe is flugin with jetPack</summary>
+    public Stat flyingGasForce;
 }

@@ -12,9 +12,7 @@ public class Jetpack : Item {
     /// <summary>gas recover rate per second</summary>
     public float recoverRate;
     /// <summary>how many force will add to player per second</summary>
-    public float gasForce;
-    // min gas capacity to use jetpack
-    private float minStartGas;
+    public int gasForce;
     /// <summary>jetpack cooldown between each time</summary>
     public float cooldown;
     //if jetpack can use right now
@@ -26,8 +24,9 @@ public class Jetpack : Item {
 
     override protected void UsingItem ( ) {
         //if player hit jump button on air start to using jetPack if it can use right now
-        if (Input.GetButtonDown ("Jump") && bCanUseJetPack && currentCapacityOfGas > minStartGas && !owner.IsOnGround) {
+        if (Input.GetButtonDown ("Jump") && bCanUseJetPack && currentCapacityOfGas > 0f && !owner.IsOnGround) {
             BeginUsing ( );
+            owner.IsFlying = true;
             bUsingJetPack = true;
             bCanUseJetPack = false;
         }
@@ -37,11 +36,12 @@ public class Jetpack : Item {
         }
         //if player keep hold button keep add force to player
         else if (Input.GetButton ("Jump") && bUsingJetPack) {
-            if (currentCapacityOfGas <= minStartGas)
+            if (currentCapacityOfGas <= 0f)
                 ResetState ( );
             //keep add force
             currentCapacityOfGas -= consumptionRate * Time.deltaTime;
-            owner.AddForce (new Vector2 (0f, gasForce * Time.deltaTime), ForceMode2D.Force);
+            // owner.SetVelocity (new Vector2 (0f, 0f));
+            // owner.AddForce (new Vector2 (0f, gasForce * Time.deltaTime), ForceMode2D.Force);
         }
         //add gas to jetpack
         else {
@@ -63,6 +63,7 @@ public class Jetpack : Item {
     private void ResetState ( ) {
         bUsingJetPack = false;
         nextCanUseJetpackTime = Time.time + cooldown;
+        owner.IsFlying = false;
     }
 
     //reset currentGas to max
@@ -74,7 +75,8 @@ public class Jetpack : Item {
     override protected void Init ( ) {
         sr.enabled = true;
         currentCapacityOfGas = capacityOfGas;
-        minStartGas = capacityOfGas / 2f;
         bCanUseJetPack = true;
+        Debug.Log (owner);
+        owner.Stats.flyingGasForce.baseValue = gasForce;
     }
 }

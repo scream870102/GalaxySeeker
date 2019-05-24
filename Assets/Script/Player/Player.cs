@@ -24,6 +24,10 @@ public class Player : Character {
     public Vector2 HookPoint { set { movement.HookPoint = value; } }
     /// <summary> if player standing on ground</summary>
     public bool IsOnGround { get { return movement.IsGround; } }
+    /// <summary>Get rigidbody2d velocity</summary>
+    public Vector2 Velocity { get { return movement.Velocity; } }
+    /// <summary>if player is flying state right now</summary>
+    public bool IsFlying { set { movement.IsFlying = value; } }
     //Get all ref when player Awake
     //Add Dead function to OnHealthReachedZero
     private void Awake ( ) {

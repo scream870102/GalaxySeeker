@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d7ff3f80698c21419a5ceccf711f561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 0}
   name: Rope
   icon: {fileID: 21300000, guid: 0a27ae5465f330a469dfe36fc57980ee, type: 3}
   InitPos: {x: 0, y: 0, z: 0}
@@ -55,6 +54,7 @@ MonoBehaviour:
   ropeLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  swingForce: 2
 --- !u!120 &352128089178984163
 LineRenderer:
   m_ObjectHideFlags: 0

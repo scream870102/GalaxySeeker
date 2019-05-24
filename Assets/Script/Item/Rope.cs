@@ -14,6 +14,7 @@ public class Rope : Item {
     private LineRenderer lineRenderer;
     //define if player is using rope right now
     private bool bUsingRope;
+    public int swingForce;
 
     override protected void UsingItem ( ) {
         //if player hit using button then cast rope
@@ -76,5 +77,7 @@ public class Rope : Item {
         distanceJoint.enabled = false;
         lineRenderer.enabled = false;
         bUsingRope = false;
+        owner.Stats.swingForce.baseValue = swingForce;
+
     }
 }

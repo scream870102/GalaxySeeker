@@ -29,4 +29,6 @@ MonoBehaviour:
   itemSpace:
     baseValue: 5
   swingForce:
-    baseValue: 2
+    baseValue: 0
+  flyingGasForce:
+    baseValue: 0

@@ -43,11 +43,17 @@ public class PlayerMovement : PlayerComponent {
     // field if player is in swinging right now
     private bool bSwing;
     /// <summary>Define player is swinging with rope right now</summary>
-    public bool IsSwing { get { return bSwing; } set { bSwing = value; } }
+    public bool IsSwing { set { bSwing = value; } }
     // which position does rope hook at
     private Vector2 hookPoint;
     /// <summary>make rope can tell hook point for player
     public Vector2 HookPoint { set { hookPoint = value; } }
+    /// <summary>return player rigidbody2d velocity</summary>
+    public Vector2 Velocity { get { return rb.velocity; } }
+    //if player is flying right now
+    private bool bFlying;
+    /// <summary>define player is flying with jetpack right now</summary>
+    public bool IsFlying { set { bFlying = value; } }
     //set all info from props
     //set detectGround
     private void Awake ( ) {
@@ -83,13 +89,18 @@ public class PlayerMovement : PlayerComponent {
     //get horiziontal velocity and move rigidbody call in fixed update
     protected virtual void Move ( ) {
         //when player is swinging chage its action mode
-        if (IsSwing) {
+        if (bSwing) {
             if (moveHorizontal == 0)
                 return;
             bFacingRight = moveHorizontal > 0;
             Vector2 playerNormalVector = (hookPoint - (Vector2) transform.position).normalized;
             Vector2 swingDir = IsFacingRight?new Vector2 (playerNormalVector.y, -playerNormalVector.x) : new Vector2 (-playerNormalVector.y, playerNormalVector.x);
             rb.AddForce (swingDir * Parent.Stats.swingForce.Value * Time.deltaTime, ForceMode2D.Force);
+        }
+        //this section is active when player is using Jetpack to fly
+        else if (bFlying && !bGround) {
+            rb.velocity = new Vector2 ( );
+            rb.AddForce (new Vector2 (moveHorizontal, Parent.Stats.flyingGasForce.Value) * Time.fixedDeltaTime, ForceMode2D.Impulse);
         }
         //this section is normal move mode about player
         else {
@@ -144,8 +155,9 @@ public class PlayerMovement : PlayerComponent {
         }
     }
 
-    // public method make other can add force to player's rigidbody2d
+    /// <summary>public method make other can add force to player's rigidbody2d</summary>
     public void AddForce (Vector2 force, ForceMode2D mode = ForceMode2D.Impulse) {
         rb.AddForce (force, mode);
     }
+
 }
