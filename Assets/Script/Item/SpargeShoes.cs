@@ -9,9 +9,9 @@ public class SpargeShoes : Item {
     /// <summary>how long between two times using shoes</summary>
     public float coolDown;
     //if shoes can use right now
-    private bool bCanUse;
+    bool bCanUse;
     //timer for cd
-    private float timer;
+    float timer;
     override protected void UsingItem ( ) {
         if (Input.GetButtonDown ("Use") && bCanUse) {
             BeginUsing ( );

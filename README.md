@@ -62,11 +62,25 @@
     * `swingForce`&`flyingForce`會在撿拾到道具的時候被定義 預設值為0
 - 完成DASH球鞋`SpargeShoes.cs`
     * 對於角色力的施加直接寫在shoes上 而非Playermovement上
+---
+## 190525
+- 完成子彈系統部份
+    * 運用`ObjectPool.cs`來管理子彈的數量
+    * `Bullet.cs`繼承自`ObjectPoolItem.cs`
+    * 尚未寫對敵人造成傷害的部份
+- 修改`CharacterStats.cs`、`PlayerStats.cs`
+    * 不再繼承自`ScriptableObject`
+    * 必須在需要使用Stats的地方直接new物件出來並設定
+- 修改`PlayerComponent.cs`
+    * 修正Component在沒有Parent時仍然能夠執行的問題
+    * Tick = Update ||  FixedTick = FixedUpdate
+- 加上目前的所有註解
+
 
 ### 未完成
 - 修改xmind `Galaxy Seeker.xmind`
 - 死亡的動作 `Player.cs`
 - `PlayerAnimation.cs`
 - 實現移除道具的功能`PlayerEquipment.cs`
-
+- 子彈系統
 ---

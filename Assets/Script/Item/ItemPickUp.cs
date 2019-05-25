@@ -6,18 +6,18 @@ using UnityEngine;
 [RequireComponent (typeof (Collider2D), typeof (Item))]
 public class ItemPickUp : MonoBehaviour, IInteractable {
     //what is this item
-    private Item item = null;
+    Item item = null;
     //collider for this item 
     public Collider2D col = null;
     //owner of this item
-    private Player owner = null;
-    private void Awake ( ) {
+    Player owner = null;
+    void Awake ( ) {
         col = GetComponent<Collider2D> ( );
         item = GetComponent<Item> ( );
     }
 
     //if player press interact button then item will be picked up
-    private void OnTriggerStay2D (Collider2D other) {
+    void OnTriggerStay2D (Collider2D other) {
         if (other.gameObject.tag == "Player" && Input.GetButtonDown ("Interact")) {
             col.enabled = false;
             owner = other.GetComponent<Player> ( );

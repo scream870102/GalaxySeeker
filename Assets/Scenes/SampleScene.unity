@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 95342470}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,6 +339,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &662238410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 662238411}
+  m_Layer: 11
+  m_Name: BulletPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &662238411
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662238410}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 918305894}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &828676278
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,7 +490,8 @@ GameObject:
   - component: {fileID: 918305889}
   - component: {fileID: 918305895}
   - component: {fileID: 918305893}
-  m_Layer: 0
+  - component: {fileID: 918305896}
+  m_Layer: 11
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -517,7 +548,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0b8bf579d37499488f48073bdd57766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: []
 --- !u!114 &918305892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,7 +561,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
-  stats: {fileID: 11400000, guid: 2adfa55fec6746f4f844280fcd540f2e, type: 2}
+  stats:
+    maxHealth: 100
+    currentHealth: 0
+    damage:
+      baseValue: 50
+    armor:
+      baseValue: 0
+    walkSpeed:
+      baseValue: 100
+    jumpForce:
+      baseValue: 5
+    attackPoint:
+      baseValue: 100
+    airSpeed:
+      baseValue: 75
+    itemSpace: 2
+    swingForce:
+      baseValue: 0
+    flyingGasForce:
+      baseValue: 0
   State: 
 --- !u!70 &918305893
 CapsuleCollider2D:
@@ -561,6 +610,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 95342470}
+  - {fileID: 662238411}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -612,6 +662,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &918305896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918305888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 005577d9a4308e844910938e4599d661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullets:
+    pooledObject: {fileID: 1618754911638075279, guid: 1ac0cae3a7da2fd43b60e79c698a70a7,
+      type: 3}
+    poolParent: {fileID: 662238411}
+    pooledAmount: 20
+    IsGrow: 1
 --- !u!1001 &668301209209729400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -770,12 +838,12 @@ PrefabInstance:
     - target: {fileID: 6869640688358460885, guid: 78065fc638a80a044a12df1aaee9c32f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.364
       objectReference: {fileID: 0}
     - target: {fileID: 6869640688358460885, guid: 78065fc638a80a044a12df1aaee9c32f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.303
       objectReference: {fileID: 0}
     - target: {fileID: 6869640688358460885, guid: 78065fc638a80a044a12df1aaee9c32f,
         type: 3}

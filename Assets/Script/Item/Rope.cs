@@ -9,11 +9,11 @@ public class Rope : Item {
     /// <summary>define what layer should rope react with</summary>
     public LayerMask ropeLayerMask;
     //ref for DistanceJoint2D which is a part of component on the player
-    private DistanceJoint2D distanceJoint;
+    DistanceJoint2D distanceJoint;
     //ref for LineRenderer
-    private LineRenderer lineRenderer;
+    LineRenderer lineRenderer;
     //define if player is using rope right now
-    private bool bUsing;
+    bool bUsing;
     public int swingForce;
 
     override protected void UsingItem ( ) {

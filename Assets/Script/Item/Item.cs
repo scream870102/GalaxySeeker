@@ -34,13 +34,13 @@ public class Item : MonoBehaviour {
 	public SpriteRenderer spriteRenderer { get { return sr; } }
 
 	//when enable reset Item
-	private void OnEnable ( ) {
+	void OnEnable ( ) {
 		sr = GetComponent<SpriteRenderer> ( );
 		bItemCanUse = false;
 	}
 
 	//if item state is using keep call UsingItem()
-	protected void Update ( ) {
+	void Update ( ) {
 		if (!bItemCanUse)
 			return;
 		UsingItem ( );

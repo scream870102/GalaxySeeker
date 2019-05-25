@@ -16,11 +16,11 @@ public class Jetpack : Item {
     /// <summary>jetpack cooldown between each time</summary>
     public float cooldown;
     //if jetpack can use right now
-    private bool bCanUse;
+    bool bCanUse;
     //store time of jetpack can use next time
-    private float nextCanUseTime;
+    float nextCanUseTime;
     // if using jetpack rightnow
-    private bool bUsing;
+    bool bUsing;
 
     override protected void UsingItem ( ) {
         //if player hit jump button on air start to using jetPack if it can use right now
@@ -60,7 +60,7 @@ public class Jetpack : Item {
     }
 
     //when player release button make jetpack enter cd
-    private void ResetState ( ) {
+    void ResetState ( ) {
         bUsing = false;
         nextCanUseTime = Time.time + cooldown;
         owner.IsFlying = false;

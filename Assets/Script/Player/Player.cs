@@ -6,13 +6,14 @@ using UnityEngine;
 public class Player : Character {
     [SerializeField]
     //all stats of player include hp shield attackpoint and some constants
-    protected PlayerStats stats;
+    PlayerStats stats;
     /// <summary>all player stats include all constants or some variables</summary>
     public PlayerStats Stats { get { return stats; } }
     //ref of playerMovement
-    protected PlayerMovement movement = null;
+    PlayerMovement movement = null;
     //ref of Playerequipment
-    protected PlayerEquipment equipment = null;
+    PlayerEquipment equipment = null;
+    PlayerShooting shooting = null;
     /// <summary> if player now facing right direction?</summary>
     public bool IsFacingRight { get { return movement.IsFacingRight; } }
     /// <summary>State define current player move state then animator change according to this
@@ -30,10 +31,12 @@ public class Player : Character {
     public bool IsFlying { set { movement.IsFlying = value; } }
     //Get all ref when player Awake
     //Add Dead function to OnHealthReachedZero
-    private void Awake ( ) {
+    void Awake ( ) {
+        stats.Init ( );
         stats.OnHealthReachedZero += Dead;
         SetComponent<PlayerMovement> (ref movement);
         SetComponent<PlayerEquipment> (ref equipment);
+        SetComponent<PlayerShooting> (ref shooting);
     }
 
     //method to init all playerComponent
@@ -44,7 +47,7 @@ public class Player : Character {
 
     //callback function will call when player health reached zero
     void Dead ( ) {
-        Debug.Log (stats.name + "already Dead");
+        Debug.Log ("already Dead");
     }
 
     /// <summary>add a new item to equipment</summary>
