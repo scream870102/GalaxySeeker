@@ -75,7 +75,11 @@
     * 修正Component在沒有Parent時仍然能夠執行的問題
     * Tick = Update ||  FixedTick = FixedUpdate
 - 加上目前的所有註解
-
+---
+## 190529
+- 替子彈加上視覺回饋(ParticleSystem)
+- 加上子彈的CD系統`PlayerShooting.cs`
+- 補上註解
 
 ### 未完成
 - 修改xmind `Galaxy Seeker.xmind`
@@ -83,4 +87,5 @@
 - `PlayerAnimation.cs`
 - 實現移除道具的功能`PlayerEquipment.cs`
 - 子彈系統
+- 噴射背包跟DASH球鞋的視覺回饋
 ---
