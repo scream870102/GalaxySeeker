@@ -21,6 +21,8 @@ public class Jetpack : Item {
     float nextCanUseTime;
     // if using jetpack rightnow
     bool bUsing;
+    // ref for ptc
+    ParticleSystem ptc;
 
     override protected void UsingItem ( ) {
         //if player hit jump button on air start to using jetPack if it can use right now
@@ -36,12 +38,10 @@ public class Jetpack : Item {
         }
         //if player keep hold button keep add force to player
         else if (Input.GetButton ("Jump") && bUsing) {
+            ptc.Play ( );
             if (currentCapacityOfGas <= 0f)
                 ResetState ( );
-            //keep add force
             currentCapacityOfGas -= consumptionRate * Time.deltaTime;
-            // owner.SetVelocity (new Vector2 (0f, 0f));
-            // owner.AddForce (new Vector2 (0f, gasForce * Time.deltaTime), ForceMode2D.Force);
         }
         //add gas to jetpack
         else {
@@ -61,6 +61,7 @@ public class Jetpack : Item {
 
     //when player release button make jetpack enter cd
     void ResetState ( ) {
+        ptc.Stop ( );
         bUsing = false;
         nextCanUseTime = Time.time + cooldown;
         owner.IsFlying = false;
@@ -69,6 +70,7 @@ public class Jetpack : Item {
     //reset currentGas to max
     override protected void Reset ( ) {
         currentCapacityOfGas = capacityOfGas;
+        ptc.Stop ( );
     }
 
     //enable backpack sprite
@@ -77,5 +79,6 @@ public class Jetpack : Item {
         currentCapacityOfGas = capacityOfGas;
         bCanUse = true;
         owner.Stats.flyingGasForce.baseValue = gasForce;
+        ptc = GetComponent<ParticleSystem> ( );
     }
 }

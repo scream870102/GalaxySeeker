@@ -20,11 +20,11 @@ public class PlayerShooting : PlayerComponent {
         timer = Time.time;
     }
 
-    //if player hit shoot button shoot bullet
+    //if player hit shoot button shoot bullet 
     protected override void Tick ( ) {
         if (Input.GetButtonDown ("Shoot") && bShootable) {
             Bullet bullet = Bullets.GetPooledObject ( ) as Bullet;
-            bullet.Fire (Parent.IsFacingRight?Vector2.right : Vector2.left);
+            bullet.Fire (Parent.IsFacingRight?Vector2.right : Vector2.left, transform.position);
             timer = Time.time + coolDown;
             bShootable = false;
         }

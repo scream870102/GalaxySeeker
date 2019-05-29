@@ -26,8 +26,9 @@ public class Bullet : ObjectPoolItem {
 
     //other class will call this when firing the bullet
     //add force to bullet and play the particle
-    public void Fire (Vector2 direction) {
+    public void Fire (Vector2 direction, Vector3 position) {
         ptcShape.scale = new Vector3 (1f, direction == Vector2.right?1f: -1f, 1f);
+        tf.position = position;
         rb.velocity = new Vector2 ( );
         rb.AddForce (force * direction);
         ptc.Play ( );

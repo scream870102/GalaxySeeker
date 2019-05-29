@@ -12,6 +12,11 @@ public class SpargeShoes : Item {
     bool bCanUse;
     //timer for cd
     float timer;
+    //ref for ParticleSystem
+    ParticleSystem ptc;
+    //ref for ptc shape
+    ParticleSystem.ShapeModule ptcShape;
+    public float particleYOffset;
     override protected void UsingItem ( ) {
         if (Input.GetButtonDown ("Use") && bCanUse) {
             BeginUsing ( );
@@ -19,6 +24,9 @@ public class SpargeShoes : Item {
             owner.AddForce (new Vector2 (owner.IsFacingRight?spargingForce: -spargingForce, 0f));
             bCanUse = false;
             timer = Time.time + coolDown;
+            ptcShape.position = new Vector3 (0f, owner.IsFacingRight? - particleYOffset : particleYOffset, 0f);
+            ptc.Play ( );
+            Invoke ("StopPTC", 0.5f);
         }
         if (!bCanUse && timer < Time.time) {
             bCanUse = true;
@@ -29,5 +37,11 @@ public class SpargeShoes : Item {
     override protected void Init ( ) {
         sr.enabled = true;
         bCanUse = true;
+        ptc = GetComponent<ParticleSystem> ( );
+        ptcShape = ptc.shape;
+    }
+    //Invoke stop ptc after .5f
+    void StopPTC ( ) {
+        ptc.Stop ( );
     }
 }

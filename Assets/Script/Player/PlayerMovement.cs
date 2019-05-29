@@ -24,6 +24,8 @@ public class PlayerMovement : PlayerComponent {
     Rigidbody2D rb = null;
     //transform for foot
     public Transform detectGround = null;
+    //ref for transform
+    Transform tf = null;
     //
     //
     //field
@@ -61,6 +63,7 @@ public class PlayerMovement : PlayerComponent {
         rb = GetComponent<Rigidbody2D> ( );
         detectGround = transform.Find ("Foot");
         bSwing = false;
+        tf = gameObject.transform;
     }
     protected override void Tick ( ) {
         IsGrounded ( );
@@ -75,6 +78,7 @@ public class PlayerMovement : PlayerComponent {
     protected override void FixedTick ( ) {
         Move ( );
         InJump ( );
+        Render ( );
     }
 
     //if can jump set bJump to true bGround false plus numNowJump
@@ -155,6 +159,12 @@ public class PlayerMovement : PlayerComponent {
     /// <summary>public method make other can add force to player's rigidbody2d</summary>
     public void AddForce (Vector2 force, ForceMode2D mode = ForceMode2D.Impulse) {
         rb.AddForce (force, mode);
+    }
+    //change player scale due to player's facing direction
+    void Render ( ) {
+        Vector3 tmp = tf.localScale;
+        tmp = new Vector3 (bFacingRight?Mathf.Abs (tmp.x): -Mathf.Abs (tmp.x), tmp.y, tmp.z);
+        tf.localScale = tmp;
     }
 
 }

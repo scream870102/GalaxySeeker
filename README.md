@@ -80,6 +80,10 @@
 - 替子彈加上視覺回饋(ParticleSystem)
 - 加上子彈的CD系統`PlayerShooting.cs`
 - 補上註解
+- 角色會根據面對的方向修改其scale達到水平翻轉
+- 將子彈的物件池Parent移出角色 以解決角色換方向時 子彈也會跟著換方向的問題
+- 噴射背包跟DASH球鞋的視覺回饋
+- Unity版本升級成2019.1.4f1
 
 ### 未完成
 - 修改xmind `Galaxy Seeker.xmind`
@@ -87,5 +91,6 @@
 - `PlayerAnimation.cs`
 - 實現移除道具的功能`PlayerEquipment.cs`
 - 子彈系統
-- 噴射背包跟DASH球鞋的視覺回饋
+- 攝影機
+- 敵人初步設定
 ---
