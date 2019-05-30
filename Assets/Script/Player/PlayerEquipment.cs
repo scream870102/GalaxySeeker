@@ -7,6 +7,7 @@ using UnityEngine;
 ///<remarks> inherit from playerComponent</remarks>
 public class PlayerEquipment : PlayerComponent {
     // what items in player equipment
+    [SerializeField]
     List<Item> items = new List<Item> ( );
     // field to keep tracing player current item index
     int currentItemIndex;
@@ -67,7 +68,7 @@ public class PlayerEquipment : PlayerComponent {
     //define if player switch item button how item switch
     //only can switch item when player isn't using any item 
     void SwitchItem ( ) {
-        if (Input.GetButtonDown ("Switch") && !bItemUsing) {
+        if (Input.GetButtonDown ("Switch") && !bItemUsing && items.Count > 0) {
             items [currentItemIndex].IsItemCanUse = false;
             if (currentItemIndex < items.Count - 1)
                 currentItemIndex++;

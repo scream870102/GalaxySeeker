@@ -1,5 +1,8 @@
 # GalaxySeeker
 ---
+## 開發日誌 DevLog
+[190529-物件池開發日誌](https://eccentric0102.wordpress.com/2019/05/29/190529-【galaxy-seeker】devlog物件池/)
+---
 ## 190419
 - item/itemPickUp 與 PlayerEquipment的互動
 - 新增 character/characterStats IInteractable/Itme/ItemPickUp 註解
@@ -84,13 +87,17 @@
 - 將子彈的物件池Parent移出角色 以解決角色換方向時 子彈也會跟著換方向的問題
 - 噴射背包跟DASH球鞋的視覺回饋
 - Unity版本升級成2019.1.4f1
-
+---
+## 190530
+- 替子彈系統加上Reload的功能
+- 初步的敵人系統可以被子彈攻擊死亡 然後會呼叫`Dead`
+- 修正裝備系統再沒有任何道具時點擊交換道具的存取錯誤
+- 替`PlayerShooting`加上設定每一發子彈傷害的部份 位於`Fire`
+- 補上註解
 ### 未完成
 - 修改xmind `Galaxy Seeker.xmind`
 - 死亡的動作 `Player.cs`
 - `PlayerAnimation.cs`
 - 實現移除道具的功能`PlayerEquipment.cs`
-- 子彈系統
 - 攝影機
-- 敵人初步設定
 ---

@@ -13,21 +13,47 @@ public class PlayerShooting : PlayerComponent {
     float timer;
     //if player can shoot right now
     bool bShootable;
+    /// <summary>how many bullets can weapon take</summary>
+    public int maxClipCapacity;
+    // field for current bullets in clip
+    int clipCapacity;
+    // is now in reloading animation
+    bool bReloading;
     //spawn all bullets
     void Awake ( ) {
         Bullets.Init ( );
         bShootable = true;
         timer = Time.time;
+        clipCapacity = maxClipCapacity;
+        bReloading = false;
     }
 
     //if player hit shoot button shoot bullet 
     protected override void Tick ( ) {
-        if (Input.GetButtonDown ("Shoot") && bShootable) {
+        //if timer say u can shoot and u also not in reloadAnimation then u can shoot bullet
+        if (Input.GetButtonDown ("Shoot") && bShootable && !bReloading) {
+            if (clipCapacity <= 0) {
+                Reload ( );
+                return;
+            }
             Bullet bullet = Bullets.GetPooledObject ( ) as Bullet;
-            bullet.Fire (Parent.IsFacingRight?Vector2.right : Vector2.left, transform.position);
+            clipCapacity--;
+            bullet.Fire (Parent.IsFacingRight?Vector2.right : Vector2.left, transform.position, Parent.Stats.damage.Value);
             timer = Time.time + coolDown;
             bShootable = false;
         }
+
         bShootable = Time.time > timer? true : false;
+    }
+    //method when current bullet is under or equal to zero reload clip
+    void Reload ( ) {
+        bReloading = true;
+        Invoke ("ReloadFinish", 2f);
+    }
+
+    //method when reload is finish
+    void ReloadFinish ( ) {
+        bReloading = false;
+        clipCapacity = maxClipCapacity;
     }
 }

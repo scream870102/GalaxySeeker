@@ -54,7 +54,7 @@ MonoBehaviour:
   ropeLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  swingForce: 2
+  swingForce: 15
 --- !u!120 &352128089178984163
 LineRenderer:
   m_ObjectHideFlags: 0

@@ -15,6 +15,8 @@ public class Bullet : ObjectPoolItem {
     //ref for particle system shapemodule
     //this is for change the particle emmiter scale
     ParticleSystem.ShapeModule ptcShape;
+    //field store how many damage will cause to enemy
+    int damage;
 
     void Awake ( ) {
         rb = GetComponent<Rigidbody2D> ( );
@@ -26,7 +28,8 @@ public class Bullet : ObjectPoolItem {
 
     //other class will call this when firing the bullet
     //add force to bullet and play the particle
-    public void Fire (Vector2 direction, Vector3 position) {
+    public void Fire (Vector2 direction, Vector3 position, int damage) {
+        this.damage = damage;
         ptcShape.scale = new Vector3 (1f, direction == Vector2.right?1f: -1f, 1f);
         tf.position = position;
         rb.velocity = new Vector2 ( );
@@ -47,6 +50,12 @@ public class Bullet : ObjectPoolItem {
     //when enter other collider recycle self
     //exclude layers player bullets
     void OnTriggerEnter2D (Collider2D other) {
+        if (other.tag == "Enemy") {
+            Debug.Log ("Hit other");
+            Enemy enemy = other.gameObject.GetComponent<Enemy> ( );
+            enemy.Stats.TakeDamage (damage);
+
+        }
         Recycle ( );
     }
 }
