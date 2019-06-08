@@ -51,8 +51,9 @@ public class Bullet : ObjectPoolItem {
     //exclude layers player bullets
     void OnTriggerEnter2D (Collider2D other) {
         if (other.tag == "Enemy") {
-            Debug.Log ("Hit other");
+            //Debug.Log ("Hit other");
             Enemy enemy = other.gameObject.GetComponent<Enemy> ( );
+            Debug.Log (enemy.Stats);
             enemy.Stats.TakeDamage (damage);
 
         }

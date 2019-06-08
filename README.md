@@ -2,6 +2,7 @@
 ---
 ## 開發日誌 DevLog
 [190529-物件池開發日誌](https://eccentric0102.wordpress.com/2019/05/29/190529-【galaxy-seeker】devlog物件池/)
+[190531-Stats開發日誌](https://eccentric0102.wordpress.com/2019/06/01/190531-%e3%80%90galaxy-seeker%e3%80%91devlogstats/)
 ---
 ## 190419
 - item/itemPickUp 與 PlayerEquipment的互動
@@ -94,10 +95,20 @@
 - 修正裝備系統再沒有任何道具時點擊交換道具的存取錯誤
 - 替`PlayerShooting`加上設定每一發子彈傷害的部份 位於`Fire`
 - 補上註解
+---
+## 190608
+- 修改初步的敵人系統 讓所有的Component 都不繼承自Monobehavior
+- 著手寫敵人Jellyfish
+- 初步完成Jellyfish的移動
+- 補上註解
+- Unity版本升級成2019.1.5f1
 ### 未完成
 - 修改xmind `Galaxy Seeker.xmind`
 - 死亡的動作 `Player.cs`
 - `PlayerAnimation.cs`
 - 實現移除道具的功能`PlayerEquipment.cs`
 - 攝影機
+- Jellyfish對主角的追蹤
+- Jellyfish的攻擊
+- 將主角的component修改成不繼承自Mono
 ---
