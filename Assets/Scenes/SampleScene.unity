@@ -573,7 +573,7 @@ GameObject:
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -774,10 +774,11 @@ GameObject:
   - component: {fileID: 1565328378}
   - component: {fileID: 1565328377}
   - component: {fileID: 1565328376}
+  - component: {fileID: 1565328380}
   m_Layer: 10
-  m_Name: Enemy
+  m_Name: JellyFish
   m_TagString: Enemy
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -798,12 +799,16 @@ MonoBehaviour:
     maxHealth: 100
     currentHealth: 0
     damage:
-      baseValue: 0
+      baseValue: 50
     armor:
       baseValue: 0
   props:
-    moveSpeed: 46
-    moveRange: {x: 0, y: 0}
+    Speed: 1
+    traceSpeed: 1.5
+    Range: {x: 1.5, y: 1.5}
+    DetectAreaRange: 1
+    AttackDetectArea: 0.5
+    AttackCD: 2
 --- !u!70 &1565328377
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -814,7 +819,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 4b54550dff5bd7946812bb9168d5a1af, type: 2}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -876,13 +881,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565328375}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.01, y: -0.76, z: 0}
+  m_LocalPosition: {x: 2.11, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1963616950}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!111 &1565328380
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565328375}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: c19771a73d7f0574b99715aa9f65bb68, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: c19771a73d7f0574b99715aa9f65bb68, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1963616949
 GameObject:
   m_ObjectHideFlags: 0

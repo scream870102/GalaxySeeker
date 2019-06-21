@@ -102,13 +102,20 @@
 - 初步完成Jellyfish的移動
 - 補上註解
 - Unity版本升級成2019.1.5f1
+---
+## 190621
+- Jellyfish對主角的追蹤
+- Jellyfish任意移動的修正
+- Jellyfish的攻擊方式
+- 完成註解
+- 優化Jellyfish attack 中circle cast的使用頻率
+
 ### 未完成
 - 修改xmind `Galaxy Seeker.xmind`
 - 死亡的動作 `Player.cs`
 - `PlayerAnimation.cs`
 - 實現移除道具的功能`PlayerEquipment.cs`
 - 攝影機
-- Jellyfish對主角的追蹤
-- Jellyfish的攻擊
 - 將主角的component修改成不繼承自Mono
+- 優化Jellyfish attack 中circle cast的使用頻率
 ---
