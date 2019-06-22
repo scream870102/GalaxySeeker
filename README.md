@@ -1,8 +1,8 @@
 # GalaxySeeker
 ---
 ## 開發日誌 DevLog
-[190529-物件池開發日誌](https://eccentric0102.wordpress.com/2019/05/29/190529-【galaxy-seeker】devlog物件池/)
-[190531-Stats開發日誌](https://eccentric0102.wordpress.com/2019/06/01/190531-%e3%80%90galaxy-seeker%e3%80%91devlogstats/)
+- [190529-物件池開發日誌](https://eccentric0102.wordpress.com/2019/05/29/190529-【galaxy-seeker】devlog物件池/)
+- [190531-Stats開發日誌](https://eccentric0102.wordpress.com/2019/06/01/190531-%e3%80%90galaxy-seeker%e3%80%91devlogstats/)
 ---
 ## 190419
 - item/itemPickUp 與 PlayerEquipment的互動
@@ -109,6 +109,25 @@
 - Jellyfish的攻擊方式
 - 完成註解
 - 優化Jellyfish attack 中circle cast的使用頻率
+---
+## 190622
+- 優化Jellyfish attack 中circle cast的使用頻率
+- 修正使用jetPack空中不會轉向的問題
+- 將ObjectPoolItem移除
+- 需要被物件池管理的物件繼承IObjectPoolItem(Interface)
+    - GetComponent可以尋找**Interface**
+        ```c#
+        GameObject.Instantiate (pooledObject).GetComponent<IObjectPoolItem> ( );
+        ```
+    - 需要被物件池管理的物件需要實作IObjectPoolItem中的
+        - ObjectPool Pool { get; set; }
+        - GameObject gameObject { get; }
+        - void Recycle ( );
+        - void Init ( );
+- Unity版本升級成2019.1.7.f1
+- 水母移動的動畫可以透過子物件移動相對位置來達成
+- 完成註解
+
 
 ### 未完成
 - 修改xmind `Galaxy Seeker.xmind`
@@ -117,5 +136,4 @@
 - 實現移除道具的功能`PlayerEquipment.cs`
 - 攝影機
 - 將主角的component修改成不繼承自Mono
-- 優化Jellyfish attack 中circle cast的使用頻率
 ---

@@ -19,7 +19,6 @@ public class Enemy : Character {
     public EnemyStats Stats { get { return stats; } }
     // call Init when this monoBehavior been spawned
     void Awake ( ) {
-        Debug.Log ("Enemy Awake");
         Init ( );
     }
 
@@ -59,9 +58,7 @@ public class Enemy : Character {
 
     /// <summary>define action when character dead</summary>
     /// <remarks>sub class can override </remarks>
-    protected virtual void Dead ( ) {
-        Debug.Log (name + "is dead");
-    }
+    protected virtual void Dead ( ) { }
 
     /// <summary>Add component to components</summary>
     public void AddComponent (CharacterComponent component) {

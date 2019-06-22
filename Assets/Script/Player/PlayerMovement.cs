@@ -91,24 +91,25 @@ public class PlayerMovement : PlayerComponent {
     void Move ( ) {
         //when player is swinging chage its action mode
         if (bSwing) {
-            if (moveHorizontal == 0)
+            if (moveHorizontal == 0f)
                 return;
-            bFacingRight = moveHorizontal > 0;
+            bFacingRight = moveHorizontal > 0f;
             Vector2 playerNormalVector = (hookPoint - (Vector2) transform.position).normalized;
             Vector2 swingDir = IsFacingRight?new Vector2 (playerNormalVector.y, -playerNormalVector.x) : new Vector2 (-playerNormalVector.y, playerNormalVector.x);
             rb.AddForce (swingDir * Parent.Stats.swingForce.Value * Time.deltaTime, ForceMode2D.Force);
         }
         //this section is active when player is using Jetpack to fly
         else if (bFlying && !bGround) {
+            bFacingRight = moveHorizontal > 0f;
             rb.velocity = new Vector2 ( );
             rb.AddForce (new Vector2 (moveHorizontal, Parent.Stats.flyingGasForce.Value) * Time.fixedDeltaTime, ForceMode2D.Impulse);
         }
         //this section is normal move mode about player
         else {
-            if (moveHorizontal == 0)
+            if (moveHorizontal == 0f)
                 Parent.State = "IDLE";
             else {
-                bFacingRight = moveHorizontal > 0;
+                bFacingRight = moveHorizontal > 0f;
                 Parent.State = "WALK";
             }
             // if player stays on ground move it by modify rigidbody velocity

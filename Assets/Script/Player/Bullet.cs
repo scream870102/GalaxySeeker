@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 [RequireComponent (typeof (Collider2D), typeof (Rigidbody2D))]
-public class Bullet : ObjectPoolItem {
+public class Bullet : MonoBehaviour, IObjectPoolItem {
     /// <summary>how many force will add to bullet when it is being fired</summary>
     public Vector2 force;
     //ref for rigidbody
@@ -15,6 +15,8 @@ public class Bullet : ObjectPoolItem {
     //ref for particle system shapemodule
     //this is for change the particle emmiter scale
     ParticleSystem.ShapeModule ptcShape;
+    /// <summary>which pool is this bullet belongs to</summary>
+    public ObjectPool Pool { get; set; }
     //field store how many damage will cause to enemy
     int damage;
 
@@ -40,7 +42,7 @@ public class Bullet : ObjectPoolItem {
 
     //init its position
     //and bullets will disappear after 5 seconds
-    public override void Init ( ) {
+    public void Init ( ) {
         tf.localPosition = new Vector2 ( );
         ptc.Pause ( );
         CancelInvoke ( );
@@ -51,12 +53,14 @@ public class Bullet : ObjectPoolItem {
     //exclude layers player bullets
     void OnTriggerEnter2D (Collider2D other) {
         if (other.tag == "Enemy") {
-            //Debug.Log ("Hit other");
             Enemy enemy = other.gameObject.GetComponent<Enemy> ( );
-            Debug.Log (enemy.Stats);
             enemy.Stats.TakeDamage (damage);
 
         }
         Recycle ( );
+    }
+
+    public void Recycle ( ) {
+        Pool.RecycleObject (this);
     }
 }

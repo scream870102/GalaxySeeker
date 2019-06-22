@@ -79,11 +79,16 @@ public class JellyfishMovement : CharacterComponent {
 
     //use circlecast to find if player in detect area
     bool FindTartget ( ) {
-        RaycastHit2D hit = Physics2D.CircleCast (Parent.tf.position, detectAreaRadius, Vector2.zero, 0f, 1 << 11);
-        if (hit) {
-            bFindTarget = true;
-            target = hit.transform;
-            return true;
+        if (!target) {
+            RaycastHit2D hit = Physics2D.CircleCast (Parent.tf.position, detectAreaRadius, Vector2.zero, 0f, 1 << 11);
+            if (hit) {
+                bFindTarget = true;
+                target = hit.transform;
+                return true;
+            }
+        }
+        else {
+            return (Vector2.Distance (target.position, Parent.tf.position) <= detectAreaRadius);
         }
         return false;
     }
