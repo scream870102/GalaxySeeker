@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Spaceship.unity
+    guid: 63cad7c2f182a3d44a4869e37e67e7b3
+  - enabled: 1
+    path: Assets/Scenes/Laiter.unity
+    guid: 5035b35bdd9427f45942cbf2098bd5b2
+  - enabled: 1
+    path: Assets/Scenes/Start.unity
+    guid: d4ae808f045f65046934fb3ad7c36ec0
   m_configObjects: {}

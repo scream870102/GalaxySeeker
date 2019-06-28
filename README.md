@@ -127,6 +127,26 @@
 - Unity版本升級成2019.1.7.f1
 - 水母移動的動畫可以透過子物件移動相對位置來達成
 - 完成註解
+---
+## 190628
+- 完成船艦畫面選擇星球功能
+- 完成主畫面選擇功能
+    - 選項透過struct 將 UI元素跟UnityEvent包裝起來 方便從Inspector中選擇對應的動作
+        ```c#
+        struct Button {
+            public Text text;
+            public UnityEvent action;
+        }
+        ```
+- 新增`EnableComponent<T>(bool value)`方法
+    - 透過Generic可以直接從呼叫階段決定要關掉哪一個行別的PlayerComponent
+    - T只屬於類別 不屬於物件 必須利用[GetType](https://docs.microsoft.com/zh-tw/dotnet/api/system.type.gettype?view=netframework-4.8)動態找到其類別 並儲存成[Type](https://docs.microsoft.com/zh-tw/dotnet/api/system.type?view=netframework-4.8)物件
+    - 透過[Equality==運算子](https://docs.microsoft.com/zh-tw/dotnet/api/system.type.op_equality?view=netframework-4.8)或是[Equals](https://docs.microsoft.com/zh-tw/dotnet/api/system.type.equals?view=netframework-4.8) 來比較兩個Type 是否相等
+- 新增`EnableComponents`方法
+- 補上註解
+- 主畫面選項 加上簡易的顏色改變回饋
+- Unity版本升級成2019.1.8.f1
+
 
 
 ### 未完成
@@ -136,4 +156,7 @@
 - 實現移除道具的功能`PlayerEquipment.cs`
 - 攝影機
 - 將主角的component修改成不繼承自Mono
+- 主畫面的Option選項
+- Laiter的環境變化
+- 對話系統
 ---

@@ -13,7 +13,10 @@ public class Player : Character {
     PlayerMovement movement = null;
     //ref of Playerequipment
     PlayerEquipment equipment = null;
+    //ref of Playershooting
     PlayerShooting shooting = null;
+    //ref for all PlayerComponent
+    List<PlayerComponent> components;
     /// <summary> if player now facing right direction?</summary>
     public bool IsFacingRight { get { return movement.IsFacingRight; } }
     /// <summary>State define current player move state then animator change according to this
@@ -34,6 +37,7 @@ public class Player : Character {
     void Awake ( ) {
         stats.Init ( );
         stats.OnHealthReachedZero += Dead;
+        components = new List<PlayerComponent> ( );
         SetComponent<PlayerMovement> (ref movement);
         SetComponent<PlayerEquipment> (ref equipment);
         SetComponent<PlayerShooting> (ref shooting);
@@ -43,6 +47,7 @@ public class Player : Character {
     void SetComponent<T> (ref T component) where T : PlayerComponent {
         component = GetComponent<T> ( );
         component.Parent = this;
+        components.Add (component);
     }
 
     //callback function will call when player health reached zero
@@ -58,6 +63,25 @@ public class Player : Character {
     /// <summary>add some force to player RigidBody2d </summary>
     public void AddForce (Vector2 force, ForceMode2D mode = ForceMode2D.Impulse) {
         movement.AddForce (force, mode);
+    }
+
+    /// <summary>Enable or Disable all PlayerComponents on Player</summary>
+    public void EnableComponents (bool enable) {
+        foreach (PlayerComponent component in components) {
+            component.enabled = enable;
+        }
+    }
+
+    /// <summary>Enable or Disable Specific PlayerComponent on Plyaer</summary>
+    public void EnableComponent<T> (bool enable) where T : PlayerComponent {
+        System.Type tmp = typeof (T);
+        foreach (PlayerComponent component in components) {
+            System.Type tem = component.GetType ( );
+            if (tmp.Equals (tem)) {
+                component.enabled = enable;
+            }
+
+        }
     }
 
 }
