@@ -12,7 +12,7 @@ public class ControlPanel : MonoBehaviour, IInteractable {
     //all planets player can choose
     [SerializeField]
     List<GameObject> planet;
-    //which planet player current chosing
+    //which planet player current choosing
     int currentIndex;
     //max #of planet
     int maxIndex;

@@ -13,8 +13,9 @@ public class GameManager : MonoBehaviour {
             instance = this;
             DontDestroyOnLoad (this);
             name = "GameManager";
+            Init ( );
         }
-        Init ( );
+
     }
     #endregion Singleton
     //field to store currentScene
@@ -23,11 +24,16 @@ public class GameManager : MonoBehaviour {
     public Player Player { get { return player; } }
     //when Game started which scene will be Load first
     public string InitScene;
+    //field for dialogueManager
+    DialogueManager dialogueManager;
+    /// <summary>Property for dialogueManager READONLY</summary>
+    public DialogueManager DialogueManager { get { return dialogueManager; } }
     //field for active Player
     Player player;
     void Init ( ) {
         FindPlayer ( );
         SetScene (InitScene);
+        dialogueManager = GetComponent<DialogueManager> ( );
     }
 
     void Update ( ) {

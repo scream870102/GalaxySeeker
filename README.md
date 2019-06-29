@@ -146,7 +146,17 @@
 - 補上註解
 - 主畫面選項 加上簡易的顏色改變回饋
 - Unity版本升級成2019.1.8.f1
-
+---
+## 190629
+- 完成單向的對話系統
+- 完成基本NPC的對話功能
+- 將對話系統掛在GameManger內部
+- 補上註解
+- 對話系統基本UI完成
+    - 將角色的座標點直接轉換成螢幕座標 而非Viewport座標
+    - RectTransform 參考文章
+        - [Unity UGUI 原理篇(三)：RectTransform](http://www.arkaistudio.com/blog/2016/05/02/unity-ugui-原理篇三：recttransform/)
+        - [成為 UGUI 的排版大師 – 一次精通 RectTransform](http://blog.fourdesire.com/2018/07/03/成為-ugui-的排版大師-一次精通-recttransform/)
 
 
 ### 未完成
@@ -158,5 +168,4 @@
 - 將主角的component修改成不繼承自Mono
 - 主畫面的Option選項
 - Laiter的環境變化
-- 對話系統
 ---
