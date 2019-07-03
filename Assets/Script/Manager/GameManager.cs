@@ -20,6 +20,10 @@ public class GameManager : MonoBehaviour {
     #endregion Singleton
     //field to store currentScene
     string currentScene;
+    [SerializeField]
+    GlobalProps globalProps;
+    /// <summary>property of global Property READONLY</summary>
+    public GlobalProps G_Props { get { return globalProps; } }
     //ref for active Player
     public Player Player { get { return player; } }
     //when Game started which scene will be Load first
@@ -58,5 +62,4 @@ public class GameManager : MonoBehaviour {
         if (tmp)
             player = tmp.GetComponent<Player> ( );
     }
-
 }

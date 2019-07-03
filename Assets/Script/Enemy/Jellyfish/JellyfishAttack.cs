@@ -15,27 +15,29 @@ public class JellyfishAttack : CharacterComponent {
     float detectAreaRadius;
     // how many damage will cause in one hit
     int damage;
-    // if jellyfish alreay attack target
+    // if jellyfish already attack target
     bool bAttack = false;
     // timer to calculate skill cooldown
     float timer = 0f;
     // interval time between two attack 
     float coolDown;
+    LayerMask targetLayer;
 
-    public JellyfishAttack (Enemy parent, float detectArea, int damage, float coolDown) : base (parent) {
+    public JellyfishAttack (Enemy parent, float detectArea, int damage, float coolDown, LayerMask targetLayer) : base (parent) {
         this.detectAreaRadius = detectArea;
         this.damage = damage;
         this.coolDown = coolDown;
+        this.targetLayer = targetLayer;
     }
 
     protected override void Tick ( ) {
-        // if alreay find target then attack it
+        // if already find target then attack it
         if (bFindTarget && !bAttack) {
             Attack ( );
             bAttack = true;
             timer = Time.time + coolDown;
         }
-        // find target and alreay attack then become skill cd
+        // find target and already attack then become skill cd
         else if (bAttack && bFindTarget) {
             if (Time.time > timer) {
                 bFindTarget = false;
@@ -46,24 +48,9 @@ public class JellyfishAttack : CharacterComponent {
 
     protected override void FixedTick ( ) {
         if (!bFindTarget && !bAttack)
-            bFindTarget = FindTartget ( );
-    }
+            target = FindTarget.CircleCast (Parent.tf.position, detectAreaRadius, targetLayer, target);
+        bFindTarget = (target? true : false);
 
-    // Use circleCast to find target 
-    // if alreay find target use distance to check if player in attack area
-    bool FindTartget ( ) {
-        if (!target) {
-            RaycastHit2D hit = Physics2D.CircleCast (Parent.tf.position, detectAreaRadius, Vector2.zero, 0f, 1 << 11);
-            if (hit) {
-                bFindTarget = true;
-                target = hit.transform;
-                return true;
-            }
-        }
-        else {
-            return (Vector2.Distance (target.position, Parent.tf.position) <= detectAreaRadius);
-        }
-        return false;
     }
 
     // if Find Target then attack it

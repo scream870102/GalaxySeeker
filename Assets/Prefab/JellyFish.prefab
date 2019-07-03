@@ -120,12 +120,15 @@ MonoBehaviour:
     armor:
       baseValue: 0
   props:
+    TargetLayer:
+      serializedVersion: 2
+      m_Bits: 2048
     Speed: 1
-    traceSpeed: 1.5
+    TraceSpeed: 1.25
     Range: {x: 1.5, y: 1.5}
-    DetectAreaRange: 1
-    AttackDetectArea: 0.5
-    AttackCD: 2
+    DetectAreaRadius: 1
+    DetectRadius: 0.3
+    Cooldown: 2
 --- !u!111 &5252997482026534015
 Animation:
   m_ObjectHideFlags: 0

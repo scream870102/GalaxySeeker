@@ -9,13 +9,14 @@ public class NPC : Character {
     //Dialogue which will interact with player
     [SerializeField]
     protected Dialogue dialogue;
+    public event System.Action<string,NPC> OnNPCDialogueFinish;
     //if player stay in trigger can interact with player
     void OnTriggerStay2D (Collider2D other) {
         Conversation (other);
     }
 
     //if player press interact send dialogue to DialogueManager
-    protected void Conversation (Collider2D other) {
+    protected virtual void Conversation (Collider2D other) {
         if (other.gameObject.tag == "Player") {
             if (Input.GetButtonDown ("Interact") && !GameManager.Instance.DialogueManager.IsTalking) {
                 //set name to this character
@@ -31,6 +32,8 @@ public class NPC : Character {
     /// <example><code>GameManager.Instance.DialogueManager.OnDialogueFinish -= DialogueFinish;</code></example>
     protected virtual void DialogueFinish ( ) {
         GameManager.Instance.DialogueManager.OnDialogueFinish -= DialogueFinish;
-        Debug.Log ("dialogueFinish");
+        if (OnNPCDialogueFinish != null) {
+            OnNPCDialogueFinish (this.name,this);
+        }
     }
 }

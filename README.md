@@ -158,7 +158,19 @@
         - [Unity UGUI 原理篇(三)：RectTransform](http://www.arkaistudio.com/blog/2016/05/02/unity-ugui-原理篇三：recttransform/)
         - [成為 UGUI 的排版大師 – 一次精通 RectTransform](http://blog.fourdesire.com/2018/07/03/成為-ugui-的排版大師-一次精通-recttransform/)
 
-
+---
+## 190703
+- 新增GlobalProps可以設定全域的相關設定
+- 新增FindTarget類別 用來尋找目標
+    - 新增CircleCast 可以透過圓形區域尋找目標
+- 修改`JellyfishMovement.cs` 將尋找目標的方法修改成使用FindTarget
+- 修改`JellyfishAttack.cs` 將尋找目標的方法修改成使用FindTarget
+- 新增敵人 CannibalFlower 作為LaiterBoss
+    - 簡單定義攻擊
+- Laiter星中 必要NPC對話 以及關底Boss的流程定義完畢
+     - 可以透過拖曳 來定義哪幾個NPC為必要對話的
+     - 當所有NPC對話完畢 BOSS前的牆壁會關閉
+     - 打完BOSS會回到起始畫面
 ### 未完成
 - 修改xmind `Galaxy Seeker.xmind`
 - 死亡的動作 `Player.cs`
@@ -167,5 +179,8 @@
 - 攝影機
 - 將主角的component修改成不繼承自Mono
 - 主畫面的Option選項
-- Laiter的環境變化
+- 主角死亡後的處理
+- Laiter星打完BOSS以後的動畫以及後續發展
+- 對話系統待修正
+- CannibalFlower完成
 ---

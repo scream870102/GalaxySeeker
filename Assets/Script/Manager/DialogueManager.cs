@@ -50,6 +50,7 @@ public class DialogueManager : MonoBehaviour {
         dialoguePanel.SetActive (true);
         //Set panel position
         Vector2 screenPos = Camera.main.WorldToScreenPoint (pos);
+        //Debug.Log (screenPos + "   " + pos + " " + Camera.main.WorldToViewportPoint (pos));
         dialogueUI.anchoredPosition = screenPos + offset;
         bTalking = true;
         nameText.text = dialogue.name;

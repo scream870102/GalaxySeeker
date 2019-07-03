@@ -6,7 +6,7 @@ using UnityEngine;
 public class Enemy : Character {
     // if this character enable or disable
     bool bEnable = true;
-    /// <summary>Property for enable or disable this character</summary>
+    /// <summary>Property for enable or disable all characterComponents on this character</summary>
     public bool IsEnable { set { bEnable = value; } protected get { return bEnable; } }
     /// <summary>ref for gameObject.transform</summary>
     public Transform tf { get { return this.gameObject.transform; } }
@@ -36,7 +36,7 @@ public class Enemy : Character {
         FixedTick ( );
     }
 
-    /// <summary>defein what action should this monoClass do when it awaked</summary>
+    /// <summary>define what action should this monoClass do when it awaked</summary>
     protected virtual void Init ( ) {
         stats.Init ( );
         stats.OnHealthReachedZero += Dead;

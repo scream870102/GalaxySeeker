@@ -26,14 +26,17 @@ public class JellyfishMovement : CharacterComponent {
     bool bFacingRight;
     // how fast when jellyfish find target and try to trace it
     float traceSpeed;
+    // Which layer to detect
+    LayerMask targetLayer;
 
-    public JellyfishMovement (Enemy parent, float speed, float traceSpeed, Vector2 range, float detectAreaRadius) : base (parent) {
+    public JellyfishMovement (Enemy parent, float speed, float traceSpeed, Vector2 range, float detectAreaRadius, LayerMask targetLayer) : base (parent) {
         //set initPosition to jellyfish current position
         initPos = Parent.tf.position;
         this.speed = speed;
         this.range = range;
         this.detectAreaRadius = detectAreaRadius;
         this.traceSpeed = traceSpeed;
+        this.targetLayer = targetLayer;
     }
 
     protected override void Tick ( ) {
@@ -73,23 +76,8 @@ public class JellyfishMovement : CharacterComponent {
 
     protected override void FixedTick ( ) {
         if (!bFindTarget) {
-            bFindTarget = FindTartget ( );
+            target = FindTarget.CircleCast (Parent.tf.position, detectAreaRadius, targetLayer, target);
+            bFindTarget = (target? true : false);
         }
-    }
-
-    //use circlecast to find if player in detect area
-    bool FindTartget ( ) {
-        if (!target) {
-            RaycastHit2D hit = Physics2D.CircleCast (Parent.tf.position, detectAreaRadius, Vector2.zero, 0f, 1 << 11);
-            if (hit) {
-                bFindTarget = true;
-                target = hit.transform;
-                return true;
-            }
-        }
-        else {
-            return (Vector2.Distance (target.position, Parent.tf.position) <= detectAreaRadius);
-        }
-        return false;
     }
 }

@@ -25,7 +25,7 @@ public class StartScene : Scene {
     }
 
     void Update ( ) {
-        //Get User Inpur
+        //Get User Input
         if (Input.GetButtonDown ("Vertical")) {
             currentIndex -= (int) Input.GetAxisRaw ("Vertical");
             if (currentIndex > maxIndex)
@@ -41,7 +41,7 @@ public class StartScene : Scene {
             else
                 SetAnimation (buttons [i].text, false);
         }
-        //If playe Press Interact invoke button action
+        //If player Press Interact invoke button action
         if (Input.GetButtonDown ("Interact")) {
             buttons [currentIndex].action.Invoke ( );
         }

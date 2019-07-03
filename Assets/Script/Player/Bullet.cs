@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour, IObjectPoolItem {
     //ref for particle system
     ParticleSystem ptc;
     //ref for particle system shapemodule
-    //this is for change the particle emmiter scale
+    //this is for change the particle emitter scale
     ParticleSystem.ShapeModule ptcShape;
     /// <summary>which pool is this bullet belongs to</summary>
     public ObjectPool Pool { get; set; }
@@ -49,6 +49,10 @@ public class Bullet : MonoBehaviour, IObjectPoolItem {
         Invoke ("Recycle", 5f);
     }
 
+    public void Recycle ( ) {
+        Pool.RecycleObject (this);
+    }
+
     //when enter other collider recycle self
     //exclude layers player bullets
     void OnTriggerEnter2D (Collider2D other) {
@@ -58,9 +62,5 @@ public class Bullet : MonoBehaviour, IObjectPoolItem {
 
         }
         Recycle ( );
-    }
-
-    public void Recycle ( ) {
-        Pool.RecycleObject (this);
     }
 }
