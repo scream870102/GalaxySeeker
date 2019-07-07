@@ -113,13 +113,15 @@ MonoBehaviour:
   stats:
     maxHealth: 100
     currentHealth: 0
-    damage:
-      baseValue: 500
-    armor:
-      baseValue: 0
   props:
     TargetLayer:
       serializedVersion: 2
       m_Bits: 2048
-    DetectRadius: 0.5
-    Cooldown: 1
+    Needle:
+      Damage: 10
+      CD: 5
+      DetectRadius: 1.5
+    Bite:
+      Damage: 50
+      CD: 5
+      DetectRadius: 0.5

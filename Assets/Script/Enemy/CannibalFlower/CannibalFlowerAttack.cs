@@ -7,54 +7,29 @@ using UnityEngine;
 /// <summary>define how CannibalFlower attack target</summary>
 public class CannibalFlowerAttack : CharacterComponent {
     //-----ref
-    float detectRadius;
-    float cooldown;
+    AttackValue needleValue;
+    AttackValue biteValue;
     LayerMask targetLayer;
-    float timer;
-    int damage;
 
     //------field
-    //target to attack
-    Transform target = null;
-    //ref for target Player
-    Player targetPlayer = null;
-    bool bFindTarget = false;
-    bool bAttack = false;
+    Eccentric.Attack.CircleAreaAttack needleAction = null;
+    Eccentric.Attack.CircleAreaAttack biteAction = null;
 
-    public CannibalFlowerAttack (Enemy parent, float detectRadius, float cooldown, int damage, LayerMask targetLayer) : base (parent) {
-        this.detectRadius = detectRadius;
-        this.cooldown = cooldown;
-        this.damage = damage;
+    public CannibalFlowerAttack (Enemy parent, AttackValue needle, AttackValue bite, LayerMask targetLayer) : base (parent) {
+        this.needleValue = needle;
+        this.biteValue = bite;
         this.targetLayer = targetLayer;
-    }
-
-    protected override void Tick ( ) {
-        //if find target and not attack try to attack it
-        if (bFindTarget && !bAttack) {
-            Attack ( );
-            bAttack = true;
-            timer = Time.time + cooldown;
-        }
-        //if already attack keep counting cooldown
-        else if (bAttack && bFindTarget) {
-            if (Time.time > timer) {
-                bFindTarget = false;
-                bAttack = false;
-            }
-        }
+        needleAction = new Eccentric.Attack.CircleAreaAttack (needle.DetectRadius, needle.CD, targetLayer);
+        biteAction = new Eccentric.Attack.CircleAreaAttack (bite.DetectRadius, bite.CD, targetLayer);
     }
 
     protected override void FixedTick ( ) {
-        //Try to find target if we can attack someone
-        if (!bFindTarget && !bAttack)
-            target = FindTarget.CircleCast (Parent.tf.position, detectRadius, targetLayer, target);
-        bFindTarget = (target? true : false);
+        needleAction.UpdateState (Parent.tf.position);
+        biteAction.UpdateState (Parent.tf.position);
+        // if (biteAction.IsCanAttack)
+        //     biteAction.Attack (biteValue.Damage, biteAction.TargetCharacter.Stats);
+        // else if (needleAction.IsCanAttack)
+        //     needleAction.Attack (needleValue.Damage, biteAction.TargetCharacter.Stats);
     }
 
-    void Attack ( ) {
-        if (!targetPlayer)
-            targetPlayer = target.gameObject.GetComponent<Player> ( );
-        if (targetPlayer)
-            targetPlayer.Stats.TakeDamage (damage);
-    }
 }

@@ -11,13 +11,14 @@ public class Jellyfish : Enemy {
     // define how jellyfish move
     JellyfishMovement movement = null;
     // define how jellyfish attack
+    [SerializeField]
     JellyfishAttack attack = null;
 
     // spawn all components
     protected override void Init ( ) {
         base.Init ( );
         movement = new JellyfishMovement (this, props.Speed, props.TraceSpeed, props.Range, props.DetectAreaRadius, props.TargetLayer);
-        attack = new JellyfishAttack (this, props.DetectRadius, stats.damage.Value, props.Cooldown, props.TargetLayer);
+        attack = new JellyfishAttack (this, props.TenTacle, props.TargetLayer);
     }
 
     // when jellyFish dead disable it
@@ -43,10 +44,8 @@ public class Jellyfish : Enemy {
         /// <summary>define the radius of circle which jellyfish can detect player</summary>
         public float DetectAreaRadius;
         [Header ("Attack Property")]
-        /// <summary>define radius of circle when player enter it Jellyfish will launch attack</summary>
-        public float DetectRadius;
-        /// <summary>interval time between two attack</summary>
-        public float Cooldown;
+        //the value of Tentacle attack;
+        public AttackValue TenTacle;
 
     }
 

@@ -8,8 +8,6 @@ public class PlayerStats : CharacterStats {
     public Stat walkSpeed;
     ///<summary>define how many force will add when player jump</summary>
     public Stat jumpForce;
-    ///<summary>define how many damage will cause when player attack enemy</summary>
-    public Stat attackPoint;
     ///<summary>define how fast dose player move when player isn't on the ground</summary>
     public Stat airSpeed;
     ///<summary>how many item can player equip</summary>
@@ -18,6 +16,8 @@ public class PlayerStats : CharacterStats {
     public Stat swingForce;
     /// <summary> define how many force will add to player when playe is flying with jetPack</summary>
     public Stat flyingGasForce;
+    /// <summary>the basic damage of player</summary>
+    public Stat damage;
     /// <summary>Heal the character</summary>
     /// <param name="amount">how many point been heal</param>
     public void Heal (int amount) {

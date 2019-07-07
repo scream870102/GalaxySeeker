@@ -14,9 +14,9 @@ public class Enemy : Character {
     protected List<CharacterComponent> components = new List<CharacterComponent> ( );
     // stats on this character
     [SerializeField]
-    protected EnemyStats stats;
+    protected new EnemyStats stats;
     /// <summary>get character stats READONLY</summary>
-    public EnemyStats Stats { get { return stats; } }
+    public new EnemyStats Stats { get { return stats; } }
     // call Init when this monoBehavior been spawned
     void Awake ( ) {
         Init ( );
@@ -64,4 +64,11 @@ public class Enemy : Character {
     public void AddComponent (CharacterComponent component) {
         components.Add (component);
     }
+}
+
+[System.Serializable]
+public struct AttackValue {
+    public float Damage;
+    public float CD;
+    public float DetectRadius;
 }

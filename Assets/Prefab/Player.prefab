@@ -160,27 +160,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 547192d72615c7d4ba286f1f351f138f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
+  name: Hey I am momoko
   stats:
     maxHealth: 100
     currentHealth: 0
-    damage:
-      baseValue: 50
-    armor:
-      baseValue: 0
     walkSpeed:
       baseValue: 100
     jumpForce:
-      baseValue: 5
-    attackPoint:
-      baseValue: 100
+      baseValue: 10
     airSpeed:
-      baseValue: 75
-    itemSpace: 2
+      baseValue: 50
+    itemSpace: 0
     swingForce:
       baseValue: 0
     flyingGasForce:
       baseValue: 0
+    damage:
+      baseValue: 20
   State: 
 --- !u!114 &7590917971240140287
 MonoBehaviour:

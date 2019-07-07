@@ -6,9 +6,9 @@ using UnityEngine;
 public class Player : Character {
     [SerializeField]
     //all stats of player include hp shield attackpoint and some constants
-    PlayerStats stats;
+    new PlayerStats stats;
     /// <summary>all player stats include all constants or some variables</summary>
-    public PlayerStats Stats { get { return stats; } }
+    public new PlayerStats Stats { get { return stats; } }
     //ref of playerMovement
     PlayerMovement movement = null;
     //ref of Playerequipment

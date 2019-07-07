@@ -6,4 +6,6 @@ using UnityEngine;
 public class Character : MonoBehaviour {
     /// <summary>character name</summary>
     new public string name;
+    protected CharacterStats stats;
+    public CharacterStats Stats { get { return stats; } }
 }

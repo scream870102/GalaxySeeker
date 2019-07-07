@@ -115,10 +115,6 @@ MonoBehaviour:
   stats:
     maxHealth: 100
     currentHealth: 0
-    damage:
-      baseValue: 50
-    armor:
-      baseValue: 0
   props:
     TargetLayer:
       serializedVersion: 2
@@ -127,8 +123,10 @@ MonoBehaviour:
     TraceSpeed: 1.25
     Range: {x: 1.5, y: 1.5}
     DetectAreaRadius: 1
-    DetectRadius: 0.3
-    Cooldown: 2
+    TenTacle:
+      Damage: 20
+      CD: 2
+      DetectRadius: 0.25
 --- !u!111 &5252997482026534015
 Animation:
   m_ObjectHideFlags: 0

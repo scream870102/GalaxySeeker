@@ -7,22 +7,18 @@ using UnityEngine;
 [System.Serializable]
 public class CharacterStats {
     /// <summary>Maximum amount of health</summary>
-    public int maxHealth;
+    public float maxHealth;
     /// <summary> current amount of health</summary>
     [UnityEngine.SerializeField]
-    int currentHealth;
-    public int CurrentHealth { get { return currentHealth; } protected set { currentHealth = value; } }
-    /// <summary>damage of character</summary>
-    public Stat damage;
-    /// <summary>armor on the character</summary>
-    public Stat armor;
+    float currentHealth;
+    public float CurrentHealth { get { return currentHealth; } protected set { currentHealth = value; } }
     /// <summary>Event will call when character health reach zero</summary>
     public event System.Action OnHealthReachedZero;
     /// <summary>Damage the character</summary>
     /// <param name="damage">how many damage taken</param>
-    public void TakeDamage (int damage) {
+    public void TakeDamage (float damage) {
         // Subtract the armor value - Make sure damage doesn't go below 0.
-        damage -= armor.Value;
+        //damage -= armor.Value;
         damage = UnityEngine.Mathf.Clamp (damage, 0, int.MaxValue);
 
         // Subtract damage from health

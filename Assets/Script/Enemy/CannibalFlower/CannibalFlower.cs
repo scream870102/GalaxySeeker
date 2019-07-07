@@ -11,7 +11,7 @@ public class CannibalFlower : Enemy {
     CannibalFlowerAttack attack = null;
     protected override void Init ( ) {
         base.Init ( );
-        attack = new CannibalFlowerAttack (this, props.DetectRadius, props.Cooldown, stats.damage.Value, props.TargetLayer);
+        attack = new CannibalFlowerAttack (this, props.Needle, props.Bite, props.TargetLayer);
     }
 
     protected override void Dead ( ) {
@@ -25,11 +25,8 @@ public class CannibalFlower : Enemy {
         /// <summary>what layer should cannibalFlower react with</summary>
         public LayerMask TargetLayer;
         [Header ("Attack Property")]
-        /// <summary>define radius of circle when player enter it CannibalFlower will attack it</summary>
-        public float DetectRadius;
-        /// <summary>define the time between two attack actions</summary>
-        public float Cooldown;
-
+        public AttackValue Needle;
+        public AttackValue Bite;
     }
 
 }

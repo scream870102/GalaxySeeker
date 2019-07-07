@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using UnityEngine;
+using Eccentric.UnityModel;
 /// <summary>define how jellyfish move</summary>
 [System.Serializable]
 public class JellyfishMovement : CharacterComponent {
