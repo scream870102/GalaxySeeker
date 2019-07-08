@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Eccentric.Interface;
 
 using UnityEngine;
 /// <summary>item on map and can interact with player</summary>

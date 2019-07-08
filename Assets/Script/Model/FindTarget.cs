@@ -1,13 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine;
 
-using UnityEngine;
-
-namespace Eccentric.UnityModel {
+namespace Eccentric.UnityModel.Physics2D {
     [System.Serializable]
     /// <summary>There are some static methods to check if target in area</summary>
     public static class FindTarget {
-
         /// <summary>Use circleCast to find target return null</summary>
         /// <remarks>if there is no target found will return null</remarks>
         /// <param name="originPos">the center of circle</param>
@@ -16,7 +12,7 @@ namespace Eccentric.UnityModel {
         /// <param name="target">if target already exist will check distance between center poiint and target is less than or equal to radius or not</param>
         public static Transform CircleCast (Vector2 originPos, float radius, LayerMask targetLayer, Transform target = null) {
             if (!target) {
-                RaycastHit2D hit = Physics2D.CircleCast (originPos, radius, Vector2.zero, 0f, targetLayer.value);
+                RaycastHit2D hit = UnityEngine.Physics2D.CircleCast (originPos, radius, Vector2.zero, 0f, targetLayer.value);
                 if (hit) {
                     return hit.transform;
                 }

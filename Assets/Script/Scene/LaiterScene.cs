@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using UnityEngine;
-using UnityEngine.Events;
 public class LaiterScene : Scene {
     // the global gravity of Laiter Planet
     [SerializeField]

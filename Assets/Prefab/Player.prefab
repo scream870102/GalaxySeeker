@@ -167,14 +167,14 @@ MonoBehaviour:
     walkSpeed:
       baseValue: 100
     jumpForce:
-      baseValue: 10
+      baseValue: 2
     airSpeed:
       baseValue: 50
-    itemSpace: 0
+    itemSpace: 2
     swingForce:
-      baseValue: 0
+      baseValue: 10
     flyingGasForce:
-      baseValue: 0
+      baseValue: 10
     damage:
       baseValue: 20
   State: 

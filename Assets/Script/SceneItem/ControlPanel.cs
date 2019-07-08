@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
+using Eccentric.Interface;
 
 using UnityEngine;
-using UnityEngine.UI;
 public class ControlPanel : MonoBehaviour, IInteractable {
     //all UI elements about SELECTION belongs to which canvas
     [SerializeField]

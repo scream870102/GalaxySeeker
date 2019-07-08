@@ -1,14 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using UnityEngine;
 /// <summary>Class is top class of player</summary>
 public class Player : Character {
     [SerializeField]
-    //all stats of player include hp shield attackpoint and some constants
-    new PlayerStats stats;
-    /// <summary>all player stats include all constants or some variables</summary>
-    public new PlayerStats Stats { get { return stats; } }
+    PlayerProps props;
+    public PlayerProps Props { get { return props; } }
     //ref of playerMovement
     PlayerMovement movement = null;
     //ref of Playerequipment
@@ -84,4 +81,23 @@ public class Player : Character {
         }
     }
 
+}
+
+/// <summary>define the property player will needed</summary>
+[System.Serializable]
+public class PlayerProps {
+    ///<summary>define how fast does player walk on the ground</summary>
+    public float WalkSpeed;
+    ///<summary>define how many force will add when player jump</summary>
+    public float JumpForce;
+    ///<summary>define how fast dose player move when player isn't on the ground</summary>
+    public float AirSpeed;
+    ///<summary>how many item can player equip</summary>
+    public int ItemSpace;
+    ///<summary> define how many force wiil add to player when player is swing with rope
+    public float SwingForce;
+    /// <summary> define how many force will add to player when playe is flying with jetPack</summary>
+    public float FlyingGasForce;
+    /// <summary>the basic damage of player</summary>
+    public float Damage;
 }

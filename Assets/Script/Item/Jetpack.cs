@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Jetpack : Item {
     /// <summary>max capacity of gas</summary>
@@ -55,7 +52,7 @@ public class Jetpack : Item {
         }
         //if gas is full and in can use state tell player can swith item
         if (bCanUse && currentCapacityOfGas >= capacityOfGas)
-            AlreadUsed ( );
+            AlreadyUsed ( );
 
     }
 
@@ -78,7 +75,7 @@ public class Jetpack : Item {
         sr.enabled = true;
         currentCapacityOfGas = capacityOfGas;
         bCanUse = true;
-        owner.Stats.flyingGasForce.baseValue = gasForce;
+        owner.Props.FlyingGasForce = gasForce;
         ptc = GetComponent<ParticleSystem> ( );
     }
 }

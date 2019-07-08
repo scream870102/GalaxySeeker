@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 using UnityEngine;
 ///<summary>class to manage about player equipment</summary>
@@ -29,7 +27,7 @@ public class PlayerEquipment : PlayerComponent {
     ///<summary>add a new item into equipment</summary>
     ///<remarks>will get false when there isn't more space in equipment</remarks>
     public bool AddItem (ref Item item) {
-        if (items.Count >= Parent.Stats.itemSpace)
+        if (items.Count >= Parent.Props.ItemSpace)
             return false;
         ItemPickUp pickUpComponent = item.gameObject.GetComponent<ItemPickUp> ( );
         if (pickUpComponent != null) {
@@ -55,7 +53,7 @@ public class PlayerEquipment : PlayerComponent {
     public void RemoveItem (Item item) {
         items.Remove (item);
     }
-    //when a new item is goint to be add to inventory call this method
+    //when a new item is going to be add to inventory call this method
     //subscribe OnItemUsed event
     //set localPosition and set sprite
     void InitNewItem (ref Item item) {

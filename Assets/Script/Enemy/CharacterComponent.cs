@@ -1,14 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-using UnityEngine;
-/// <summary>basic compoent of all charcterComponent</summary>
+﻿/// <summary>basic component of all characterComponent</summary>
 /// <remarks>sub class must override Tick FixedTick and also inherit constructor</remarks>
 public class CharacterComponent {
     // ref for component parent
-    Enemy parent = null;
+    Character parent = null;
     /// <summary>ref for character parent READONLY</summary>
-    public Enemy Parent { get { return parent; } }
+    public Character Parent { get { return parent; } }
     //bool to determine component be enable or disable
     bool bEnable = true;
     /// <summary>Property to enable or disable this component</summary>

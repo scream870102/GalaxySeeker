@@ -1,13 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>Enemy:Jellyfish</summary>
 public class Jellyfish : Enemy {
+    //-----------ref
+
     // store all values which child component need
     [SerializeField]
     JellyfishProps props;
+
+    //----------field
+
     // define how jellyfish move
     JellyfishMovement movement = null;
     // define how jellyfish attack

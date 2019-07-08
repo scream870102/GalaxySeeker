@@ -1,34 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-using UnityEngine;
-using Eccentric.UnityModel;
+﻿using UnityEngine;
+using Eccentric.UnityModel.Physics2D;
 /// <summary>define how jellyfish move</summary>
 [System.Serializable]
 public class JellyfishMovement : CharacterComponent {
+    //-----------ref
     // move speed default value =  1.0f
     float speed = 1f;
     // how big of ellipse from jellyfish original pos
     Vector2 range;
-    // original pos of jellyfish
-    Vector2 initPos = new Vector2 ( );
-    /// <summary>if jellyfish reached target pos</summary>
-    /// <remarks>true = keep moving false = need to find a new target pos</remarks>
-    bool bDirChanged = false;
-    /// <summary>target position</summary>
-    Vector2 targetPos;
-    // save ref for tracing target
-    Transform target;
-    // is player find target
-    bool bFindTarget = false;
-    // how big the circle which is to detect player
-    float detectAreaRadius;
-    // if jellyfish now facing at Right direction
-    bool bFacingRight;
     // how fast when jellyfish find target and try to trace it
     float traceSpeed;
     // Which layer to detect
     LayerMask targetLayer;
+    // how big the circle which is to detect player
+    float detectAreaRadius;
+
+    //---------field
+    // original pos of jellyfish
+    Vector2 initPos = new Vector2 ( );
+    /// <summary>target position</summary>
+    Vector2 targetPos;
+    // save ref for tracing target
+    Transform target;
+    // is jellyfish need to change its direction or not
+    bool bDirChanged = false;
+    // is player find target
+    bool bFindTarget = false;
+    // if jellyfish now facing at Right direction
+    bool bFacingRight;
 
     public JellyfishMovement (Enemy parent, float speed, float traceSpeed, Vector2 range, float detectAreaRadius, LayerMask targetLayer) : base (parent) {
         //set initPosition to jellyfish current position

@@ -1,12 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-using UnityEngine;
+﻿using UnityEngine;
 /// <summary>Enemy:CannibalFlower</summary>
 public class CannibalFlower : Enemy {
+    //---------ref
     //store all values which child component need
     [SerializeField]
     CannibalFlowerProps props;
+
+    //--------field
     //define how cannibalFLower attack
     CannibalFlowerAttack attack = null;
     protected override void Init ( ) {
@@ -25,7 +25,9 @@ public class CannibalFlower : Enemy {
         /// <summary>what layer should cannibalFlower react with</summary>
         public LayerMask TargetLayer;
         [Header ("Attack Property")]
+        /// <summary>needle is for far attack</summary>
         public AttackValue Needle;
+        /// <summary>bite is for close attack</summary>
         public AttackValue Bite;
     }
 

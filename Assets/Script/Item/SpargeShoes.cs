@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SpargeShoes : Item {
     /// <summary>how many force will add to player when player use spargeShoes</summary>
@@ -30,7 +27,7 @@ public class SpargeShoes : Item {
         }
         if (!bCanUse && timer < Time.time) {
             bCanUse = true;
-            AlreadUsed ( );
+            AlreadyUsed ( );
         }
     }
     override protected void Reset ( ) { }

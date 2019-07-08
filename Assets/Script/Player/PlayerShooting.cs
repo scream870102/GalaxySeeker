@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-using UnityEngine;
-
+﻿using UnityEngine;
+using Eccentric.UnityModel.Toolkit;
 public class PlayerShooting : PlayerComponent {
     //use object pool to manage bullet
     [SerializeField]
@@ -38,7 +35,7 @@ public class PlayerShooting : PlayerComponent {
             }
             Bullet bullet = Bullets.GetPooledObject ( ) as Bullet;
             clipCapacity--;
-            bullet.Fire (Parent.IsFacingRight?Vector2.right : Vector2.left, transform.position, Parent.Stats.damage.Value);
+            bullet.Fire (Parent.IsFacingRight?Vector2.right : Vector2.left, transform.position, Parent.Props.Damage);
             timer = Time.time + coolDown;
             bShootable = false;
         }

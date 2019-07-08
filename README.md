@@ -171,6 +171,28 @@
      - 可以透過拖曳 來定義哪幾個NPC為必要對話的
      - 當所有NPC對話完畢 BOSS前的牆壁會關閉
      - 打完BOSS會回到起始畫面
+
+---
+## 190708
+- Unity版本升級成2019.1.9f1
+- 完成 CannibalFlower的攻擊
+    - Needle針刺攻擊
+    - Bite 咬擊攻擊
+- 移除類別`PlayerStat` & `EnemyStat` & `Stat`
+- 補上註解
+- 新增Namespace
+    - Eccentric.UnityModel
+    - Eccentric.UnityModel.Attack
+    - Eccentric.UnityModel.Toolkit
+    - Eccentric.Interface
+- 新增類別`CircleAreaAttack.cs`
+    - 繼承實作 Eccentric.Interface.IAttack
+    - 定義一個圓形偵測範圍的攻擊模式
+- 新增Static類別`FindTarget`
+    - NameSpace:Eccentric.UnityModel.Physics2D
+    - 包含static methods 可以用來尋找對象是否在範圍內
+- 修改物件池`ObjectPool.cs`
+
 ### 未完成
 - 修改xmind `Galaxy Seeker.xmind`
 - 死亡的動作 `Player.cs`
@@ -182,5 +204,4 @@
 - 主角死亡後的處理
 - Laiter星打完BOSS以後的動畫以及後續發展
 - 對話系統待修正
-- CannibalFlower完成
 ---

@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-using UnityEngine;
+﻿using UnityEngine;
 /// <summary>class of NPC its basic ability is to conversation with player</summary>
 /// <remarks>can have dialogue if Need</remarks>
 [RequireComponent (typeof (Collider2D))]

@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
+﻿using Eccentric.UnityModel.Toolkit;
 using UnityEngine;
 [RequireComponent (typeof (Collider2D), typeof (Rigidbody2D))]
-public class Bullet : MonoBehaviour, IObjectPoolItem {
+public class Bullet : MonoBehaviour, Eccentric.UnityModel.Toolkit.IObjectPoolItem {
     /// <summary>how many force will add to bullet when it is being fired</summary>
     public Vector2 force;
     //ref for rigidbody
@@ -18,7 +16,7 @@ public class Bullet : MonoBehaviour, IObjectPoolItem {
     /// <summary>which pool is this bullet belongs to</summary>
     public ObjectPool Pool { get; set; }
     //field store how many damage will cause to enemy
-    int damage;
+    float damage;
 
     void Awake ( ) {
         rb = GetComponent<Rigidbody2D> ( );
@@ -30,7 +28,7 @@ public class Bullet : MonoBehaviour, IObjectPoolItem {
 
     //other class will call this when firing the bullet
     //add force to bullet and play the particle
-    public void Fire (Vector2 direction, Vector3 position, int damage) {
+    public void Fire (Vector2 direction, Vector3 position, float damage) {
         this.damage = damage;
         ptcShape.scale = new Vector3 (1f, direction == Vector2.right?1f: -1f, 1f);
         tf.position = position;

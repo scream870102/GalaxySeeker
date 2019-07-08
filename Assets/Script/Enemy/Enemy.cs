@@ -1,22 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-using UnityEngine;
 /// <summary>A base class for all character </summary>
 public class Enemy : Character {
     // if this character enable or disable
     bool bEnable = true;
     /// <summary>Property for enable or disable all characterComponents on this character</summary>
     public bool IsEnable { set { bEnable = value; } protected get { return bEnable; } }
-    /// <summary>ref for gameObject.transform</summary>
-    public Transform tf { get { return this.gameObject.transform; } }
+
     // field to store all component on this character;
     protected List<CharacterComponent> components = new List<CharacterComponent> ( );
-    // stats on this character
-    [SerializeField]
-    protected new EnemyStats stats;
-    /// <summary>get character stats READONLY</summary>
-    public new EnemyStats Stats { get { return stats; } }
     // call Init when this monoBehavior been spawned
     void Awake ( ) {
         Init ( );
@@ -66,6 +58,8 @@ public class Enemy : Character {
     }
 }
 
+/// <summary>struct define the basic information for an attack action</summary>
+/// <remarks>include damage,cd,and detectRadius for circleCast</remarks>
 [System.Serializable]
 public struct AttackValue {
     public float Damage;

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using UnityEngine;
 [RequireComponent (typeof (Rigidbody2D))]
@@ -19,7 +18,7 @@ public class PlayerMovement : PlayerComponent {
     //ref velocity for smooth damp
     Vector2 refVelocity = Vector2.zero;
     //
-    //referrence
+    //reference
     //rigidbody ref
     Rigidbody2D rb = null;
     //transform for foot
@@ -38,7 +37,7 @@ public class PlayerMovement : PlayerComponent {
     public bool IsGround { get { return bGround; } }
     //store horizontal velocity
     float moveHorizontal;
-    //stoer what direction is player facing true=facing right direction false=facing left direction
+    //store what direction is player facing true=facing right direction false=facing left direction
     [SerializeField]
     bool bFacingRight;
     /// <summary>if player now facing at right direction
@@ -68,7 +67,7 @@ public class PlayerMovement : PlayerComponent {
     protected override void Tick ( ) {
         IsGrounded ( );
         //if player on ground set speed to airspeed
-        moveHorizontal = Input.GetAxisRaw ("Horizontal") * (bGround?Parent.Stats.walkSpeed.Value : Parent.Stats.airSpeed.Value);
+        moveHorizontal = Input.GetAxisRaw ("Horizontal") * (bGround?Parent.Props.WalkSpeed : Parent.Props.AirSpeed);
         //if player hit jump button call jump method
         if (Input.GetButtonDown ("Jump") && IsGround)
             Jump ( );
@@ -87,22 +86,22 @@ public class PlayerMovement : PlayerComponent {
         bGround = false;
     }
 
-    //get horiziontal velocity and move rigidbody call in fixed update
+    //get horizontal velocity and move rigidbody call in fixed update
     void Move ( ) {
-        //when player is swinging chage its action mode
+        //when player is swinging change its action mode
         if (bSwing) {
             if (moveHorizontal == 0f)
                 return;
             bFacingRight = moveHorizontal > 0f;
             Vector2 playerNormalVector = (hookPoint - (Vector2) transform.position).normalized;
             Vector2 swingDir = IsFacingRight?new Vector2 (playerNormalVector.y, -playerNormalVector.x) : new Vector2 (-playerNormalVector.y, playerNormalVector.x);
-            rb.AddForce (swingDir * Parent.Stats.swingForce.Value * Time.deltaTime, ForceMode2D.Force);
+            rb.AddForce (swingDir * Parent.Props.SwingForce * Time.deltaTime, ForceMode2D.Force);
         }
         //this section is active when player is using Jetpack to fly
         else if (bFlying && !bGround) {
             bFacingRight = moveHorizontal > 0f;
             rb.velocity = new Vector2 ( );
-            rb.AddForce (new Vector2 (moveHorizontal, Parent.Stats.flyingGasForce.Value) * Time.fixedDeltaTime, ForceMode2D.Impulse);
+            rb.AddForce (new Vector2 (moveHorizontal, Parent.Props.FlyingGasForce) * Time.fixedDeltaTime, ForceMode2D.Impulse);
         }
         //this section is normal move mode about player
         else {
@@ -134,7 +133,7 @@ public class PlayerMovement : PlayerComponent {
             Vector2 temp = rb.velocity;
             temp.y = 0.0f;
             rb.velocity = temp;
-            rb.AddForce (new Vector2 (0f, Parent.Stats.jumpForce.Value), ForceMode2D.Impulse);
+            rb.AddForce (new Vector2 (0f, Parent.Props.JumpForce), ForceMode2D.Impulse);
             bJump = false;
         }
     }

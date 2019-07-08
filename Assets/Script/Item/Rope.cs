@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Rope : Item {
     /// <summary>define how far can rope cast </summary>
@@ -19,7 +16,7 @@ public class Rope : Item {
     override protected void UsingItem ( ) {
         //if player hit using button then cast rope
         if (Input.GetButtonDown ("Use") && !bUsing) {
-            //call beginUsing to tell invetoru player is using rope right now
+            //call beginUsing to tell inventory player is using rope right now
             BeginUsing ( );
             //hit store the ref of rope cast
             RaycastHit2D hit = Physics2D.Raycast (transform.position, Vector2.up, ropeMaxCastDistance, ropeLayerMask);
@@ -46,7 +43,7 @@ public class Rope : Item {
         }
         //if player hit using button and rope is using now reset rope
         else if (Input.GetButtonDown ("Use") && bUsing) {
-            AlreadUsed ( );
+            AlreadyUsed ( );
         }
         //if rope is now using keep update lineRenderer about player position
         else if (bUsing) {
@@ -55,7 +52,7 @@ public class Rope : Item {
 
     }
 
-    //disable distancJoing on player and lineRenderer
+    //disable distanceJoint on player and lineRenderer
     //tell player is not swinging right now
     override protected void Reset ( ) {
         bUsing = false;
@@ -77,7 +74,7 @@ public class Rope : Item {
         distanceJoint.enabled = false;
         lineRenderer.enabled = false;
         bUsing = false;
-        owner.Stats.swingForce.baseValue = swingForce;
+        owner.Props.SwingForce = swingForce;
 
     }
 }
