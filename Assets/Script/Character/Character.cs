@@ -1,4 +1,4 @@
-﻿using Eccentric.UnityModel;
+﻿using Eccentric.UnityUtils;
 
 using UnityEngine;
 /// <summary>A base class for all character </summary>

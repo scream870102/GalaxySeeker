@@ -1,4 +1,4 @@
-﻿using Eccentric.UnityModel.Attack;
+﻿using Eccentric.UnityUtils.Attack;
 using UnityEngine;
 [System.Serializable]
 /// <summary>define how jellyfish attack target</summary>

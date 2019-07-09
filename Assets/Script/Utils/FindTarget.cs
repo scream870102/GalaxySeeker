@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Eccentric.UnityModel.Physics2D {
+namespace Eccentric.UnityUtils.Physics2D {
     [System.Serializable]
     /// <summary>There are some static methods to check if target in area</summary>
     public static class FindTarget {

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Eccentric.UnityModel.Physics2D;
+using Eccentric.UnityUtils.Physics2D;
 /// <summary>define how jellyfish move</summary>
 [System.Serializable]
 public class JellyfishMovement : CharacterComponent {

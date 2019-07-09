@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Eccentric.UnityModel.Toolkit;
+using Eccentric.UnityUtils.Collections;
 public class PlayerShooting : PlayerComponent {
     //use object pool to manage bullet
     [SerializeField]

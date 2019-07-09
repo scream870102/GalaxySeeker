@@ -1,4 +1,4 @@
-﻿using Eccentric.UnityModel.Attack;
+﻿using Eccentric.UnityUtils.Attack;
 
 using UnityEngine;
 [System.Serializable]

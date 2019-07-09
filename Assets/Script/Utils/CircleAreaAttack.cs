@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-namespace Eccentric.UnityModel.Attack {
+namespace Eccentric.UnityUtils.Attack {
     /// <summary>This class define how an attack work with a circle detect area</summary>
     /// <remarks>Call UpdateState to update you can check if can attack now by call props IsCanAttack and will enter cooldown after you call method Attack</remarks>
     [System.Serializable]
@@ -47,7 +47,7 @@ namespace Eccentric.UnityModel.Attack {
             this.originPos = originPos;
             //Find Target
             if (!bFindTarget) {
-                target = Eccentric.UnityModel.Physics2D.FindTarget.CircleCast (originPos, radius, targetLayer, target);
+                target = Eccentric.UnityUtils.Physics2D.FindTarget.CircleCast (originPos, radius, targetLayer, target);
                 bFindTarget = target?true : false;
             }
             //Not in cd and got target then can attack

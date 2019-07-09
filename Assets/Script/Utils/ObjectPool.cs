@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-namespace Eccentric.UnityModel.Toolkit {
+namespace Eccentric.UnityUtils.Collections {
     [System.Serializable]
     public class ObjectPool {
         [Header ("ObjectPool")]

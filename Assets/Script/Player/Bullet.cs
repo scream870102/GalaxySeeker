@@ -1,7 +1,7 @@
-﻿using Eccentric.UnityModel.Toolkit;
+﻿using Eccentric.UnityUtils.Collections;
 using UnityEngine;
 [RequireComponent (typeof (Collider2D), typeof (Rigidbody2D))]
-public class Bullet : MonoBehaviour, Eccentric.UnityModel.Toolkit.IObjectPoolItem {
+public class Bullet : MonoBehaviour, IObjectPoolItem {
     /// <summary>how many force will add to bullet when it is being fired</summary>
     public Vector2 force;
     //ref for rigidbody

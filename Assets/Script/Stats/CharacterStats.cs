@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-namespace Eccentric.UnityModel {
+namespace Eccentric.UnityUtils {
     /// <summary>A class include all basic stats for character</summary>
     /// <remarks>include maxHealth/health/armor/damage also have method Heal/TakeDamage</remarks>
     [System.Serializable]

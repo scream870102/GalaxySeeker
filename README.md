@@ -193,6 +193,11 @@
     - 包含static methods 可以用來尋找對象是否在範圍內
 - 修改物件池`ObjectPool.cs`
 
+---
+##190709
+- 新增`SingletoneMonoBehavior.cs`
+- 修改資料夾結構
+
 ### 未完成
 - 修改xmind `Galaxy Seeker.xmind`
 - 死亡的動作 `Player.cs`

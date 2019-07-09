@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-namespace Eccentric.UnityModel.Toolkit {
+namespace Eccentric.UnityUtils.Collections {
     /// <summary>class inherit this interface can be managed by class ObjectPool</summary>
     public interface IObjectPoolItem {
         //which pool should item belongs to 

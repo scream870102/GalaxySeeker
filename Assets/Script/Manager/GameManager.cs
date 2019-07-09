@@ -1,20 +1,8 @@
-﻿using UnityEngine;
+﻿using Eccentric.UnityUtils;
+
+using UnityEngine;
 using UnityEngine.SceneManagement;
-
-public class GameManager : MonoBehaviour {
-    #region Singleton
-    static GameManager instance;
-    public static GameManager Instance { get { return instance; } }
-    void Awake ( ) {
-        if (instance == null) {
-            instance = this;
-            DontDestroyOnLoad (this);
-            name = "GameManager";
-            Init ( );
-        }
-
-    }
-    #endregion Singleton
+public class GameManager : SingletonMonoBehavior<GameManager> {
     //field to store currentScene
     string currentScene;
     [SerializeField]
@@ -31,7 +19,8 @@ public class GameManager : MonoBehaviour {
     public DialogueManager DialogueManager { get { return dialogueManager; } }
     //field for active Player
     Player player;
-    void Init ( ) {
+    protected override void Awake ( ) {
+        base.Awake ( );
         FindPlayer ( );
         SetScene (InitScene);
         dialogueManager = GetComponent<DialogueManager> ( );

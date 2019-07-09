@@ -9,7 +9,8 @@ public class NPC : Character {
     public event System.Action<string,NPC> OnNPCDialogueFinish;
     //if player stay in trigger can interact with player
     void OnTriggerStay2D (Collider2D other) {
-        Conversation (other);
+        if(dialogue.sentences.GetLength(0)>0)
+            Conversation (other);
     }
 
     //if player press interact send dialogue to DialogueManager
