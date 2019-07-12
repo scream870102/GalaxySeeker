@@ -47,8 +47,7 @@ namespace Eccentric.UnityUtils.Attack {
             this.originPos = originPos;
             //Find Target
             if (!bFindTarget) {
-                target = Eccentric.UnityUtils.Physics2D.FindTarget.CircleCast (originPos, radius, targetLayer, target);
-                bFindTarget = target?true : false;
+                bFindTarget = Eccentric.UnityUtils.Physics2D.OverlapCircle (originPos, radius, targetLayer, ref target);
             }
             //Not in cd and got target then can attack
             else if (bFindTarget && !bCDing) {

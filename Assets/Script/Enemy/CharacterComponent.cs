@@ -8,7 +8,7 @@ public class CharacterComponent {
     //bool to determine component be enable or disable
     bool bEnable = true;
     /// <summary>Property to enable or disable this component</summary>
-    public bool IsEnable { get { return bEnable; } set { bEnable = value; } }
+    public bool IsEnable { get { return bEnable; } set { if (value == false) Disable ( ); bEnable = value; } }
     /// <summary>set parent and decide if enable this component when it's been spawned</summary>
     public CharacterComponent (Enemy parent, bool IsEnable = true) {
         this.parent = parent;
@@ -33,4 +33,5 @@ public class CharacterComponent {
     protected virtual void Tick ( ) { }
     // sub class override this method which define action each fixedFrame
     protected virtual void FixedTick ( ) { }
+    protected virtual void Disable ( ) { }
 }

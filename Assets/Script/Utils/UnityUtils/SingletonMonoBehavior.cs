@@ -2,7 +2,7 @@ using UnityEngine;
 namespace Eccentric.UnityUtils {
     /// <summary>derived this class then you will got a monobehavior implement singleton</summary>
     public class SingletonMonoBehavior<T> : MonoBehaviour where T : MonoBehaviour {
-        static T instance;
+        static T instance = null;
 
         public static T Instance {
             get { return instance ?? (instance = FindObjectOfType (typeof (T)) as T); }
@@ -10,8 +10,9 @@ namespace Eccentric.UnityUtils {
         }
 
         protected virtual void Awake ( ) {
-            instance = this as T;
-            DontDestroyOnLoad(this);
+            if (instance == null) instance = this as T;
+            if (instance == this) DontDestroyOnLoad (this);
+            else Destroy (this);
         }
 
         protected virtual void OnDestroy ( ) {

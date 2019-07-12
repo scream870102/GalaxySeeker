@@ -198,6 +198,23 @@
 - 新增`SingletoneMonoBehavior.cs`
 - 修改資料夾結構
 
+---
+##190712
+- 完成AirStingray
+- 新增static class Math
+    - 新增Between 確認一個值否介在某兩個值中間
+    - 新增ChoseDueToProbability 回傳兩者其一 根據兩者各自被選中的機率 會轉換兩者的機率總和為100%
+- 修改FindTarget成Physics2D
+    - 新增OverlapCircle 尋找是否有符合目標存在Circle內
+    - 新增CircleCast 尋找是否有符合的目標存在CircleCast內
+    - [Different between CircleCast and OverlapCircle](https://answers.unity.com/questions/834875/what-is-the-difference-between-circlecast-and-over.html)
+    - 新增IsAbove/Under/Right/Left 來確認一個點是否存在指定點的方向上
+- 新增SingletonMonoBehavior 可以透過繼承這個類別 完成MonoBehavior的單例模
+式
+- 新增DisableAllComponents in `Enemy.cs`
+    - 當角色被Disable 會Disable 所有 CharacterComponent
+- 新增Disable in `CharacterComponent.cs`
+    - 當Component被Disable 會呼叫Method Disable 可以用來設定結束動作
 ### 未完成
 - 修改xmind `Galaxy Seeker.xmind`
 - 死亡的動作 `Player.cs`

@@ -445,6 +445,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   globalProps:
     DefaultGravity: {x: 0, y: -9.8}
+    GroundLayer:
+      serializedVersion: 2
+      m_Bits: 256
   InitScene: Laiter
 --- !u!114 &1985013473
 MonoBehaviour:

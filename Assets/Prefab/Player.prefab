@@ -164,19 +164,14 @@ MonoBehaviour:
   stats:
     maxHealth: 100
     currentHealth: 0
-    walkSpeed:
-      baseValue: 100
-    jumpForce:
-      baseValue: 2
-    airSpeed:
-      baseValue: 50
-    itemSpace: 2
-    swingForce:
-      baseValue: 10
-    flyingGasForce:
-      baseValue: 10
-    damage:
-      baseValue: 20
+  props:
+    WalkSpeed: 100
+    JumpForce: 5
+    AirSpeed: 50
+    ItemSpace: 2
+    SwingForce: 0
+    FlyingGasForce: 0
+    Damage: 20
   State: 
 --- !u!114 &7590917971240140287
 MonoBehaviour:
@@ -227,6 +222,8 @@ MonoBehaviour:
   groundLayer:
   - serializedVersion: 2
     m_Bits: 256
+  - serializedVersion: 2
+    m_Bits: 1024
   detectGround: {fileID: 7590917970956078618}
   bFacingRight: 0
 --- !u!212 &7590917971240140283

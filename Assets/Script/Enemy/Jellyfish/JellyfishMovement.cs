@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Eccentric.UnityUtils.Physics2D;
 /// <summary>define how jellyfish move</summary>
 [System.Serializable]
 public class JellyfishMovement : CharacterComponent {
@@ -76,8 +75,7 @@ public class JellyfishMovement : CharacterComponent {
 
     protected override void FixedTick ( ) {
         if (!bFindTarget) {
-            target = FindTarget.CircleCast (Parent.tf.position, detectAreaRadius, targetLayer, target);
-            bFindTarget = (target? true : false);
+            bFindTarget = Eccentric.UnityUtils.Physics2D.OverlapCircle (Parent.tf.position, detectAreaRadius, targetLayer, ref target);
         }
     }
 }
