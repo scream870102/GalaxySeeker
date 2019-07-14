@@ -6,9 +6,9 @@
 ---
 ## 190419
 - item/itemPickUp 與 PlayerEquipment的互動
-- 新增 character/characterStats IInteractable/Itme/ItemPickUp 註解
+- 新增 character/characterStats IInteractable/Item/ItemPickUp 註解
 - 新增PlayerComponent 主要定義Player 也就是parent不存在時 Update/FixedUpdate將直接return 而不作用
-- 將 PlayerMovement/PlayerEqipment 修改成繼承自PlayerComponent 
+- 將 PlayerMovement/PlayerEquipment 修改成繼承自PlayerComponent 
 ---
 ## 190425
 - Player/PlayerComponent/PlayerEquipment/PlayerMovement/PlayerStats/Stat 註解
@@ -19,7 +19,7 @@
 - AddItem從獲取ScriptableObject ref變成Add new component
     * 因為Item 原先掛在ItemPick 在 item 被拾起來 會destroy整個gameObject因此 必須將item移到Player身上
     * 不使用transform.parent 因為無法跨gameObject使用(待驗證)
-- 替Item 新增event OnItemUsed 當物品使用完畢 通知PlayerEvenetory
+- 替Item 新增event OnItemUsed 當物品使用完畢 通知PlayerInventory
 - 完成現有code註解
 ---
 ## 190430
@@ -61,7 +61,7 @@
 ## 190524 
 - 修改噴色背包系統'Jetpack.cs'
     * 將背包x方向會維持原訂速度不停前進的問題修正
-    * 把裝上背高的force設定移到PlayerMovemetn.cs中
+    * 把裝上背高的force設定移到PlayerMovement.cs中
 - 修改PlayerStats部份數值運作
     * `swingForce`&`flyingForce`會在撿拾到道具的時候被定義 預設值為0
 - 完成DASH球鞋`SpargeShoes.cs`
@@ -97,7 +97,7 @@
 - 補上註解
 ---
 ## 190608
-- 修改初步的敵人系統 讓所有的Component 都不繼承自Monobehavior
+- 修改初步的敵人系統 讓所有的Component 都不繼承自MonoBehavior
 - 著手寫敵人Jellyfish
 - 初步完成Jellyfish的移動
 - 補上註解
@@ -195,7 +195,7 @@
 
 ---
 ##190709
-- 新增`SingletoneMonoBehavior.cs`
+- 新增`SingletonMonoBehavior.cs`
 - 修改資料夾結構
 
 ---
@@ -215,6 +215,24 @@
     - 當角色被Disable 會Disable 所有 CharacterComponent
 - 新增Disable in `CharacterComponent.cs`
     - 當Component被Disable 會呼叫Method Disable 可以用來設定結束動作
+
+---
+##190714
+- Unity版本升級成2019.1.10.f1
+- 完成RedAirStingray
+- 新增IMove
+    - 作為移動相關的基礎類別
+    - 包含以下
+        - bUseDeltaTime 定義這個移動在計算使用deltaTime 還是 fixedDeltaTime
+        - bFacingRight 透過新舊位置計算出角色應該面對哪一個方向
+        - GetNextPos 外部透過這個方法來獲取下一個座標
+- 新增`FreeTraceMode.cs` 無視任何障礙物 筆直的往目標前進的移動模式
+- 新增`PingPongMove.cs` 在設定好的垂直高度及水平距離內做來回移動
+    - 可以透過修改IsFacingRight來使其提早轉彎
+- 新增`RangeRandomMove.cs`在設定好的範圍內 從初始位置找到目標位置並移動 抵達目標位置後會尋找新的目標位置
+    - 可以透過FindNewTargetPos來提早尋找新的位置
+- 修改`JellyFishMovement.cs`
+- 修改`AirStingrayMovement.cs`
 ### 未完成
 - 修改xmind `Galaxy Seeker.xmind`
 - 死亡的動作 `Player.cs`

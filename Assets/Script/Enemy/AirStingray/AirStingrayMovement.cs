@@ -17,7 +17,7 @@ public class AirStingrayMovement : CharacterComponent {
     //the center point of stingray hori movement
     Vector2 initPos;
     //field for action keep stingray do a pingpong move
-    HorizontalLoopMove horiLoopMove = null;
+    PingPongMove horiLoopMove = null;
     //this field is for player and will be not equal to null when player stand on it
     Transform targetTransform = null;
 
@@ -28,13 +28,13 @@ public class AirStingrayMovement : CharacterComponent {
         this.sinkSpeed = sinkSpeed;
         this.col = collider;
         initPos = this.Parent.tf.position;
-        horiLoopMove = new HorizontalLoopMove (moveSpeed, moveRange, initPos, true, false);
+        horiLoopMove = new PingPongMove (moveSpeed, moveRange, initPos, true, false);
 
     }
 
     protected override void FixedTick ( ) {
         //keep moving 
-        Parent.tf.position = horiLoopMove.GetNextPos ( );
+        Parent.tf.position = horiLoopMove.GetNextPos (Parent.tf.position);
         GetTouch ( );
     }
     void GetTouch ( ) {

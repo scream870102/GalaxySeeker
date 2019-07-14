@@ -33,5 +33,6 @@ public class CharacterComponent {
     protected virtual void Tick ( ) { }
     // sub class override this method which define action each fixedFrame
     protected virtual void FixedTick ( ) { }
+    /// <summary>this method will call when component being disable</summary>
     protected virtual void Disable ( ) { }
 }

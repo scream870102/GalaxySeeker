@@ -8,7 +8,6 @@ public class JellyfishAttack : CharacterComponent {
     LayerMask targetLayer;
 
     //----field
-    [SerializeField]
     CircleAreaAttack tentacleAction = null;
 
     public JellyfishAttack (Enemy parent, AttackValue tentacle, LayerMask targetLayer) : base (parent) {

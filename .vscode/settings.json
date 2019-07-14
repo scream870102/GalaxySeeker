@@ -55,13 +55,22 @@
     },
     "cSpell.words": [
         "force",
+        "i",
+        "interactable",
         "laiter",
         "scene",
         "sparging"
     ],
     "cSpell.ignoreWords": [
         "hori",
+        "jetpack",
         "min",
-        "pos"
+        "object",
+        "playermovement",
+        "pos",
+        "scriptable",
+        "struct",
+        "ugui",
+        "whyyyyyyyyyyyy"
     ]
 }

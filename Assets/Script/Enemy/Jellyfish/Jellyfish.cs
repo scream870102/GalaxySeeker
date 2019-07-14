@@ -13,7 +13,6 @@ public class Jellyfish : Enemy {
     // define how jellyfish move
     JellyfishMovement movement = null;
     // define how jellyfish attack
-    [SerializeField]
     JellyfishAttack attack = null;
 
     // spawn all components
