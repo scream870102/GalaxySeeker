@@ -22,7 +22,7 @@ public class RedAirStingrayMovement : CharacterComponent {
     //field for action keep stingray do a randomRange move
     RangeRandomMove rangeMove = null;
     //field to store what the current movement does RedAirStingray use
-    IMove currentMove = null;
+    AMove currentMove = null;
 
     public RedAirStingrayMovement (Enemy parent, float pingPongVelocity, float rangeVelocity, Vector2 moveRange, float sinkRaiseSpeed, LayerMask targetLayer, Collider2D collider) : base (parent) {
         this.moveRange = moveRange;

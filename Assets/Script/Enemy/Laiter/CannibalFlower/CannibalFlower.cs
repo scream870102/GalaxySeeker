@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Eccentric.UnityUtils.Attack;
+
+using UnityEngine;
 /// <summary>Enemy:CannibalFlower</summary>
 public class CannibalFlower : Enemy {
     //---------ref
@@ -22,13 +24,12 @@ public class CannibalFlower : Enemy {
     [System.Serializable]
     struct CannibalFlowerProps {
         [Header ("Common Property")]
-        /// <summary>what layer should cannibalFlower react with</summary>
         public LayerMask TargetLayer;
         [Header ("Attack Property")]
         /// <summary>needle is for far attack</summary>
-        public AttackValue Needle;
+        public AttackValueRadius Needle;
         /// <summary>bite is for close attack</summary>
-        public AttackValue Bite;
+        public AttackValueRadius Bite;
     }
 
 }

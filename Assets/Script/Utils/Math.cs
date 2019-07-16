@@ -32,5 +32,19 @@ namespace Eccentric {
             if (percentage <= probability1) return option1;
             else return option2;
         }
+        public static bool ChosenDueToProbability (float probability1, float probability2) {
+            if (probability1 + probability2 != 1f) {
+                float tmp = 1f / (probability1 + probability2);
+                probability1 *= tmp;
+                probability2 *= tmp;
+            }
+            Random rand = new Random (DateTime.Now.Millisecond);
+            float percentage = (float) rand.NextDouble ( );
+            if (percentage <= probability1) return true;
+            else return false;
+        }
+        public static int ChosenDueToProbability (int number) {
+            return UnityEngine.Random.Range(0,number);
+        }
     }
 }

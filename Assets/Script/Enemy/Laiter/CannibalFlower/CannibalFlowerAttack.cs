@@ -5,19 +5,19 @@ using UnityEngine;
 /// <summary>define how CannibalFlower attack target</summary>
 public class CannibalFlowerAttack : CharacterComponent {
     //-----ref
-    AttackValue needleValue;
-    AttackValue biteValue;
+    AttackValueRadius needleValue;
+    AttackValueRadius biteValue;
     LayerMask targetLayer;
 
     //------field
     CircleAreaAttack needleAction = null;
     CircleAreaAttack biteAction = null;
 
-    public CannibalFlowerAttack (Enemy parent, AttackValue needle, AttackValue bite, LayerMask targetLayer) : base (parent) {
+    public CannibalFlowerAttack (Enemy parent, AttackValueRadius needle, AttackValueRadius bite, LayerMask targetLayer) : base (parent) {
         this.needleValue = needle;
         this.biteValue = bite;
         this.targetLayer = targetLayer;
-        needleAction = new CircleAreaAttack (needle.DetectRadius, needle.CD, targetLayer);
+        needleAction = new CircleAreaAttack (needle.CD, needle.DetectRadius, targetLayer);
         biteAction = new CircleAreaAttack (bite.DetectRadius, bite.CD, targetLayer);
     }
 
@@ -26,10 +26,10 @@ public class CannibalFlowerAttack : CharacterComponent {
         biteAction.UpdateState (Parent.tf.position);
         //if player in the close range use bite attack
         if (biteAction.IsCanAttack)
-            biteAction.Attack (biteValue.Damage);
+            biteAction.Attack ( );
         //if player in the far range and outof bite range use needle attack
         else if (needleAction.IsCanAttack && needleAction.DistanceBetweenTarget > biteValue.DetectRadius)
-            needleAction.Attack (needleValue.Damage);
+            needleAction.Attack ( );
     }
 
 }

@@ -13,7 +13,7 @@ namespace Eccentric.UnityUtils.Collections {
         /// <summary>if user ask an item and pool is empty now Can pool instaniate an new item</summary>
         public bool IsGrow;
         // To Store all item
-        Queue<IObjectPoolItem> poolObjects;
+        Queue<IObjectPoolAble> poolObjects;
 
         /// <summary>use this to set NECESSARY data</summary>
         /// <remarks>Not necessary to use constructor  you can also set data through inspector</remarks>
@@ -28,7 +28,7 @@ namespace Eccentric.UnityUtils.Collections {
         /// <summary>Spawn all objects according to pooledAmount</summary>
         /// <remarks>MUST CALL this method if you set data with inspector not constructor</remarks>
         public void Init ( ) {
-            poolObjects = new Queue<IObjectPoolItem> ( );
+            poolObjects = new Queue<IObjectPoolAble> ( );
             for (int i = 0; i < pooledAmount; i++) {
                 poolObjects.Enqueue (SpawnObject ( ));
             }
@@ -39,15 +39,15 @@ namespace Eccentric.UnityUtils.Collections {
         /// e.g. Bullets inherit from Mono,IObjectPoolItem
         /// if we ask for a bullet we need to convert type to bullet</remarks>
         /// <example><code>Bullet bullet = Bullets.GetPooledObject ( ) as Bullet;</code></example>
-        public IObjectPoolItem GetPooledObject ( ) {
+        public IObjectPoolAble GetPooledObject ( ) {
             if (poolObjects.Count != 0) {
-                IObjectPoolItem item = poolObjects.Dequeue ( );
+                IObjectPoolAble item = poolObjects.Dequeue ( );
                 item.Init ( );
                 item.gameObject.SetActive (true);
                 return item;
             }
             if (IsGrow) {
-                IObjectPoolItem item = SpawnObject ( );
+                IObjectPoolAble item = SpawnObject ( );
                 item.Init ( );
                 item.gameObject.SetActive (true);
                 return item;
@@ -57,14 +57,14 @@ namespace Eccentric.UnityUtils.Collections {
 
         /// <summary>Recycle Object to Pooling again</summary>
         /// <param name="item">which item will be Recycle to ObjectPooling</param>
-        public void RecycleObject (IObjectPoolItem item) {
+        public void RecycleObject (IObjectPoolAble item) {
             poolObjects.Enqueue (item);
             item.gameObject.SetActive (false);
         }
 
         // Spawn Object and set its pool change its parent to poolParent then disable it
-        IObjectPoolItem SpawnObject ( ) {
-            IObjectPoolItem item = GameObject.Instantiate (pooledObject, poolParent).GetComponent<IObjectPoolItem> ( );
+        IObjectPoolAble SpawnObject ( ) {
+            IObjectPoolAble item = GameObject.Instantiate (pooledObject, poolParent).GetComponent<IObjectPoolAble> ( );
             item.Pool = this;
             item.gameObject.SetActive (false);
             return item;

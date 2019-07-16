@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7852252031459168184}
   - component: {fileID: 3572367430893316125}
   - component: {fileID: 3548214174369963871}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SpargeShoes
   m_TagString: Untagged
   m_Icon: {fileID: 0}

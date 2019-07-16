@@ -28,7 +28,7 @@ public class JellyfishMovement : CharacterComponent {
     RangeRandomMove rangeMove = null;
     // if got the target will use traceMode
     FreeTraceMove traceMove = null;
-    IMove currentMove = null;
+    AMove currentMove = null;
 
     public JellyfishMovement (Enemy parent, float speed, float traceSpeed, Vector2 range, float detectAreaRadius, LayerMask targetLayer) : base (parent) {
         //set initPosition to jellyfish current position

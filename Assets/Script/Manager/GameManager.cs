@@ -2,7 +2,7 @@
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class GameManager : SingletonMonoBehavior<GameManager> {
+public class GameManager : TSingletonMonoBehavior<GameManager> {
     //field to store currentScene
     string currentScene;
     [SerializeField]

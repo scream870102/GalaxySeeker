@@ -29,7 +29,11 @@ public class LaiterScene : Scene {
             npc.OnNPCDialogueFinish += KeyNpcDialogueFinish;
         for (int i = 0; i < npcS.Count; i++)
             keyPoints.Add (false);
-        if (boss) boss.Stats.OnHealthReachedZero += BossDead;
+        if (boss) {
+            boss.Stats.OnHealthReachedZero += BossDead;
+            boss.IsEnable = false;
+        }
+
     }
 
     //callback method when key npc finish its dialogue
@@ -46,6 +50,7 @@ public class LaiterScene : Scene {
     //if all key event finish disable the wall before boss fight
     void AllKeyNPCEventFin ( ) {
         wallBeforeBossFight.SetActive (false);
+        boss.IsEnable = true;
     }
 
     //callback method when boss dead

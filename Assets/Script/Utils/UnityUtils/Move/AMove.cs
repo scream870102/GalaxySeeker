@@ -2,7 +2,7 @@ using UnityEngine;
 namespace Eccentric.UnityUtils.Move {
     /// <summary>this is the abstract class for every movement</summary>
     /// <remarks>child class must override GetNextPos and define bFacingRight</remarks>
-    public abstract class IMove {
+    public abstract class AMove {
         //true calculate with deltaTime false calculate with fixedDeltaTime
         protected bool bUseDeltaTime;
         protected bool bFacingRight;
@@ -12,7 +12,7 @@ namespace Eccentric.UnityUtils.Move {
         /// <param name="refPos">the current position of owner READONLY</param>
         public abstract Vector2 GetNextPos (in Vector2 refPos);
         protected Vector2 initPos;
-        public IMove (Vector2 InitPos, bool IsUseDeltaTime = true) {
+        public AMove (Vector2 InitPos, bool IsUseDeltaTime = true) {
             this.initPos = InitPos;
             this.bUseDeltaTime = IsUseDeltaTime;
         }

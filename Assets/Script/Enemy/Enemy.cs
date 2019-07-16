@@ -5,7 +5,7 @@ public class Enemy : Character {
     // if this character enable or disable
     bool bEnable = true;
     /// <summary>Property for enable or disable all characterComponents on this character</summary>
-    public bool IsEnable { set { if(value==false)DisableAllComponents();bEnable = value; } protected get { return bEnable; } }
+    public bool IsEnable { set { SwitchAllComponents (value); bEnable = value; } protected get { return bEnable; } }
 
     // field to store all component on this character;
     protected List<CharacterComponent> components = new List<CharacterComponent> ( );
@@ -56,9 +56,9 @@ public class Enemy : Character {
     public void AddComponent (CharacterComponent component) {
         components.Add (component);
     }
-    void DisableAllComponents ( ) {
+    void SwitchAllComponents (bool value) {
         foreach (CharacterComponent component in components) {
-            component.IsEnable = false;
+            component.IsEnable = value;
         }
     }
 }

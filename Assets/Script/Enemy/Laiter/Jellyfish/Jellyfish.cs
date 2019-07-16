@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using Eccentric.UnityUtils.Attack;
 /// <summary>Enemy:Jellyfish</summary>
 public class Jellyfish : Enemy {
     //-----------ref
@@ -14,18 +14,29 @@ public class Jellyfish : Enemy {
     JellyfishMovement movement = null;
     // define how jellyfish attack
     JellyfishAttack attack = null;
+    Animation anim = null;
+    //---------property
+    public Animation Anim { get { return anim; } }
+    //---------event
+    public event System.Action OnTentacleAnimFined;
 
     // spawn all components
     protected override void Init ( ) {
         base.Init ( );
+        anim = GetComponent<Animation> ( );
         movement = new JellyfishMovement (this, props.Speed, props.TraceSpeed, props.Range, props.DetectAreaRadius, props.TargetLayer);
-        attack = new JellyfishAttack (this, props.TenTacle, props.TargetLayer);
+        attack = new JellyfishAttack (this, props.TenTacle, props.TargetLayer, props.tentacleAnimation);
     }
 
     // when jellyFish dead disable it
     protected override void Dead ( ) {
         Debug.Log ("who am I? " + name + " Dead");
         this.IsEnable = false;
+    }
+
+    protected void TentacleAnimationFinished ( ) {
+        if (OnTentacleAnimFined != null)
+            OnTentacleAnimFined ( );
     }
 
     /// <summary>define all props that jellyfish need</summary>
@@ -46,7 +57,8 @@ public class Jellyfish : Enemy {
         public float DetectAreaRadius;
         [Header ("Attack Property")]
         //the value of Tentacle attack;
-        public AttackValue TenTacle;
+        public AttackValueRadius TenTacle;
+        public AnimationClip tentacleAnimation;
 
     }
 

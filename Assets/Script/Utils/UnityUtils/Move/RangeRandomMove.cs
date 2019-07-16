@@ -1,6 +1,6 @@
 using UnityEngine;
 namespace Eccentric.UnityUtils.Move {
-    public class RangeRandomMove : IMove {
+    public class RangeRandomMove : AMove {
         //--------------ref
         float speed;
         Vector2 range;

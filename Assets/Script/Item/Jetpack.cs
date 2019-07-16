@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+﻿using Eccentric.UnityUtils;
 
+using UnityEngine;
 public class Jetpack : Item {
     /// <summary>max capacity of gas</summary>
     public float capacityOfGas;
@@ -12,10 +13,9 @@ public class Jetpack : Item {
     public int gasForce;
     /// <summary>jetpack cooldown between each time</summary>
     public float cooldown;
+    CountdownTimer timer;
     //if jetpack can use right now
     bool bCanUse;
-    //store time of jetpack can use next time
-    float nextCanUseTime;
     // if using jetpack rightnow
     bool bUsing;
     // ref for ptc
@@ -47,10 +47,10 @@ public class Jetpack : Item {
 
         }
         //if over cd time make pack can use again
-        if (Time.time > nextCanUseTime && !bCanUse && !bUsing) {
+        if (timer.IsFinished && !bCanUse && !bUsing) {
             bCanUse = true;
         }
-        //if gas is full and in can use state tell player can swith item
+        //if gas is full and in can use state tell player can switch item
         if (bCanUse && currentCapacityOfGas >= capacityOfGas)
             AlreadyUsed ( );
 
@@ -60,7 +60,7 @@ public class Jetpack : Item {
     void ResetState ( ) {
         ptc.Stop ( );
         bUsing = false;
-        nextCanUseTime = Time.time + cooldown;
+        timer.Reset();
         owner.IsFlying = false;
     }
 
@@ -77,5 +77,6 @@ public class Jetpack : Item {
         bCanUse = true;
         owner.Props.FlyingGasForce = gasForce;
         ptc = GetComponent<ParticleSystem> ( );
+        timer = new CountdownTimer (cooldown);
     }
 }

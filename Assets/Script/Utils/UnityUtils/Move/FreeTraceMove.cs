@@ -1,7 +1,7 @@
 using UnityEngine;
 namespace Eccentric.UnityUtils.Move {
     /// <summary>Do a trace movement without any collision</summary>
-    public class FreeTraceMove : IMove {
+    public class FreeTraceMove : AMove {
         //---------reference
         float velocity;
         Transform target = null;

@@ -308,5 +308,6 @@ MonoBehaviour:
     poolParent: {fileID: 0}
     pooledAmount: 20
     IsGrow: 1
+  reloadTime: 2
   coolDown: 0.1
   maxClipCapacity: 10

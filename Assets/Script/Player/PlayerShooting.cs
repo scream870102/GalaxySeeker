@@ -1,13 +1,14 @@
-﻿using UnityEngine;
+﻿using Eccentric.UnityUtils;
 using Eccentric.UnityUtils.Collections;
+
+using UnityEngine;
 public class PlayerShooting : PlayerComponent {
     //use object pool to manage bullet
     [SerializeField]
     ObjectPool Bullets;
+    public float reloadTime;
     /// <summary>the time between two shooting action</summary>
     public float coolDown;
-    //timer for store next shooting time
-    float timer;
     //if player can shoot right now
     bool bShootable;
     /// <summary>how many bullets can weapon take</summary>
@@ -16,13 +17,14 @@ public class PlayerShooting : PlayerComponent {
     int clipCapacity;
     // is now in reloading animation
     bool bReloading;
+    CountdownTimer timer;
     //spawn all bullets
     void Awake ( ) {
         Bullets.Init ( );
         bShootable = true;
-        timer = Time.time;
         clipCapacity = maxClipCapacity;
         bReloading = false;
+        timer = new CountdownTimer (coolDown);
     }
 
     //if player hit shoot button shoot bullet 
@@ -36,16 +38,16 @@ public class PlayerShooting : PlayerComponent {
             Bullet bullet = Bullets.GetPooledObject ( ) as Bullet;
             clipCapacity--;
             bullet.Fire (Parent.IsFacingRight?Vector2.right : Vector2.left, transform.position, Parent.Props.Damage);
-            timer = Time.time + coolDown;
+            timer.Reset ( );
             bShootable = false;
         }
 
-        bShootable = Time.time > timer? true : false;
+        bShootable = timer.IsFinished;
     }
     //method when current bullet is under or equal to zero reload clip
     void Reload ( ) {
         bReloading = true;
-        Invoke ("ReloadFinish", 2f);
+        Invoke ("ReloadFinish", reloadTime);
     }
 
     //method when reload is finish

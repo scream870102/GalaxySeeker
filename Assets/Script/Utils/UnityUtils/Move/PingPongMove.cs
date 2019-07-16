@@ -1,7 +1,7 @@
 using UnityEngine;
 namespace Eccentric.UnityUtils.Move {
     /// <summary>Do a pingpong movement in horizontal</summary>
-    public class PingPongMove : IMove {
+    public class PingPongMove : AMove {
         //---------reference
         float velocity;
         //---------field
