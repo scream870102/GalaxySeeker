@@ -32,6 +32,9 @@ namespace Eccentric {
             if (percentage <= probability1) return option1;
             else return option2;
         }
+        /// <summary>return true if option1 being choose</summary>
+        /// <param name="probability1">probability of option1</param>
+        /// <param name="probability2">probability of option2</param>
         public static bool ChosenDueToProbability (float probability1, float probability2) {
             if (probability1 + probability2 != 1f) {
                 float tmp = 1f / (probability1 + probability2);
@@ -43,8 +46,16 @@ namespace Eccentric {
             if (percentage <= probability1) return true;
             else return false;
         }
-        public static int ChosenDueToProbability (int number) {
-            return UnityEngine.Random.Range(0,number);
+
+        /// <summary>return a random integer from 0 to number-1</summary>
+        /// <param name="number">how many options</param>
+        public static int ChooseRandomNum (int number) {
+            return UnityEngine.Random.Range (0, number);
+        }
+
+        /// <summary>return a random float from 0.0f to number</summary>
+        public static float ChooseRandomNum (float number) {
+            return UnityEngine.Random.Range (0f, number);
         }
     }
 }

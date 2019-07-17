@@ -1,5 +1,7 @@
 using UnityEngine;
 namespace Eccentric.UnityUtils.Attack {
+    /// <summary>the basic information for an attack movement</summary>
+    /// <remarks>include damage cooldown and animation</remarks>
     [System.Serializable]
     public class AttackValue {
         public float Damage;
@@ -11,8 +13,7 @@ namespace Eccentric.UnityUtils.Attack {
             this.Clip = Clip;
         }
     }
-    /// <summary>struct define the basic information for an attack action</summary>
-    /// <remarks>include damage,cd,and detectRadius for circleCast</remarks>
+    /// <summary>besides basic attackValue also include the radius for attackRange</summary>
     [System.Serializable]
     public class AttackValueRadius : AttackValue {
         public float DetectRadius;
@@ -21,10 +22,11 @@ namespace Eccentric.UnityUtils.Attack {
         }
     }
 
-    public class AttackPair {
+    /// <summary>include action and value for an attack movement</summary>
+    public class AttackSet {
         public AttackValue value;
         public AAttack action;
-        public AttackPair (AttackValue value, AAttack action) {
+        public AttackSet (AttackValue value, AAttack action) {
             this.value = value;
             this.action = action;
         }

@@ -125,8 +125,9 @@ MonoBehaviour:
     DetectAreaRadius: 1
     TenTacle:
       Damage: 20
-      CD: 2
-      DetectRadius: 0.25
+      CD: 5
+      Clip: {fileID: 7400000, guid: 6601c5f12af371c4eb47ed370ddd74a4, type: 2}
+      DetectRadius: 0.01
 --- !u!111 &5252997482026534015
 Animation:
   m_ObjectHideFlags: 0
@@ -139,6 +140,7 @@ Animation:
   m_Animation: {fileID: 7400000, guid: c19771a73d7f0574b99715aa9f65bb68, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: c19771a73d7f0574b99715aa9f65bb68, type: 2}
+  - {fileID: 7400000, guid: 6601c5f12af371c4eb47ed370ddd74a4, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0

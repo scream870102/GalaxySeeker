@@ -5,35 +5,32 @@ using UnityEngine;
 /// <summary>define how jellyfish attack target</summary>
 public class JellyfishAttack : CharacterComponent {
     //----ref
-    AttackValueRadius tentacleValue;
     LayerMask targetLayer;
-    AnimationClip attackAnim;
 
     //----field
-    CircleAreaAttack tentacleAction = null;
+    AttackSet tentacle;
     Jellyfish jf;
 
-    public JellyfishAttack (Enemy parent, AttackValueRadius tentacle, LayerMask targetLayer, AnimationClip attackAnimClip) : base (parent) {
-        this.tentacleValue = tentacle;
+    public JellyfishAttack (Enemy parent, AttackValueRadius tentacle, LayerMask targetLayer) : base (parent) {
+        this.tentacle = new AttackSet (tentacle, new CircleAreaAttack (tentacle.CD, tentacle.DetectRadius, targetLayer));
+        this.tentacle.value = tentacle;
         this.targetLayer = targetLayer;
-        this.attackAnim = attackAnimClip;
-        tentacleAction = new CircleAreaAttack (tentacle.CD, tentacleValue.DetectRadius, targetLayer);
         jf = (Jellyfish) Parent;
         jf.OnTentacleAnimFined += TentacleAnimationFin;
     }
     protected override void FixedTick ( ) {
-        tentacleAction.UpdateState (Parent.tf.position);
-        if (tentacleAction.IsCanAttack) {
-            tentacleAction.Attack ( );
+        tentacle.action.UpdateState (Parent.tf.position);
+        if (tentacle.action.IsCanAttack) {
+            tentacle.action.Attack ( );
             //播放動畫 訂閱事件
-            jf.Anim.Play (attackAnim.name);
+            jf.Anim.Play (tentacle.value.Clip.name);
         }
     }
 
     void TentacleAnimationFin ( ) {
         jf.Anim.Play (jf.Anim.clip.name);
-        tentacleAction.CauseDamage (tentacleValue.Damage);
-        tentacleAction.AttackFinished ( );
+        tentacle.action.CauseDamage ((tentacle.action as CircleAreaAttack).Target, tentacle.value.Damage);
+        tentacle.action.AttackFinished ( );
     }
 
 }

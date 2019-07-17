@@ -3,7 +3,7 @@ namespace Eccentric.UnityUtils.Attack {
     /// <summary>This class define how an attack work with a circle detect area</summary>
     /// <remarks>Call UpdateState to update you can check if can attack now by call props IsCanAttack and will enter cooldown after you call method Attack</remarks>
     [System.Serializable]
-    public class CircleAreaAttack : AAttack {
+    public class CircleAreaAttack : BasicAttack {
         //------ref
         float radius;
         LayerMask targetLayer;
@@ -12,6 +12,7 @@ namespace Eccentric.UnityUtils.Attack {
         Transform targetTransform = null;
         Vector2 originPos;
         Character target = null;
+        public Character Target { get { return target; } }
         //------property
         /// <summary>return the distance between target and owner</summary>
         public float DistanceBetweenTarget {
@@ -22,13 +23,16 @@ namespace Eccentric.UnityUtils.Attack {
             }
         }
         //-----method
-        public CircleAreaAttack (float cd, float radius, LayerMask targetLayer, System.Action attackFinishedAction = null, bool IsCanAttack = false) : base (cd, attackFinishedAction, IsCanAttack) {
+        public CircleAreaAttack (float cd, float radius, LayerMask targetLayer, System.Action attackingAction = null, System.Action attackFinishedAction = null, bool IsCanAttack = false) : base (cd, attackingAction, attackFinishedAction, IsCanAttack) {
             this.radius = radius;
             this.targetLayer = targetLayer;
         }
         protected override void IsPossibleAttack (Vector2 originPos) {
+            //try to find the target 
+            //if target in the range will set IsCanAttack to true else to false
             this.originPos = originPos;
             bFindTarget = Eccentric.UnityUtils.Physics2D.OverlapCircle (originPos, radius, targetLayer, ref targetTransform);
+            //if got the  target
             if (bFindTarget) {
                 target = targetTransform.GetComponent<Character> ( );
                 IsCanAttack = target?true : false;
@@ -37,7 +41,7 @@ namespace Eccentric.UnityUtils.Attack {
                 IsCanAttack = false;
             }
         }
-        protected override void Attacking ( ) { }
+        
         public void CauseDamage (float damage) {
             if (target)
                 CauseDamage (target, damage);

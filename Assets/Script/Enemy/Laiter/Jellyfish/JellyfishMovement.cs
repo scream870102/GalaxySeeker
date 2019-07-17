@@ -1,4 +1,5 @@
-﻿using Eccentric.UnityUtils.Move;
+﻿using Eccentric.UnityUtils;
+using Eccentric.UnityUtils.Move;
 
 using UnityEngine;
 /// <summary>define how jellyfish move</summary>
@@ -15,6 +16,7 @@ public class JellyfishMovement : CharacterComponent {
     LayerMask targetLayer;
     // how big the circle which is to detect player
     float detectAreaRadius;
+    float minDistance;
 
     //---------field
     // original pos of jellyfish
@@ -30,7 +32,7 @@ public class JellyfishMovement : CharacterComponent {
     FreeTraceMove traceMove = null;
     AMove currentMove = null;
 
-    public JellyfishMovement (Enemy parent, float speed, float traceSpeed, Vector2 range, float detectAreaRadius, LayerMask targetLayer) : base (parent) {
+    public JellyfishMovement (Enemy parent, float speed, float traceSpeed, Vector2 range, float detectAreaRadius, float minDistance, LayerMask targetLayer) : base (parent) {
         //set initPosition to jellyfish current position
         initPos = Parent.tf.position;
         this.speed = speed;
@@ -38,8 +40,9 @@ public class JellyfishMovement : CharacterComponent {
         this.detectAreaRadius = detectAreaRadius;
         this.traceSpeed = traceSpeed;
         this.targetLayer = targetLayer;
+        this.minDistance = minDistance;
         rangeMove = new RangeRandomMove (range, speed, initPos);
-        traceMove = new FreeTraceMove (traceSpeed, target, Parent.tf.position);
+        traceMove = new FreeTraceMove (traceSpeed, target, Parent.tf.position, minDistance);
         currentMove = rangeMove;
     }
 
@@ -58,9 +61,7 @@ public class JellyfishMovement : CharacterComponent {
             Parent.tf.position = targetPos;
         }
         //Change jellyfish render direction
-        Vector3 tmp = Parent.tf.localScale;
-        tmp.x = Mathf.Abs (tmp.x) * (currentMove.IsFacingRight?1f: -1f);
-        Parent.tf.localScale = tmp;
+        Render.ChangeDirection (currentMove.IsFacingRight, Parent.tf);
 
     }
 

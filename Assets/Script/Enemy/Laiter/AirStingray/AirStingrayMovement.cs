@@ -12,6 +12,7 @@ public class AirStingrayMovement : CharacterComponent {
     LayerMask targetLayer;
     float sinkSpeed;
     Collider2D col;
+    AnimationClip sinkAnim;
 
     //------field
     //the center point of stingray hori movement
@@ -20,15 +21,18 @@ public class AirStingrayMovement : CharacterComponent {
     PingPongMove horiLoopMove = null;
     //this field is for player and will be not equal to null when player stand on it
     Transform targetTransform = null;
+    AirStingray asg = null;
 
-    public AirStingrayMovement (Enemy parent, float moveSpeed, float moveRange, float sinkSpeed, LayerMask targetLayer, Collider2D collider) : base (parent) {
+    public AirStingrayMovement (Enemy parent, float moveSpeed, float moveRange, float sinkSpeed, LayerMask targetLayer, Collider2D collider, AnimationClip sinkAnim) : base (parent) {
         this.moveRange = moveRange;
         this.moveSpeed = moveSpeed;
         this.targetLayer = targetLayer;
         this.sinkSpeed = sinkSpeed;
         this.col = collider;
+        this.sinkAnim = sinkAnim;
         initPos = this.Parent.tf.position;
         horiLoopMove = new PingPongMove (moveSpeed, moveRange, initPos, true, false);
+        asg = (AirStingray) Parent;
 
     }
 
@@ -64,10 +68,13 @@ public class AirStingrayMovement : CharacterComponent {
                 }
             }
         }
+        if (bTouchPlayer && !asg.Anim.IsPlaying (sinkAnim.name))
+            asg.Anim.Play (sinkAnim.name);
         //if doesn't touchPlayer set targetTransform to null
         if (!bTouchPlayer && targetTransform) {
             targetTransform.SetParent (null);
             targetTransform = null;
+            asg.Anim.Play (asg.Anim.clip.name);
         }
     }
     protected override void Disable ( ) {

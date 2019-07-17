@@ -9,9 +9,13 @@ public class RedAirStingray : Enemy {
 
     //--------field
     RedAirStingrayMovement movement = null;
+    Animation anim;
+    //---------property
+    public Animation Anim { get { return anim; } }
     protected override void Init ( ) {
         base.Init ( );
-        movement = new RedAirStingrayMovement (this, props.PingPongVelocity,props.RangeVelocity, props.MoveRange, props.sinkRaiseSpeed, props.TargetLayer, props.collider);
+        movement = new RedAirStingrayMovement (this, props.PingPongVelocity, props.RangeVelocity, props.MoveRange, props.rageAnimation, props.TargetLayer, props.collider);
+        anim = GetComponent<Animation> ( );
     }
 
     protected override void Dead ( ) {
@@ -30,10 +34,9 @@ public class RedAirStingray : Enemy {
         /// <summary>when player stand on it it will raise its velocity to this one</summary>
         public float RangeVelocity;
         public Vector2 MoveRange;
-        /// <summary>how fast will stingray sink when player stand on it</summary>
-        public float sinkRaiseSpeed;
         /// <summary>the collider itself</summary>
         public Collider2D collider;
+        public AnimationClip rageAnimation;
 
     }
 

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 
+using Eccentric.UnityUtils;
+
 using UnityEngine;
 [RequireComponent (typeof (Rigidbody2D))]
 public class PlayerMovement : PlayerComponent {
@@ -77,7 +79,7 @@ public class PlayerMovement : PlayerComponent {
     protected override void FixedTick ( ) {
         Move ( );
         InJump ( );
-        Render ( );
+        Render.ChangeDirection (bFacingRight, Parent.tf);
     }
 
     //if can jump set bJump to true bGround false plus numNowJump
@@ -142,7 +144,7 @@ public class PlayerMovement : PlayerComponent {
     void IsGrounded ( ) {
         if (detectGround != null) {
             foreach (LayerMask layer in groundLayer) {
-                Collider2D [ ] colliders = Physics2D.OverlapPointAll (detectGround.position, layer);
+                Collider2D [ ] colliders = UnityEngine.Physics2D.OverlapPointAll (detectGround.position, layer);
                 foreach (Collider2D collider in colliders) {
                     if (collider != gameObject) {
                         bGround = true;
@@ -160,11 +162,4 @@ public class PlayerMovement : PlayerComponent {
     public void AddForce (Vector2 force, ForceMode2D mode = ForceMode2D.Impulse) {
         rb.AddForce (force, mode);
     }
-    //change player scale due to player's facing direction
-    void Render ( ) {
-        Vector3 tmp = tf.localScale;
-        tmp = new Vector3 (bFacingRight?Mathf.Abs (tmp.x): -Mathf.Abs (tmp.x), tmp.y, tmp.z);
-        tf.localScale = tmp;
-    }
-
 }

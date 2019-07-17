@@ -6,7 +6,7 @@ namespace Eccentric.UnityUtils.Attack {
 
         /// <summary>the constructor of basic attack it strong connect with animation</summary>
         /// <param name="attackingAction">the action should do</param>
-        public BasicAttack (float damage, float cd, System.Action attackingAction, System.Action attackFinishedAction = null, bool IsCanAttack = true) : base (cd, attackFinishedAction, IsCanAttack) {
+        public BasicAttack (float cd, System.Action attackingAction, System.Action attackFinishedAction = null, bool IsCanAttack = true) : base (cd, attackFinishedAction, IsCanAttack) {
             this.attackingAction += attackingAction;
         }
 

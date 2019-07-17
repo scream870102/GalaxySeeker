@@ -8,9 +8,13 @@ public class AirStingray : Enemy {
 
     //--------field
     AirStingrayMovement movement = null;
+    Animation anim = null;
+    //------property
+    public Animation Anim { get { return anim; } }
     protected override void Init ( ) {
         base.Init ( );
-        movement = new AirStingrayMovement (this, props.MoveSpeed, props.MoveRange, props.sinkSpeed, props.TargetLayer, props.collider);
+        movement = new AirStingrayMovement (this, props.MoveSpeed, props.MoveRange, props.sinkSpeed, props.TargetLayer, props.collider, props.sinkAnim);
+        anim = GetComponent<Animation> ( );
     }
 
     protected override void Dead ( ) {
@@ -30,6 +34,8 @@ public class AirStingray : Enemy {
         public float sinkSpeed;
         /// <summary>the collider itself</summary>
         public Collider2D collider;
+        /// <summary>the animation will play when sinkking</summary>
+        public AnimationClip sinkAnim;
     }
 
 }
