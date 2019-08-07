@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace Eccentric.UnityUtils.Move {
+namespace GalaxySeeker.Move {
     public class RangeRandomMove : AMove {
         //--------------ref
         float speed;

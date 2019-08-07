@@ -1,4 +1,4 @@
-﻿using Eccentric.UnityUtils.Collections;
+﻿using Eccentric.Collections;
 using UnityEngine;
 [RequireComponent (typeof (Collider2D), typeof (Rigidbody2D))]
 public class Bullet : MonoBehaviour, IObjectPoolAble {
@@ -40,7 +40,7 @@ public class Bullet : MonoBehaviour, IObjectPoolAble {
 
     //init its position
     //and bullets will disappear after 5 seconds
-    public void Init ( ) {
+    public void Init<T> (T data) {
         tf.localPosition = new Vector2 ( );
         ptc.Pause ( );
         CancelInvoke ( );

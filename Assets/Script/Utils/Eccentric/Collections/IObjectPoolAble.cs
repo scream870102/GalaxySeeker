@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-namespace Eccentric.UnityUtils.Collections {
+namespace Eccentric.Collections {
     /// <summary>class inherit this interface can be managed by class ObjectPool</summary>
     public interface IObjectPoolAble {
         //which pool should item belongs to 
@@ -9,6 +9,6 @@ namespace Eccentric.UnityUtils.Collections {
         //recycle item to pool
         void Recycle ( );
         //action will do when item being push to pool
-        void Init ( );
+        void Init<T> (T data);
     }
 }

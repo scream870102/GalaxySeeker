@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace Eccentric.UnityUtils {
+namespace Eccentric.Utils {
     /// <summary>derived this class then you will got a monobehavior implement singleton</summary>
     public class TSingletonMonoBehavior<T> : MonoBehaviour where T : MonoBehaviour {
         static T instance = null;

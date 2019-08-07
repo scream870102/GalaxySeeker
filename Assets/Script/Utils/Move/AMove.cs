@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace Eccentric.UnityUtils.Move {
+namespace GalaxySeeker.Move {
     /// <summary>this is the abstract class for every movement</summary>
     /// <remarks>child class must override GetNextPos and define bFacingRight</remarks>
     public abstract class AMove {

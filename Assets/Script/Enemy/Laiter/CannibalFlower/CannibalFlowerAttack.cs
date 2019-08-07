@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
-using Eccentric.UnityUtils;
-using Eccentric.UnityUtils.Attack;
+using GalaxySeeker;
+using GalaxySeeker.Attack;
 
 using UnityEngine;
 [System.Serializable]
@@ -29,12 +29,12 @@ public class CannibalFlowerAttack : CharacterComponent {
         attacks.Add (this.bite = new AttackSet (bite, new CircleAreaAttack (bite.CD, bite.DetectRadius, targetLayer)));
         cf = (CannibalFlower) Parent;
         cf.OnAnimationFinished += this.AnimFinished;
-        Eccentric.UnityUtils.Physics2D.OverlapCircle (Parent.tf.position, Mathf.Infinity, targetLayer, ref target);
+        GalaxySeeker.Physics2D.OverlapCircle (Parent.tf.position, Mathf.Infinity, targetLayer, ref target);
     }
 
     protected override void FixedTick ( ) {
         if (target)
-            bFacingRight = Eccentric.UnityUtils.Physics2D.IsRight (Parent.tf.position, target.position);
+            bFacingRight = GalaxySeeker.Physics2D.IsRight (Parent.tf.position, target.position);
         foreach (AttackSet attack in attacks)
             attack.action.UpdateState (Parent.tf.position);
         //Change render direction

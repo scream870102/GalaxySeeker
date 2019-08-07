@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 
-using Eccentric.UnityUtils;
-using Eccentric.UnityUtils.Attack;
+using GalaxySeeker;
+using GalaxySeeker.Attack;
 
 using UnityEngine;
 [System.Serializable]
@@ -53,14 +53,14 @@ public class KingCannibalFlowerAttack : CharacterComponent {
         //register the OnAnimationFinished on Parent for AnimFinished
         kcf.OnAnimationFinished += AnimFinished;
         //try to find the player on the scene
-        Eccentric.UnityUtils.Physics2D.OverlapCircle (Parent.tf.position, Mathf.Infinity, targetLayer, ref targetTransform);
+        GalaxySeeker.Physics2D.OverlapCircle (Parent.tf.position, Mathf.Infinity, targetLayer, ref targetTransform);
         if (targetTransform)
             target = targetTransform.GetComponent<Character> ( );
     }
 
     protected override void FixedTick ( ) {
         if (target)
-            bFacingRight = Eccentric.UnityUtils.Physics2D.IsRight (Parent.tf.position, targetTransform.position);
+            bFacingRight = GalaxySeeker.Physics2D.IsRight (Parent.tf.position, targetTransform.position);
         //Change render direction
         if (currentAttack == null)
             Render.ChangeDirectionY (bFacingRight, Parent.tf, true);
@@ -81,7 +81,7 @@ public class KingCannibalFlowerAttack : CharacterComponent {
                 // or choose it  with random with same probability
                 if (actionToUse.Count == 1) currentAttack = actionToUse [0];
                 else if (actionToUse.Count == 0) return;
-                else currentAttack = actionToUse [Eccentric.Math.ChooseRandomNum (actionToUse.Count)];
+                else currentAttack = actionToUse [Eccentric.Math.RandomNum (actionToUse.Count)];
             }
             //Normal attack
             else {
@@ -94,7 +94,7 @@ public class KingCannibalFlowerAttack : CharacterComponent {
                     if (needle.action.IsCanAttack) actionAbleUse.Add (needle);
                     if (actionAbleUse.Count == 1) currentAttack = actionAbleUse [0];
                     else if (actionAbleUse.Count == 0) return;
-                    else currentAttack = actionAbleUse [Eccentric.Math.ChooseRandomNum (actionAbleUse.Count)];
+                    else currentAttack = actionAbleUse [Eccentric.Math.RandomNum (actionAbleUse.Count)];
 
                 }
                 if (currentAttack == null) return;

@@ -1,4 +1,4 @@
-﻿using Eccentric.UnityUtils.Attack;
+﻿using GalaxySeeker.Attack;
 
 using UnityEngine;
 [System.Serializable]

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-using Eccentric.UnityUtils.Attack;
+using GalaxySeeker.Attack;
 
 using UnityEngine;
 /// <summary>Boss:KingCannibalFlower is the boss on Laiter</summary>

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Eccentric.UnityUtils {
+namespace GalaxySeeker {
     [System.Serializable]
     /// <summary>Static method about some calculate for 2d coordinate</summary>
     public static class Physics2D {

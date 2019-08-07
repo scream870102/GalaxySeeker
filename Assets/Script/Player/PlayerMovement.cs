@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-using Eccentric.UnityUtils;
+using GalaxySeeker;
 
 using UnityEngine;
 [RequireComponent (typeof (Rigidbody2D))]

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-using Eccentric.UnityUtils.Move;
+using GalaxySeeker.Move;
 
 using UnityEngine;
 [System.Serializable]
@@ -56,9 +56,9 @@ public class RedAirStingrayMovement : CharacterComponent {
             if (collider.gameObject.layer == LayerMask.NameToLayer ("Ground")) {
                 //if now use pingPongMove will change its direction due to direction of collider
                 if (currentMove == pingPongMove) {
-                    if (Eccentric.UnityUtils.Physics2D.IsRight (Parent.tf.position, collider.transform.position))
+                    if (GalaxySeeker.Physics2D.IsRight (Parent.tf.position, collider.transform.position))
                         pingPongMove.IsFacingRight = false;
-                    else if (Eccentric.UnityUtils.Physics2D.IsRight (Parent.tf.position, collider.transform.position))
+                    else if (GalaxySeeker.Physics2D.IsRight (Parent.tf.position, collider.transform.position))
                         pingPongMove.IsFacingRight = true;
                 }
                 //if now use rangeMove will try to find another target position
@@ -67,7 +67,7 @@ public class RedAirStingrayMovement : CharacterComponent {
             }
             //if collider with player and player stand on it change moveMode to rangeMove
             if (collider.gameObject.tag == "Player") {
-                if (Eccentric.UnityUtils.Physics2D.IsAbove (Parent.tf.position, collider.transform.position)) {
+                if (GalaxySeeker.Physics2D.IsAbove (Parent.tf.position, collider.transform.position)) {
                     targetTransform = collider.transform;
                     targetTransform.SetParent (Parent.tf);
                     bTouchPlayer = true;

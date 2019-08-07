@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace Eccentric.UnityUtils.Attack {
+namespace GalaxySeeker.Attack {
     /// <summary>the basic information for an attack movement</summary>
     /// <remarks>include damage cooldown and animation</remarks>
     [System.Serializable]

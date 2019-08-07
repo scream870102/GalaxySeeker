@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-using Eccentric.Interface;
+using GalaxySeeker.Interface;
 
 using UnityEngine;
 public class ControlPanel : MonoBehaviour, IInteractable {

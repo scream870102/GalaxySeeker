@@ -1,4 +1,4 @@
-﻿using Eccentric.UnityUtils;
+﻿using GalaxySeeker.UnityUtils;
 
 using UnityEngine;
 /// <summary>A base class for all character </summary>

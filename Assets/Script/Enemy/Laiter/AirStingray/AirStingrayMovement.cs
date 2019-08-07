@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-using Eccentric.UnityUtils.Move;
+using GalaxySeeker.Move;
 
 using UnityEngine;
 [System.Serializable]
@@ -50,9 +50,9 @@ public class AirStingrayMovement : CharacterComponent {
             //if ground under stingray set verticalposition up
             //else change direction due to the ground position
             if (collider.gameObject.layer == LayerMask.NameToLayer ("Ground")) {
-                if (Eccentric.UnityUtils.Physics2D.IsUnder (Parent.tf.position, collider.transform.position))
+                if (GalaxySeeker.Physics2D.IsUnder (Parent.tf.position, collider.transform.position))
                     horiLoopMove.SetVerticalPos (horiLoopMove.VerticalPos + sinkSpeed * Time.fixedDeltaTime);
-                else if (Eccentric.UnityUtils.Physics2D.IsRight (Parent.tf.position, collider.transform.position))
+                else if (GalaxySeeker.Physics2D.IsRight (Parent.tf.position, collider.transform.position))
                     horiLoopMove.IsFacingRight = false;
                 else
                     horiLoopMove.IsFacingRight = true;
@@ -60,7 +60,7 @@ public class AirStingrayMovement : CharacterComponent {
             //if touch player and player is above it start to sink
             //Also set stingray transform as player parent
             if (collider.gameObject.tag == "Player") {
-                if (Eccentric.UnityUtils.Physics2D.IsAbove (Parent.tf.position, collider.transform.position)) {
+                if (GalaxySeeker.Physics2D.IsAbove (Parent.tf.position, collider.transform.position)) {
                     targetTransform = collider.transform;
                     targetTransform.SetParent (Parent.tf);
                     horiLoopMove.SetVerticalPos (horiLoopMove.VerticalPos - sinkSpeed * Time.fixedDeltaTime);

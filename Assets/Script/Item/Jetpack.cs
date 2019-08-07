@@ -1,5 +1,4 @@
-﻿using Eccentric.UnityUtils;
-
+﻿using Eccentric.Utils;
 using UnityEngine;
 public class Jetpack : Item {
     /// <summary>max capacity of gas</summary>

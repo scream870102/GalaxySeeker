@@ -1125,6 +1125,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: KingCannibalFlower
       objectReference: {fileID: 0}
+    - target: {fileID: 4164849763500672398, guid: dedb1c4c175271148bb998655c9d8d86,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4164849763500672401, guid: dedb1c4c175271148bb998655c9d8d86,
+        type: 3}
+      propertyPath: props.NormalProbability
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4164849763500672401, guid: dedb1c4c175271148bb998655c9d8d86,
+        type: 3}
+      propertyPath: props.SpecialProbability
+      value: 0.99
+      objectReference: {fileID: 0}
     - target: {fileID: 4164849763500672402, guid: dedb1c4c175271148bb998655c9d8d86,
         type: 3}
       propertyPath: m_LocalPosition.x

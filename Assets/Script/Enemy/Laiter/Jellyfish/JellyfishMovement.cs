@@ -1,5 +1,5 @@
-﻿using Eccentric.UnityUtils;
-using Eccentric.UnityUtils.Move;
+﻿using GalaxySeeker.Move;
+using GalaxySeeker;
 
 using UnityEngine;
 /// <summary>define how jellyfish move</summary>
@@ -67,7 +67,7 @@ public class JellyfishMovement : CharacterComponent {
 
     protected override void FixedTick ( ) {
         if (!bFindTarget) {
-            bFindTarget = Eccentric.UnityUtils.Physics2D.OverlapCircle (Parent.tf.position, detectAreaRadius, targetLayer, ref target);
+            bFindTarget = GalaxySeeker.Physics2D.OverlapCircle (Parent.tf.position, detectAreaRadius, targetLayer, ref target);
         }
     }
 }

@@ -6,7 +6,6 @@
 - [190709-對話系統 開發日誌](https://eccentric0102.wordpress.com/2019/07/09/190709-【galaxy-seeker】devlog對話系統/)
 ---
 ### 未完成
-- 修改xmind `Galaxy Seeker.xmind`
 - 死亡的動作 `Player.cs`
 - `PlayerAnimation.cs`
 - 實現移除道具的功能`PlayerEquipment.cs`

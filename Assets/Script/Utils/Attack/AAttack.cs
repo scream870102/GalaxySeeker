@@ -1,6 +1,6 @@
 using UnityEngine;
-using Eccentric;
-namespace Eccentric.UnityUtils.Attack {
+using Eccentric.Utils;
+namespace GalaxySeeker.Attack {
     [System.Serializable]
     /// <summary>interface for attack action</summary>
     public abstract class AAttack {

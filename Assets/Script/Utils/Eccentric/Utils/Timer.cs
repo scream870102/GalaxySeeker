@@ -1,4 +1,4 @@
-namespace Eccentric.UnityUtils {
+namespace Eccentric.Utils {
     /// <summary>a countdown timer easy to use</summary>
     /// <remarks>call method Reset to reset timer and call property IsFinshed to check if countdown finished</remarks>
     public class CountdownTimer {

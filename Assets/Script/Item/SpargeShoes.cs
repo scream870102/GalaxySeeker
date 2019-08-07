@@ -1,5 +1,4 @@
-﻿using Eccentric.UnityUtils;
-
+﻿using Eccentric.Utils;
 using UnityEngine;
 
 public class SpargeShoes : Item {

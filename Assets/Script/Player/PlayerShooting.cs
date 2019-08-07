@@ -1,5 +1,5 @@
-﻿using Eccentric.UnityUtils;
-using Eccentric.UnityUtils.Collections;
+﻿using Eccentric.Collections;
+using Eccentric.Utils;
 
 using UnityEngine;
 public class PlayerShooting : PlayerComponent {
@@ -35,7 +35,7 @@ public class PlayerShooting : PlayerComponent {
                 Reload ( );
                 return;
             }
-            Bullet bullet = Bullets.GetPooledObject ( ) as Bullet;
+            Bullet bullet = Bullets.GetPooledObject<int> (0) as Bullet;
             clipCapacity--;
             bullet.Fire (Parent.IsFacingRight?Vector2.right : Vector2.left, transform.position, Parent.Props.Damage);
             timer.Reset ( );

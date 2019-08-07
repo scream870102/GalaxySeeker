@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace Eccentric.UnityUtils.Move {
+namespace GalaxySeeker.Move {
     /// <summary>Do a pingpong movement in horizontal</summary>
     public class PingPongMove : AMove {
         //---------reference

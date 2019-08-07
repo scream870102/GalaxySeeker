@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace Eccentric.UnityUtils.Attack {
+namespace GalaxySeeker.Attack {
     [System.Serializable]
     public class BasicAttack : AAttack {
         System.Action attackingAction = null;

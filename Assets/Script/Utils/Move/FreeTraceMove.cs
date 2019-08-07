@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace Eccentric.UnityUtils.Move {
+namespace GalaxySeeker.Move {
     /// <summary>Do a trace movement without any collision</summary>
     public class FreeTraceMove : AMove {
         //---------reference

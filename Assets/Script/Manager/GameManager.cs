@@ -1,4 +1,4 @@
-﻿using Eccentric.UnityUtils;
+﻿using Eccentric.Utils;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;

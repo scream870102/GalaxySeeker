@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-namespace Eccentric.UnityUtils.Attack {
+namespace GalaxySeeker.Attack {
     /// <summary>This class define how an attack work with a circle detect area</summary>
     /// <remarks>Call UpdateState to update you can check if can attack now by call props IsCanAttack and will enter cooldown after you call method Attack</remarks>
     [System.Serializable]
@@ -31,7 +31,7 @@ namespace Eccentric.UnityUtils.Attack {
             //try to find the target 
             //if target in the range will set IsCanAttack to true else to false
             this.originPos = originPos;
-            bFindTarget = Eccentric.UnityUtils.Physics2D.OverlapCircle (originPos, radius, targetLayer, ref targetTransform);
+            bFindTarget = GalaxySeeker.Physics2D.OverlapCircle (originPos, radius, targetLayer, ref targetTransform);
             //if got the  target
             if (bFindTarget) {
                 target = targetTransform.GetComponent<Character> ( );

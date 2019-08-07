@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace Eccentric.UnityUtils {
+namespace GalaxySeeker {
     public static class Render {
         /// <summary>flip target due to IsFacingRight</summary>
         /// <param name="IsFacingRight">is target facing at right direction</param>

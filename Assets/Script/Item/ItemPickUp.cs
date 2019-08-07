@@ -1,4 +1,4 @@
-﻿using Eccentric.Interface;
+﻿using GalaxySeeker.Interface;
 
 using UnityEngine;
 /// <summary>item on map and can interact with player</summary>
