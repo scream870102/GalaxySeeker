@@ -1,23 +1,24 @@
 ﻿using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.Playables;
+using Cinemachine;
 public class LaiterScene : Scene {
     // the global gravity of Laiter Planet
-    [SerializeField]
-    Vector2 gravity;
+    [SerializeField] Vector2 gravity;
     // the key point npc should react with
-    [SerializeField]
-    List<NPC> npcS;
+    [SerializeField] List<NPC> npcS;
     // the wall will disappera after  all key point finish
-    [SerializeField]
-    GameObject wallBeforeBossFight = null;
+    [SerializeField] GameObject wallBeforeBossFight = null;
     // ref for boss
-    [SerializeField]
-    Enemy boss = null;
+    [SerializeField] Enemy boss = null;
     // the elements should finish in this planet 
     List<bool> keyPoints = new List<bool> ( );
     // if all key point finish then can enter the boss fight
     bool bAllKeyNPCFin = false;
+    [SerializeField] Cinemachine.CinemachineBrain cinCamera;
+    [SerializeField]PlayableDirector director;
+    [SerializeField]CinemachineVirtualCamera bossVCam;
 
     //change the planet gravity
     void Awake ( ) {
@@ -49,6 +50,7 @@ public class LaiterScene : Scene {
 
     //if all key event finish disable the wall before boss fight
     void AllKeyNPCEventFin ( ) {
+        director.Play();
         wallBeforeBossFight.SetActive (false);
         boss.IsEnable = true;
     }
@@ -58,9 +60,8 @@ public class LaiterScene : Scene {
     void BossDead ( ) {
         Debug.Log ("Hey I am the boss and I am dead");
         Physics2D.gravity = GameManager.Instance.G_Props.DefaultGravity;
-        #region  Test
-        GameManager.Instance.SetScene ("Start");
-        #endregion Test
+        bossVCam.gameObject.SetActive(false);
+        //GameManager.Instance.SetScene ("Start");
 
     }
 

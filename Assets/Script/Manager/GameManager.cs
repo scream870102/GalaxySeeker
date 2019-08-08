@@ -17,6 +17,9 @@ public class GameManager : TSingletonMonoBehavior<GameManager> {
     DialogueManager dialogueManager;
     /// <summary>Property for dialogueManager READONLY</summary>
     public DialogueManager DialogueManager { get { return dialogueManager; } }
+
+    [SerializeField] UIManager uiManager;
+    public UIManager UIManager { get { return uiManager; } }
     //field for active Player
     Player player;
     protected override void Awake ( ) {
@@ -24,6 +27,7 @@ public class GameManager : TSingletonMonoBehavior<GameManager> {
         FindPlayer ( );
         SetScene (InitScene);
         dialogueManager = GetComponent<DialogueManager> ( );
+        uiManager.Init (Player.Stats.maxHealth);
     }
 
     void Update ( ) {

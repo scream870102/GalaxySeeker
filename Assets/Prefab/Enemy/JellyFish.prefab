@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5252997482026534008
 Transform:
   m_ObjectHideFlags: 0
@@ -60,6 +60,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -69,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -206310933
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0a352cb18c002164babfa84dd16f1e28, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -123,11 +124,12 @@ MonoBehaviour:
     TraceSpeed: 1.25
     Range: {x: 1.5, y: 1.5}
     DetectAreaRadius: 1
+    MinDistance: 0.2
     TenTacle:
       Damage: 20
       CD: 5
       Clip: {fileID: 7400000, guid: 6601c5f12af371c4eb47ed370ddd74a4, type: 2}
-      DetectRadius: 0.01
+      DetectRadius: 0.25
 --- !u!111 &5252997482026534015
 Animation:
   m_ObjectHideFlags: 0
@@ -201,6 +203,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -210,8 +213,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -206310933
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dd4636a4c61184d4eb3c18c8584d534e, type: 3}
   m_Color: {r: 0.11405134, g: 0, b: 1, a: 1}

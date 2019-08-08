@@ -38,6 +38,7 @@ public class Player : Character {
         SetComponent<PlayerMovement> (ref movement);
         SetComponent<PlayerEquipment> (ref equipment);
         SetComponent<PlayerShooting> (ref shooting);
+        
     }
 
     //method to init all playerComponent
