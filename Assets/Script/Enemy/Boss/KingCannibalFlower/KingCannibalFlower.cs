@@ -5,6 +5,7 @@ using GalaxySeeker.Attack;
 using UnityEngine;
 /// <summary>Boss:KingCannibalFlower is the boss on Laiter</summary>
 public class KingCannibalFlower : Enemy {
+    //test
     //------------------ref
     [SerializeField]
     KingCannibalFlowerProps props;
@@ -20,7 +21,7 @@ public class KingCannibalFlower : Enemy {
 
     protected override void Init ( ) {
         base.Init ( );
-        attack = new KingCannibalFlowerAttack (this, props.TargetLayer, props.NormalProbability, props.SpecialProbability, props.VineStingValue, props.VineScratchValue, props.BiteValue,props.VineValue,props.NeedleValue, props.Vines,props.Needles);
+        attack = new KingCannibalFlowerAttack (this, props.TargetLayer, props.NormalProbability, props.SpecialProbability, props.VineStingValue, props.VineScratchValue, props.BiteValue, props.VineValue, props.NeedleValue, props.Vines, props.Needles);
         anim = GetComponent<Animation> ( );
     }
 
