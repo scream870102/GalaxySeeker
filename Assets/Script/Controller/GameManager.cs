@@ -27,13 +27,14 @@ public class GameManager : TSingletonMonoBehavior<GameManager> {
         FindPlayer ( );
         SetScene (InitScene);
         dialogueManager = GetComponent<DialogueManager> ( );
-        uiManager.Init (Player.Stats.maxHealth);
+        uiManager.Init ( );
+
     }
+    void Start ( ) { }
 
     void Update ( ) {
-        //if player doesn't exist try to find it
-        if (!player)
-            FindPlayer ( );
+
+
     }
 
     /// <summary>Call this method to load Other scene</summary>
@@ -47,9 +48,12 @@ public class GameManager : TSingletonMonoBehavior<GameManager> {
     }
 
     //method for find Player 
-    void FindPlayer ( ) {
+    public bool FindPlayer ( ) {
         GameObject tmp = GameObject.Find ("Player");
-        if (tmp)
+        if (tmp) {
             player = tmp.GetComponent<Player> ( );
+            return true;
+        }
+        return false;
     }
 }

@@ -11,7 +11,7 @@ public class PlayerEquipment : PlayerComponent {
     int currentItemIndex;
     // field if player using some item now
     bool bItemUsing;
-    // property to access bItmeUsing write only
+    // property to access bItemUsing write only
     public bool IsItemUsing { set { bItemUsing = value; } }
     // if player can use item right now
     //protected bool bItemCanUse;

@@ -56,3 +56,5 @@ public class PlayerShooting : PlayerComponent {
         clipCapacity = maxClipCapacity;
     }
 }
+
+		

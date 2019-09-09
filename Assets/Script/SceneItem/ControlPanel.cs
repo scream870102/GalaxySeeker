@@ -26,6 +26,7 @@ public class ControlPanel : MonoBehaviour, IInteractable {
         bChoosing = false;
         maxIndex = planet.Count - 1;
         col = GetComponent<Collider2D> ( );
+        GameManager.Instance.FindPlayer ( );
 
     }
 

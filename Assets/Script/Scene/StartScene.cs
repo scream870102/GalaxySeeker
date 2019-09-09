@@ -21,6 +21,7 @@ public class StartScene : Scene {
     void Start ( ) {
         currentIndex = 0;
         maxIndex = buttons.Count - 1;
+        GameManager.Instance.UIManager.EnableHealthUI(false);
     }
 
     void Update ( ) {

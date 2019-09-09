@@ -449,7 +449,7 @@ MonoBehaviour:
     GroundLayer:
       serializedVersion: 2
       m_Bits: 256
-  InitScene: Laiter
+  InitScene: Start
   uiManager:
     healthBar: {fileID: 5474355208381164435}
 --- !u!114 &1985013473

@@ -11,8 +11,8 @@ namespace GalaxySeeker.UnityUtils {
         float currentHealth;
         public float CurrentHealth { get { return currentHealth; } protected set { currentHealth = value; } }
         /// <summary>Event will call when character health reach zero</summary>
-        public event System.Action OnHealthReachedZero;
-        public event System.Action<float> OnHealthChanged;
+        public event System.Action OnHealthReachedZero = null;
+        public event System.Action<float> OnHealthChanged = null;
         /// <summary>Damage the character</summary>
         /// <param name="damage">how many damage taken</param>
         public void TakeDamage (float damage) {
@@ -22,8 +22,10 @@ namespace GalaxySeeker.UnityUtils {
 
             // Subtract damage from health
             currentHealth -= damage;
-            if (OnHealthChanged != null)
+            //Debug.Log ("Health changed"+OnHealthChanged.Method);
+            if (OnHealthChanged != null) {
                 OnHealthChanged (currentHealth);
+            }
             // If we hit 0. Die. invoke event OnHealthReachedZero
             if (currentHealth <= 0) {
                 if (OnHealthReachedZero != null)
