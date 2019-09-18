@@ -32,8 +32,8 @@ public class Player : Character {
     //Get all ref when player Awake
     //Add Dead function to OnHealthReachedZero
     void Awake ( ) {
-        stats.Init ( );
-        stats.OnHealthReachedZero += Dead;
+        Stats.Init ( );
+        Stats.OnHealthReachedZero += Dead;
         components = new List<PlayerComponent> ( );
         SetComponent<PlayerMovement> (ref movement);
         SetComponent<PlayerEquipment> (ref equipment);

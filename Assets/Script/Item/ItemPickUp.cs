@@ -1,4 +1,4 @@
-﻿using GalaxySeeker.Interface;
+﻿using GalaxySeeker;
 
 using UnityEngine;
 /// <summary>item on map and can interact with player</summary>

@@ -17,14 +17,14 @@ public class PlayerShooting : PlayerComponent {
     int clipCapacity;
     // is now in reloading animation
     bool bReloading;
-    CountdownTimer timer;
+    Timer timer;
     //spawn all bullets
     void Awake ( ) {
         Bullets.Init ( );
         bShootable = true;
         clipCapacity = maxClipCapacity;
         bReloading = false;
-        timer = new CountdownTimer (coolDown);
+        timer = new Timer (coolDown);
     }
 
     //if player hit shoot button shoot bullet 

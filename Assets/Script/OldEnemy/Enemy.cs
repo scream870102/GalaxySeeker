@@ -30,8 +30,8 @@ public class Enemy : Character {
 
     /// <summary>define what action should this monoClass do when it awaked</summary>
     protected virtual void Init ( ) {
-        stats.Init ( );
-        stats.OnHealthReachedZero += Dead;
+        Stats.Init ( );
+        Stats.OnHealthReachedZero += Dead;
     }
 
     /// <summary>define action should do each frame</summary>

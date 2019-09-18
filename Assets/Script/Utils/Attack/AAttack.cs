@@ -7,7 +7,7 @@ namespace GalaxySeeker.Attack {
         //-------------field
         bool bCanAttack = false;
         EAttackState state;
-        CountdownTimer counter;
+        Timer counter;
         float cd = 0f;
         event System.Action attackFinishedAction;
         //-------------property
@@ -27,7 +27,7 @@ namespace GalaxySeeker.Attack {
             this.bCanAttack = IsCanAttack;
             this.attackFinishedAction += attackFinishedAction;
             this.state = EAttackState.WAITING;
-            counter=new CountdownTimer(cd);
+            counter=new Timer(cd);
         }
 
         /// <summary>Call this method to update all the information in this attack</summary>

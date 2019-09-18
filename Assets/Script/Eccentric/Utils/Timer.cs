@@ -1,7 +1,7 @@
 namespace Eccentric.Utils {
     /// <summary>a countdown timer easy to use</summary>
     /// <remarks>call method Reset to reset timer and call property IsFinshed to check if countdown finished</remarks>
-    public class CountdownTimer {
+    public class Timer {
         float timeSection;
         float timer;
         /// <summary>remaining time until the countdown end</summary>
@@ -21,9 +21,12 @@ namespace Eccentric.Utils {
             }
         }
 
-        public CountdownTimer (float timeSection=0f) {
+        public Timer (float timeSection = 0f, bool CanUseFirst = true) {
             this.timeSection = timeSection;
-            Reset ( );
+            if (!CanUseFirst)
+                Reset ( );
+            else
+                this.timer = 0f;
         }
         /// <summary>Reset countdown timer with default setting</summary>
         public void Reset ( ) {
@@ -31,6 +34,7 @@ namespace Eccentric.Utils {
         }
         /// <summary>reset countdown timer with new timeSection</summary>
         public void Reset (float timeSection) {
+            this.timeSection = timeSection;
             timer = UnityEngine.Time.time + timeSection;
         }
 

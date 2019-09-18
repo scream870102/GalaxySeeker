@@ -34,7 +34,6 @@ public class GameManager : TSingletonMonoBehavior<GameManager> {
 
     void Update ( ) {
 
-
     }
 
     /// <summary>Call this method to load Other scene</summary>

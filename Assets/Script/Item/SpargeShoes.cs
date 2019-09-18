@@ -8,7 +8,7 @@ public class SpargeShoes : Item {
     public float coolDown;
     //if shoes can use right now
     bool bCanUse;
-    CountdownTimer timer;
+    Timer timer;
     //ref for ParticleSystem
     ParticleSystem ptc;
     //ref for ptc shape
@@ -35,7 +35,7 @@ public class SpargeShoes : Item {
         sr.enabled = true;
         bCanUse = true;
         ptc = GetComponent<ParticleSystem> ( );
-        timer = new CountdownTimer (coolDown);
+        timer = new Timer (coolDown);
         ptcShape = ptc.shape;
     }
     //Invoke stop ptc after .5f

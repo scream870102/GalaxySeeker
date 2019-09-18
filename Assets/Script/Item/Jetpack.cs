@@ -12,7 +12,7 @@ public class Jetpack : Item {
     public int gasForce;
     /// <summary>jetpack cooldown between each time</summary>
     public float cooldown;
-    CountdownTimer timer;
+    Timer timer;
     //if jetpack can use right now
     bool bCanUse;
     // if using jetpack rightnow
@@ -76,6 +76,6 @@ public class Jetpack : Item {
         bCanUse = true;
         owner.Props.FlyingGasForce = gasForce;
         ptc = GetComponent<ParticleSystem> ( );
-        timer = new CountdownTimer (cooldown);
+        timer = new Timer (cooldown);
     }
 }
