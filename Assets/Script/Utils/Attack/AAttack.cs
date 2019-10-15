@@ -1,5 +1,6 @@
-using UnityEngine;
 using Eccentric.Utils;
+
+using UnityEngine;
 namespace GalaxySeeker.Attack {
     [System.Serializable]
     /// <summary>interface for attack action</summary>
@@ -27,7 +28,7 @@ namespace GalaxySeeker.Attack {
             this.bCanAttack = IsCanAttack;
             this.attackFinishedAction += attackFinishedAction;
             this.state = EAttackState.WAITING;
-            counter=new Timer(cd);
+            counter = new Timer (cd);
         }
 
         /// <summary>Call this method to update all the information in this attack</summary>
@@ -62,12 +63,7 @@ namespace GalaxySeeker.Attack {
             if (attackFinishedAction != null)
                 attackFinishedAction ( );
             state = EAttackState.COOLDOWN;
-            counter.Reset();
-        }
-
-        /// <summary>call this method to deal damage to target character</summary>
-        public void CauseDamage (Character target, float damage) {
-            target.Stats.TakeDamage (damage);
+            counter.Reset ( );
         }
 
         //calculate cooldown

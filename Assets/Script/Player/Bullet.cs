@@ -56,7 +56,7 @@ public class Bullet : MonoBehaviour, IObjectPoolAble {
     void OnTriggerEnter2D (Collider2D other) {
         if (other.tag == "Enemy") {
             Enemy enemy = other.gameObject.GetComponent<Enemy> ( );
-            enemy.Stats.TakeDamage (damage);
+            enemy.TakeDamage (damage);
 
         }
         Recycle ( );

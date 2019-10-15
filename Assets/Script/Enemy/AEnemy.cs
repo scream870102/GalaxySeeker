@@ -1,24 +1,33 @@
+using System.Collections.Generic;
+
 using UnityEngine;
 /// <summary>A base class for all character </summary>
 [RequireComponent (typeof (Animator))]
 public abstract class AEnemy : Character {
-    Player player;
+    Player player = null;
+    Animator animator = null;
+    [SerializeField] List<Action> actions = new List<Action> ( );
+    public List<Action> Actions { get { return actions; } protected set { actions = value; } }
     public Player Player { get { return player; } }
     public float DistanceBetweenPlayer { get { return Vector2.Distance (this.tf.position, this.Player.tf.position); } }
-    Animator animator;
     public Animator Animator { get { return animator; } protected set { animator = value; } }
-    public System.Action<Collider2D> OnTriggerEnter;
-    public System.Action<Collider2D> OnTriggerStay;
-    public System.Action<Collider2D> OnTriggerExit;
-    public System.Action<Collision2D> OnColliderEnter;
-    public System.Action<Collision2D> OnColliderStay;
-    public System.Action<Collision2D> OnColliderExit;
+    public System.Action<Collider2D> OnTriggerEnter = null;
+    public System.Action<Collider2D> OnTriggerStay = null;
+    public System.Action<Collider2D> OnTriggerExit = null;
+    public System.Action<Collision2D> OnColliderEnter = null;
+    public System.Action<Collision2D> OnColliderStay = null;
+    public System.Action<Collision2D> OnColliderExit = null;
     /// <summary>define what action should this monoClass do when it awaked</summary>
     protected virtual void Init ( ) {
         Stats.Init ( );
         Stats.OnHealthReachedZero += Dead;
         animator = GetComponent<Animator> ( );
         player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ( );
+        if (this.Actions.Count != 0) {
+            foreach (Action act in this.Actions) {
+                act.InitAction ( );
+            }
+        }
     }
 
     /// <summary>define action when character dead</summary>

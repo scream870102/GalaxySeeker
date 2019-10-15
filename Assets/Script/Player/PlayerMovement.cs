@@ -74,7 +74,6 @@ public class PlayerMovement : PlayerComponent {
         if (Input.GetButtonDown ("Jump") && IsGround)
             Jump ( );
     }
-
     //keep detect ground and call Move and Jump function 
     protected override void FixedTick ( ) {
         Move ( );

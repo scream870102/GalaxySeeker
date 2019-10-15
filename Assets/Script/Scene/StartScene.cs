@@ -21,7 +21,7 @@ public class StartScene : Scene {
     void Start ( ) {
         currentIndex = 0;
         maxIndex = buttons.Count - 1;
-        GameManager.Instance.UIManager.EnableHealthUI(false);
+        GameManager.Instance.UIManager.EnableHealthUI (false);
     }
 
     void Update ( ) {
@@ -35,12 +35,8 @@ public class StartScene : Scene {
 
         }
         //Render
-        for (int i = 0; i < buttons.Count; i++) {
-            if (i == currentIndex)
-                SetAnimation (buttons [i].text, true);
-            else
-                SetAnimation (buttons [i].text, false);
-        }
+        for (int i = 0; i < buttons.Count; i++)
+            SetAnimation (buttons [i].text, i == currentIndex? true : false);
         //If player Press Interact invoke button action
         if (Input.GetButtonDown ("Interact")) {
             buttons [currentIndex].action.Invoke ( );

@@ -138,7 +138,7 @@ public class KingCannibalFlowerAttack : CharacterComponent {
             filter.SetLayerMask (targetLayer);
             col.OverlapCollider (filter, cols);
             foreach (Collider2D co in cols)
-                if (this.target) attack.action.CauseDamage (this.target, attack.value.Damage);
+                if (target) target.TakeDamage (attack.value.Damage);
         }
     }
 
@@ -146,7 +146,7 @@ public class KingCannibalFlowerAttack : CharacterComponent {
     //take different action due to animation end
     void AnimFinished (AnimationClip anim) {
         if (anim.name == bite.value.Clip.name)
-            bite.action.CauseDamage (target, this.bite.value.Damage);
+            target.TakeDamage (this.bite.value.Damage);
         if (anim == currentAttack.value.Clip)
             currentAttack.action.AttackFinished ( );
         else return;

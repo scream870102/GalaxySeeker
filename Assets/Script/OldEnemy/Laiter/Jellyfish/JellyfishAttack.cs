@@ -29,7 +29,7 @@ public class JellyfishAttack : CharacterComponent {
 
     void TentacleAnimationFin ( ) {
         jf.Anim.Play (jf.Anim.clip.name);
-        tentacle.action.CauseDamage ((tentacle.action as CircleAreaAttack).Target, tentacle.value.Damage);
+        (tentacle.action as CircleAreaAttack).Target.TakeDamage(tentacle.value.Damage);
         tentacle.action.AttackFinished ( );
     }
 

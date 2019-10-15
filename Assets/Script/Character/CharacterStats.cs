@@ -34,7 +34,7 @@ public class CharacterStats {
     public virtual void Init ( ) { CurrentHealth = maxHealth; }
     /// <summary>Heal the character</summary>
     /// <param name="amount">how many point been heal</param>
-    public void Heal (int amount) {
+    public void Heal (float amount) {
         // maxsure currenthealth less then maxHealth
         CurrentHealth += amount;
         CurrentHealth = UnityEngine.Mathf.Clamp (CurrentHealth, 0, maxHealth);

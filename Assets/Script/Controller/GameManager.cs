@@ -4,24 +4,23 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameManager : TSingletonMonoBehavior<GameManager> {
     //field to store currentScene
-    string currentScene;
-    [SerializeField]
-    GlobalProps globalProps;
+    string currentScene = "";
+    [SerializeField] GlobalProps globalProps = new GlobalProps ( );
     /// <summary>property of global Property READONLY</summary>
     public GlobalProps G_Props { get { return globalProps; } }
     //ref for active Player
     public Player Player { get { return player; } }
     //when Game started which scene will be Load first
-    public string InitScene;
+    public string InitScene = "";
     //field for dialogueManager
-    DialogueManager dialogueManager;
+    DialogueManager dialogueManager = null;
     /// <summary>Property for dialogueManager READONLY</summary>
     public DialogueManager DialogueManager { get { return dialogueManager; } }
 
-    [SerializeField] UIManager uiManager;
+    [SerializeField] UIManager uiManager = null;
     public UIManager UIManager { get { return uiManager; } }
     //field for active Player
-    Player player;
+    Player player = null;
     protected override void Awake ( ) {
         base.Awake ( );
         FindPlayer ( );

@@ -44,7 +44,7 @@ namespace GalaxySeeker.Attack {
         
         public void CauseDamage (float damage) {
             if (target)
-                CauseDamage (target, damage);
+                target.TakeDamage(damage);
         }
     }
 }

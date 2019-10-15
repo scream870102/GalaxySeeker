@@ -4,12 +4,11 @@ using UnityEngine;
 public class RedAirStingray : Enemy {
     //---------ref
     //store all values which child component need
-    [SerializeField]
-    RedAirStingrayProps props;
+    [SerializeField] RedAirStingrayProps props = new RedAirStingrayProps ( );
 
     //--------field
     RedAirStingrayMovement movement = null;
-    Animation anim;
+    Animation anim = null;
     //---------property
     public Animation Anim { get { return anim; } }
     protected override void Init ( ) {

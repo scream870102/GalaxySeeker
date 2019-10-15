@@ -7,11 +7,10 @@ using UnityEngine;
 public class KingCannibalFlower : Enemy {
     //test
     //------------------ref
-    [SerializeField]
-    KingCannibalFlowerProps props;
+    [SerializeField] KingCannibalFlowerProps props = new KingCannibalFlowerProps ( );
     //----------------field
     KingCannibalFlowerAttack attack = null;
-    Animation anim;
+    Animation anim = null;
     //---------------property
     /// <summary>READONLY to get the component animation on this character</summary>
     public Animation Anim { get { return anim; } }

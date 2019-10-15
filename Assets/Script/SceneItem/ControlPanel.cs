@@ -5,25 +5,21 @@ using GalaxySeeker;
 using UnityEngine;
 public class ControlPanel : MonoBehaviour, IInteractable {
     //all UI elements about SELECTION belongs to which canvas
-    [SerializeField]
-    Canvas selectCanvas;
+    [SerializeField] Canvas selectCanvas = null;
     //if select panel enable or not
-    bool bSelectPanelEnable;
+    bool bSelectPanelEnable = false;
     //all planets player can choose
-    [SerializeField]
-    List<GameObject> planet;
+    [SerializeField] List<GameObject> planet = new List<GameObject> ( );
     //which planet player current choosing
-    int currentIndex;
+    int currentIndex = 0;
     //max #of planet
-    int maxIndex;
+    int maxIndex = 0;
     //collider of control panel
-    Collider2D col;
+    Collider2D col = null;
     //if player choosing planet right now or not
-    bool bChoosing;
+    bool bChoosing = false;
     void Awake ( ) {
         selectCanvas.enabled = false;
-        bSelectPanelEnable = false;
-        bChoosing = false;
         maxIndex = planet.Count - 1;
         col = GetComponent<Collider2D> ( );
         GameManager.Instance.FindPlayer ( );

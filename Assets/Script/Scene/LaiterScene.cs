@@ -6,9 +6,9 @@ using UnityEngine;
 using UnityEngine.Playables;
 public class LaiterScene : Scene {
     // the global gravity of Laiter Planet
-    [SerializeField] Vector2 gravity;
+    [SerializeField] Vector2 gravity = Vector2.zero;
     // the key point npc should react with
-    [SerializeField] List<NPC> npcS;
+    [SerializeField] List<NPC> npcS = new List<NPC> ( );
     // the wall will disappera after  all key point finish
     [SerializeField] GameObject wallBeforeBossFight = null;
     // ref for boss
@@ -17,9 +17,9 @@ public class LaiterScene : Scene {
     List<bool> keyPoints = new List<bool> ( );
     // if all key point finish then can enter the boss fight
     bool bAllKeyNPCFin = false;
-    [SerializeField] Cinemachine.CinemachineBrain cinCamera;
-    [SerializeField] PlayableDirector director;
-    [SerializeField] CinemachineVirtualCamera bossVCam;
+    [SerializeField] Cinemachine.CinemachineBrain cinCamera = null;
+    [SerializeField] PlayableDirector director = null;
+    [SerializeField] CinemachineVirtualCamera bossVCam = null;
 
     //change the planet gravity
     void Awake ( ) {
