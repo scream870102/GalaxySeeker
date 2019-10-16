@@ -3,8 +3,7 @@
 using UnityEngine;
 /// <summary>Class is top class of player</summary>
 public class Player : Character {
-    [SerializeField]
-    PlayerProps props;
+    [SerializeField] PlayerProps props = null;
     public PlayerProps Props { get { return props; } }
     //ref of playerMovement
     PlayerMovement movement = null;
@@ -81,7 +80,6 @@ public class Player : Character {
 
         }
     }
-
 
 }
 

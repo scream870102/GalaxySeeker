@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 /// <summary>define how jellyfish attack target</summary>
-namespace GalaxySeeker.Enemy.Jellyfish {
+namespace GalaxySeeker.Enemy.CannibalFlower {
     [System.Serializable]
-    public class JFAttack : AJellyFishComponent {
+    public class CFBite : ACannibalFlowerComponent {
         [SerializeField] float attackPoint=0f;
         override public void OnStateEnter (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
             if (!Parent)
-                Parent = animator.GetComponent<Jellyfish> ( );
+                Parent = animator.GetComponent<CannibalFlower> ( );
+            Parent.UpdateRenderDirection();
         }
         override public void OnStateUpdate (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 

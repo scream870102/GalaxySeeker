@@ -5,18 +5,17 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 public class StartScene : Scene {
     //field to store selected option index
-    int currentIndex;
+    int currentIndex = 0;
     //field to store max index of option
-    int maxIndex;
+    int maxIndex = 0;
     #region Animation
     //text color of actived button
-    public Color ActiveColor;
+    public Color ActiveColor = Color.white;
     //text color of deactive button
-    public Color DeactiveColor;
+    public Color DeactiveColor = Color.white;
     #endregion Animation
     //field to store all button include Text and Action
-    [SerializeField]
-    List<Button> buttons;
+    [SerializeField] List<Button> buttons = new List<Button> ( );
 
     void Start ( ) {
         currentIndex = 0;

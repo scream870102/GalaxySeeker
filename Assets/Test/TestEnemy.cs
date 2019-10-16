@@ -1,5 +1,5 @@
 using UnityEngine;
-public class TestEnemy : AEnemy {
+public class TestEnemy : GalaxySeeker.Enemy.AEnemy {
     void Awake ( ) {
         Debug.Log ("Awake");
         Init ( );

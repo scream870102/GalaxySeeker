@@ -4,7 +4,7 @@ public class Character : MonoBehaviour {
     /// <summary>character name</summary>
     new public string name;
     /// <summary>filed of health and some method</summary>
-    [SerializeField] CharacterStats stats;
+    [SerializeField] CharacterStats stats = null;
     /// <summary>props for character stats READONLY</summary>
     /// <remarks>include health and TakeDamage Heal method</remarks>
     public CharacterStats Stats { get { return stats; } }

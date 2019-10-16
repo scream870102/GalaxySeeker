@@ -6,10 +6,10 @@ namespace GalaxySeeker.Enemy.Jellyfish {
         [SerializeField] float normalSpeed = 0f;
         [SerializeField] Vector2 range = Vector2.zero;
         float minDistanceBetweenPlayer = .1f;
-        Vector2 initPos=Vector2.zero;
-        Vector2 targetPos=Vector2.zero;
-        Vector2 newPos=Vector2.zero;
-        bool bFindNewPos=false;
+        Vector2 initPos = Vector2.zero;
+        Vector2 targetPos = Vector2.zero;
+        Vector2 newPos = Vector2.zero;
+        bool bFindNewPos = false;
 
         override public void OnStateEnter (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
             if (!Parent) {
@@ -42,6 +42,7 @@ namespace GalaxySeeker.Enemy.Jellyfish {
                     }
                 }
                 Parent.tf.position = newPos;
+                Parent.UpdateRenderDirection ( );
             }
         }
 

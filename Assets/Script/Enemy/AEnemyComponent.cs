@@ -1,4 +1,6 @@
 using UnityEngine;
-public abstract class AEnemyComponent : StateMachineBehaviour {
-    [SerializeField] protected AEnemy parent = null;
+namespace GalaxySeeker.Enemy {
+    public abstract class AEnemyComponent : StateMachineBehaviour {
+        [SerializeField] protected AEnemy parent = null;
+    }
 }

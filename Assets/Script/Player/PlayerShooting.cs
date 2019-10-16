@@ -4,8 +4,7 @@ using Eccentric.Utils;
 using UnityEngine;
 public class PlayerShooting : PlayerComponent {
     //use object pool to manage bullet
-    [SerializeField]
-    ObjectPool Bullets;
+    [SerializeField] ObjectPool Bullets = null;
     public float reloadTime;
     /// <summary>the time between two shooting action</summary>
     public float coolDown;
@@ -56,5 +55,3 @@ public class PlayerShooting : PlayerComponent {
         clipCapacity = maxClipCapacity;
     }
 }
-
-		

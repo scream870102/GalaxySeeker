@@ -1,5 +1,5 @@
 using UnityEngine;
-public class TestEnemyComponent : AEnemyComponent {
+public class TestEnemyComponent : GalaxySeeker.Enemy.AEnemyComponent {
     public TestEnemy Parent { get { return this.parent as TestEnemy; } protected set { this.parent = value; } }
     public int testValue = 1;
     void OnEnable ( ) { }
