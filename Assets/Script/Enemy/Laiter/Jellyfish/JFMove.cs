@@ -42,7 +42,7 @@ namespace GalaxySeeker.Enemy.Jellyfish {
                     }
                 }
                 Parent.tf.position = newPos;
-                Parent.UpdateRenderDirection ( );
+                Parent.UpdateRenderDirectionWithPlayerPos ( );
             }
         }
 

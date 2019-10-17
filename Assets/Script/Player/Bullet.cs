@@ -1,4 +1,7 @@
 ﻿using Eccentric.Collections;
+
+using GalaxySeeker.Enemy;
+
 using UnityEngine;
 [RequireComponent (typeof (Collider2D), typeof (Rigidbody2D))]
 public class Bullet : MonoBehaviour, IObjectPoolAble {
@@ -54,8 +57,9 @@ public class Bullet : MonoBehaviour, IObjectPoolAble {
     //when enter other collider recycle self
     //exclude layers player bullets
     void OnTriggerEnter2D (Collider2D other) {
+        Debug.Log (other.gameObject.name);
         if (other.tag == "Enemy") {
-            Enemy enemy = other.gameObject.GetComponent<Enemy> ( );
+            AEnemy enemy = other.gameObject.GetComponent<AEnemy> ( );
             enemy.TakeDamage (damage);
 
         }

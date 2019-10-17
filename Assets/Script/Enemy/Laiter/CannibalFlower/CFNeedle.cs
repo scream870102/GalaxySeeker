@@ -9,7 +9,7 @@ namespace GalaxySeeker.Enemy.CannibalFlower {
         override public void OnStateEnter (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
             if (!Parent)
                 Parent = animator.GetComponent<CannibalFlower> ( );
-            Parent.UpdateRenderDirection ( );
+            Parent.UpdateRenderDirectionWithPlayerPos ( );
         }
         override public void OnStateUpdate (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
             NeedleAttacking ( );

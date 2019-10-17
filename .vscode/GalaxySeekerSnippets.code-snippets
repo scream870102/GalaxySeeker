@@ -17,19 +17,19 @@
 	// }
 	"Create AEnemyComponent": {
 		"scope": "csharp",
-		"prefix": "AEC",
+		"prefix": "AEnemyComponent",
 		"body": [
 			"using UnityEngine;",
 			"/// <summary>${1:AEnemy}</summary>",
 			"namespace GalaxySeeker.Enemy.${1:AEnemy} {",
 			"    [System.Serializable]",
-			"    public class ${2:Component} : ${3:AEnemyComponent} {",
+			"    public class ${2:Component} : A${1:AEnemy}Component {",
 			"        override public void OnStateEnter (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {",
 			"            if (!Parent)",
 			"                Parent = animator.GetComponent<${1:AEnemy}> ( );",
 			"        }",
 			"        override public void OnStateUpdate (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {",
-			"",
+			"",			
 			"        }",
 			"        override public void OnStateExit (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {",
 			"            this.Parent.ChooseNextAction ( );",
@@ -41,7 +41,7 @@
 		"description": "Create AEnemyComponent"
 	},
 	"Create A Enemy": {
-		"prefix": "AE",
+		"prefix": "AEnemy",
 		"body": [
 			"using UnityEngine;",
 			"namespace GalaxySeeker.Enemy.${1:AEnemy}{",

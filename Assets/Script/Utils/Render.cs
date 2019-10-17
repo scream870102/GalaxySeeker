@@ -17,5 +17,12 @@ namespace GalaxySeeker {
             tmp.y = Mathf.Abs (tmp.y) * (IsFacingRight?1f: -1f) * (IsInvert? - 1 : 1);
             target.localScale = tmp;
         }
+
+        public static void ChangeDirectionXWithSpriteRender (bool flipX, SpriteRenderer renderer) {
+            renderer.flipX = flipX;
+        }
+        public static void ChangeDirectionYWithSpriteRender (bool flipY, SpriteRenderer renderer) {
+            renderer.flipY = flipY;
+        }
     }
 }

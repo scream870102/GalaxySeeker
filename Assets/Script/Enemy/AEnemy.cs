@@ -4,9 +4,11 @@ using UnityEngine;
 namespace GalaxySeeker.Enemy {
     /// <summary>A base class for all character </summary>
     [RequireComponent (typeof (Animator))]
+    [RequireComponent (typeof (SpriteRenderer))]
     public abstract class AEnemy : Character {
         Player player = null;
         Animator animator = null;
+        new SpriteRenderer renderer = null;
         [SerializeField] List<Action> actions = new List<Action> ( );
         [SerializeField] LayerMask playerLayer = 0;
         public LayerMask PlayerLayer { get { return playerLayer; } }
@@ -15,6 +17,7 @@ namespace GalaxySeeker.Enemy {
         public Player Player { get { return player; } }
         public float DistanceBetweenPlayer { get { return Vector2.Distance (this.tf.position, this.Player.tf.position); } }
         public Animator Animator { get { return animator; } protected set { animator = value; } }
+        public SpriteRenderer Renderer { get { return renderer; } protected set { renderer = value; } }
         public System.Action<Collider2D> OnTriggerEnter = null;
         public System.Action<Collider2D> OnTriggerStay = null;
         public System.Action<Collider2D> OnTriggerExit = null;
@@ -26,6 +29,7 @@ namespace GalaxySeeker.Enemy {
             Stats.Init ( );
             Stats.OnHealthReachedZero += Dead;
             animator = GetComponent<Animator> ( );
+            renderer = GetComponent<SpriteRenderer> ( );
             player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ( );
             if (this.Actions.Count != 0) {
                 foreach (Action act in this.Actions) {
@@ -77,9 +81,19 @@ namespace GalaxySeeker.Enemy {
         }
 
         /// <summary>Update if player is at right direction and change the facing direction due to player position by setting scale </summary>
-        public void UpdateRenderDirection ( ) {
+        public void UpdateRenderDirectionWithPlayerPos ( ) {
             IsFacingRight = Physics2D.IsRight (tf.position, Player.tf.position);
             Render.ChangeDirection (IsFacingRight, tf);
+        }
+
+        public void UpdateRenderDirection (bool IsFacingRight) {
+            this.IsFacingRight = IsFacingRight;
+            Render.ChangeDirection (this.IsFacingRight, tf);
+        }
+
+        public void UpdateRenderDirectionWithFlip (bool IsFacingRight, bool IsInvert = false) {
+            this.IsFacingRight = IsInvert?!IsFacingRight : IsFacingRight;
+            Render.ChangeDirectionXWithSpriteRender (this.IsFacingRight, renderer);
         }
     }
 }

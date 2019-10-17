@@ -63,6 +63,9 @@
     ],
     "cSpell.ignoreWords": [
         "actived",
+        "air",
+        "ared",
+        "component",
         "deactive",
         "hori",
         "jetpack",
@@ -72,6 +75,7 @@
         "pos",
         "rasg",
         "scriptable",
+        "stingray",
         "struct",
         "ugui",
         "whyyyyyyyyyyyy"
