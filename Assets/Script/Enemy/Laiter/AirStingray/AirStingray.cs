@@ -17,7 +17,7 @@ namespace GalaxySeeker.Enemy.AirStingray {
         void Awake ( ) {
             Init ( );
             collider = GetComponent<Collider2D> ( );
-            initPos = tf.transform.position;
+            initPos = tf.position;
         }
 
         override protected void Dead ( ) {

@@ -38,13 +38,13 @@ namespace GalaxySeeker.Enemy.AirStingray {
                 target = null;
             }
             //if touch ground should change direction??
-            bool IsTouchUnderGround = false;
-            ETouchType type = Parent.GetTouchGround (out IsTouchUnderGround);
+            bool bTouchUnderGround = false;
+            ETouchType type = Parent.GetTouchGround (out bTouchUnderGround);
             if (type == ETouchType.LEFT)
                 Parent.HoriMove.IsFacingRight = true;
             else if (type == ETouchType.RIGHT)
                 Parent.HoriMove.IsFacingRight = false;
-            if (IsTouchUnderGround)
+            if (bTouchUnderGround)
                 Parent.HoriMove.SetVerticalPos (Parent.HoriMove.VerticalPos + sinkSpeed * Time.deltaTime);
         }
     }

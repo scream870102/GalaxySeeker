@@ -12,8 +12,8 @@ namespace GalaxySeeker.Enemy {
         [SerializeField] List<Action> actions = new List<Action> ( );
         [SerializeField] LayerMask playerLayer = 0;
         public LayerMask PlayerLayer { get { return playerLayer; } }
-        public bool IsFacingRight { get; protected set; }
         public List<Action> Actions { get { return actions; } protected set { actions = value; } }
+        public bool IsFacingRight { get; protected set; }
         public Player Player { get { return player; } }
         public float DistanceBetweenPlayer { get { return Vector2.Distance (this.tf.position, this.Player.tf.position); } }
         public Animator Animator { get { return animator; } protected set { animator = value; } }
