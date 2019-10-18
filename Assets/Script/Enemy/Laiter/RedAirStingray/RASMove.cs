@@ -26,6 +26,10 @@ namespace GalaxySeeker.Enemy.RedAirStingray {
         void CheckTouch ( ) {
             //if touch by player
             Parent.IsTouchedByPlayer = Parent.GetTouchPlayer ( );
+            if (Parent.IsTouchedByPlayer) {
+                Parent.ChooseNextAction ( );
+                return;
+            }
             //if touch ground should change direction??
             bool IsTouchUnderGround = false;
             ETouchType type = Parent.GetTouchGround (out IsTouchUnderGround);

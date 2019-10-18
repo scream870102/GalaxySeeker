@@ -8,7 +8,6 @@ namespace GalaxySeeker.Enemy.RedAirStingray {
         [SerializeField] float speed = 0f;
         [SerializeField] Vector2 range = Vector2.zero;
         RangeRandomMove randMove = null;
-        Transform target = null;
         override public void OnStateEnter (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
             if (!Parent) {
                 Parent = animator.GetComponent<RedAirStingray> ( );
@@ -18,23 +17,19 @@ namespace GalaxySeeker.Enemy.RedAirStingray {
         override public void OnStateUpdate (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
             CheckTouch ( );
             Parent.tf.position = randMove.GetNextPos (Parent.tf.position);
-            Parent.UpdateRenderDirectionWithFlip (randMove.IsFacingRight);
+            Parent.UpdateRenderDirectionWithFlip (randMove.IsFacingRight, true);
         }
         override public void OnStateExit (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
             this.Parent.ChooseNextAction ( );
         }
         void CheckTouch ( ) {
-            Parent.IsTouchedByPlayer = Parent.GetTouchPlayer ( );
-            if (Parent.IsTouchedByPlayer) {
-                target = Parent.Player.tf;
-                target.SetParent (Parent.tf);
-            }
-            else if (target) {
-                target.SetParent (null);
-                target = null;
-            }
-            bool bTouchUnderGround = false;
-            ETouchType type = Parent.GetTouchGround (out bTouchUnderGround);
+            bool tmp = Parent.GetTouchPlayer ( );
+            if (tmp)
+                Parent.Player.tf.SetParent (Parent.tf);
+            else
+                Parent.Player.tf.SetParent (null);
+            Parent.IsTouchedByPlayer = tmp;
+            ETouchType type = Parent.GetTouchGround ( );
             if (type != ETouchType.NONE)
                 randMove.FindNewTargetPos ( );
         }

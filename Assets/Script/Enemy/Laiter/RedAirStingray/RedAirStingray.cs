@@ -9,7 +9,7 @@ namespace GalaxySeeker.Enemy.RedAirStingray {
         new Collider2D collider = null;
         public Vector2 InitPos { get { return initPos; } }
         public Collider2D Collider { get { return collider; } }
-        public bool IsTouchedByPlayer { set { if (value != bTouchedPlayer) { ChooseNextAction ( ); bTouchedPlayer = value; } } get { return bTouchedPlayer; } }
+        public bool IsTouchedByPlayer { set { if (value != bTouchedPlayer) { bTouchedPlayer = value; } } get { return bTouchedPlayer; } }
 
         void Awake ( ) {
             Init ( );
@@ -22,8 +22,10 @@ namespace GalaxySeeker.Enemy.RedAirStingray {
         override public void ChooseNextAction ( ) {
             //if touched by player use skinAction
             if (IsTouchedByPlayer) {
-                Player.Velocity = Vector2.zero;
+                //Player.tf.SetParent (tf);
+                //Player.Velocity = Vector2.zero;
                 this.Animator.SetTrigger (this.Actions [randMoveIndex].Trigger);
+                Debug.Log("touch by player");
             }
         }
         public bool GetTouchPlayer ( ) {
@@ -65,6 +67,18 @@ namespace GalaxySeeker.Enemy.RedAirStingray {
             }
             return type;
         }
+        public ETouchType GetTouchGround ( ) {
+            ETouchType type = ETouchType.NONE;
+            List<Collider2D> colliders = new List<Collider2D> ( );
+            Collider.OverlapCollider (new ContactFilter2D ( ), colliders);
+            foreach (Collider2D collider in colliders) {
+                if (collider.gameObject.layer == LayerMask.NameToLayer ("Ground")) {
+                    type = ETouchType.TOUCHED;
+                    return type;
+                }
+            }
+            return type;
+        }
 
     }
     public class ARedAirStingrayComponent : AEnemyComponent {
@@ -73,6 +87,7 @@ namespace GalaxySeeker.Enemy.RedAirStingray {
     public enum ETouchType {
         LEFT,
         RIGHT,
+        TOUCHED,
         NONE,
     }
 }
