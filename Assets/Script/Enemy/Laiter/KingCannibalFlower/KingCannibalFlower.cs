@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 namespace GalaxySeeker.Enemy.KingCannibalFlower{
     public class KingCannibalFlower: AEnemy {
+        
         void Awake ( ) {
             Init ( );
         }

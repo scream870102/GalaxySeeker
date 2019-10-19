@@ -57,7 +57,6 @@ public class Bullet : MonoBehaviour, IObjectPoolAble {
     //when enter other collider recycle self
     //exclude layers player bullets
     void OnTriggerEnter2D (Collider2D other) {
-        Debug.Log (other.gameObject.name);
         if (other.tag == "Enemy") {
             AEnemy enemy = other.gameObject.GetComponent<AEnemy> ( );
             enemy.TakeDamage (damage);
