@@ -95,5 +95,9 @@ namespace GalaxySeeker.Enemy {
             this.IsFacingRight = IsInvert?!IsFacingRight : IsFacingRight;
             Render.ChangeDirectionXWithSpriteRender (this.IsFacingRight, renderer);
         }
+        public void UpdateRenderDirectionWithPlayerPosByFlip (bool IsInvert = false) {
+            IsFacingRight = Physics2D.IsRight (tf.position, Player.tf.position);
+            Render.ChangeDirectionXWithSpriteRender (IsInvert?!IsFacingRight : IsFacingRight, renderer);
+        }
     }
 }

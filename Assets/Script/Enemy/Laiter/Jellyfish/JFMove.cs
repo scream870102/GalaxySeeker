@@ -31,6 +31,7 @@ namespace GalaxySeeker.Enemy.Jellyfish {
                             bFindNewPos = false;
                         newPos = Vector2.MoveTowards (parentPos, targetPos, normalSpeed * Time.deltaTime);
                     }
+                    Parent.UpdateRenderDirection ((newPos - (Vector2) Parent.tf.position).x > 0 ? true : false);
                 }
                 //if player in the trace range move toward to player
                 else {
@@ -40,9 +41,9 @@ namespace GalaxySeeker.Enemy.Jellyfish {
                         Vector2 tmp = ((Vector2) Parent.Player.tf.position - parentPos).normalized;
                         newPos = parentPos + tmp * traceSpeed * Time.deltaTime;
                     }
+                    Parent.UpdateRenderDirectionWithPlayerPos ( );
                 }
                 Parent.tf.position = newPos;
-                Parent.UpdateRenderDirectionWithPlayerPos ( );
             }
         }
 
