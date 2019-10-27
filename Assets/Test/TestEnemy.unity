@@ -1592,6 +1592,7 @@ GameObject:
   - component: {fileID: 3615350411915677150}
   - component: {fileID: 3615350411915677149}
   - component: {fileID: 3615350411915677124}
+  - component: {fileID: 3615350411915677125}
   m_Layer: 10
   m_Name: KingCannibalFlower
   m_TagString: Enemy
@@ -1618,6 +1619,52 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3615350411915677125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3615350411915677123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fab6b64fb0866b47b0d08c0cbc587fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: KCF
+  stats:
+    maxHealth: 100
+    currentHealth: 0
+  actions:
+  - trigger: 
+    probability: 100
+    coolDown: 0
+    distance: Infinity
+  - trigger: Vine
+    probability: 100
+    coolDown: 0
+    distance: Infinity
+  - trigger: Bite
+    probability: 100
+    coolDown: 0
+    distance: Infinity
+  - trigger: Needle
+    probability: 100
+    coolDown: 0
+    distance: Infinity
+  - trigger: Scratch
+    probability: 100
+    coolDown: 0
+    distance: Infinity
+  - trigger: Sting
+    probability: 100
+    coolDown: 0
+    distance: Infinity
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  vines: []
+  needles: []
 --- !u!60 &3615350411915677149
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1706,8 +1753,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3615350411915677123}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 4.49, y: -0.197, z: -14.833342}
-  m_LocalScale: {x: 3, y: -3, z: 1}
+  m_LocalPosition: {x: 4.58, y: -0.11, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 7012796031163157582}
   - {fileID: 1036631525503142352}

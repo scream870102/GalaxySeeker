@@ -15,7 +15,7 @@ public class UIManager {
     public void InitValue ( ) {
         GameManager.Instance.FindPlayer ( );
         GameManager.Instance.Player.Stats.OnHealthChanged += OnHealthValueChanged;
-        healthBar.maxValue = GameManager.Instance.Player.Stats.maxHealth;
+        healthBar.maxValue = GameManager.Instance.Player.Stats.MaxHealth;
         healthBar.value = GameManager.Instance.Player.Stats.CurrentHealth;
     }
 
