@@ -5,8 +5,7 @@ using UnityEngine;
 ///<remarks> inherit from playerComponent</remarks>
 public class PlayerEquipment : PlayerComponent {
     // what items in player equipment
-    [SerializeField]
-    List<Item> items = new List<Item> ( );
+    [SerializeField] List<Item> items = new List<Item> ( );
     // field to keep tracing player current item index
     int currentItemIndex;
     // field if player using some item now
@@ -24,6 +23,7 @@ public class PlayerEquipment : PlayerComponent {
     protected override void Tick ( ) {
         SwitchItem ( );
     }
+
     ///<summary>add a new item into equipment</summary>
     ///<remarks>will get false when there isn't more space in equipment</remarks>
     public bool AddItem (ref Item item) {
@@ -53,6 +53,7 @@ public class PlayerEquipment : PlayerComponent {
     public void RemoveItem (Item item) {
         items.Remove (item);
     }
+    
     //when a new item is going to be add to inventory call this method
     //subscribe OnItemUsed event
     //set localPosition and set sprite

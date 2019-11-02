@@ -7,18 +7,14 @@ using UnityEngine;
 public class Bullet : MonoBehaviour, IObjectPoolAble {
     /// <summary>how many force will add to bullet when it is being fired</summary>
     public Vector2 force;
-    //ref for rigidbody
     Rigidbody2D rb;
-    //ref for transform
     Transform tf;
-    //ref for particle system
     ParticleSystem ptc;
     //ref for particle system shapemodule
     //this is for change the particle emitter scale
     ParticleSystem.ShapeModule ptcShape;
     /// <summary>which pool is this bullet belongs to</summary>
     public ObjectPool Pool { get; set; }
-    //field store how many damage will cause to enemy
     float damage;
 
     void Awake ( ) {
@@ -57,11 +53,9 @@ public class Bullet : MonoBehaviour, IObjectPoolAble {
     //when enter other collider recycle self
     //exclude layers player bullets
     void OnTriggerEnter2D (Collider2D other) {
-        Debug.Log (other.gameObject.name);
         if (other.tag == "Enemy") {
             AEnemy enemy = other.gameObject.GetComponent<AEnemy> ( );
             enemy.TakeDamage (damage);
-
         }
         Recycle ( );
     }
