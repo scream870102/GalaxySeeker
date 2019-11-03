@@ -33,6 +33,7 @@ public class PlayerMovement : PlayerComponent {
     bool bFacingRight = false;
     bool bSwing = false;
     bool bFlying = false;
+    bool bStun = false;
     //store horizontal velocity
     float moveHorizontal = 0f;
     // which position does rope hook at
@@ -44,10 +45,12 @@ public class PlayerMovement : PlayerComponent {
     public bool IsFacingRight { get { return bFacingRight; } }
     /// <summary>Define player is swinging with rope right now</summary>
     public bool IsSwing { set { bSwing = value; } }
-    /// <summary>make rope can tell hook point for player
-    public Vector2 HookPoint { set { hookPoint = value; } }
     /// <summary>define player is flying with jetpack right now</summary>
     public bool IsFlying { set { bFlying = value; } }
+    /// <summary>define player is stun or not if true player can't move and will keep at the same position by setting velocity to zero</summary>
+    public bool IsStun { get { return bStun; } set { bStun = value; } }
+    /// <summary>make rope can tell hook point for player
+    public Vector2 HookPoint { set { hookPoint = value; } }
 
     //set all info from props
     //set detectGround
@@ -68,6 +71,10 @@ public class PlayerMovement : PlayerComponent {
     }
     //keep detect ground and call Move and Jump function 
     protected override void FixedTick ( ) {
+        if (bStun) {
+            rb.velocity = Vector2.zero;
+            return;
+        }
         Move ( );
         InJump ( );
         Render.ChangeDirection (bFacingRight, Parent.tf);

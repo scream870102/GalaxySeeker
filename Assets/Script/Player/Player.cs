@@ -3,9 +3,9 @@
 using UnityEngine;
 /// <summary>Class is top class of player</summary>
 public class Player : Character {
+    [SerializeField] PlayerProps props = null;
     Animator anim = null;
     Rigidbody2D rb = null;
-    [SerializeField] PlayerProps props = null;
     PlayerMovement movement = null;
     PlayerEquipment equipment = null;
     PlayerShooting shooting = null;
@@ -45,7 +45,7 @@ public class Player : Character {
 
     //callback function will call when player health reached zero
     void Dead ( ) {
-        Anim.SetTrigger ("Dead");
+        Anim.SetBool ("Dead",true);
         Debug.Log ("already Dead");
     }
     public override void TakeDamage (float damage) {
@@ -64,6 +64,10 @@ public class Player : Character {
         Rb.AddForce (force, mode);
     }
 
+    public void AddRelativeForce (Vector2 force, ForceMode2D mode = ForceMode2D.Impulse) {
+        Rb.AddRelativeForce (force, mode);
+    }
+
     /// <summary>Enable or Disable all PlayerComponents on Player</summary>
     public void EnableComponents (bool enable) {
         foreach (PlayerComponent component in components)
@@ -79,6 +83,22 @@ public class Player : Character {
                 component.enabled = enable;
         }
     }
+    /// <summary>Call this to stun the player</summary>
+    public void BeScratched (float second) {
+        EnableComponents (false);
+        EnableComponent<PlayerMovement> (true);
+        movement.IsStun = true;
+        Anim.SetBool ("BeScratched", true);
+        Invoke ("OnBeScratchedEnd", second);
+    }
+
+    // callback for BeScratched
+    void OnBeScratchedEnd ( ) {
+        Anim.SetBool ("BeScratched", false);
+        movement.IsStun = false;
+        EnableComponents (true);
+    }
+
 }
 
 /// <summary>define the property player will needed</summary>

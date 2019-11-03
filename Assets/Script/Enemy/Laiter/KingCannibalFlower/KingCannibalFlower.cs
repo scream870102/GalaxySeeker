@@ -17,11 +17,12 @@ namespace GalaxySeeker.Enemy.KingCannibalFlower {
             Animator.SetBool (stage2String, false);
         }
         override protected void Dead ( ) {
+            Animator.SetBool("Dead",true);
             Debug.Log ("I am KingCannibalFlowerI come from hell");
         }
 
         void OnHealthChanged (float health) {
-            Debug.Log ("Health Changed" + health);
+            Animator.SetTrigger("TakeDamage");
             if (health <= Stats.MaxHealth / 2f)
                 Animator.SetBool (stage2String, true);
         }

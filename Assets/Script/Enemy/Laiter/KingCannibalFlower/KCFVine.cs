@@ -3,7 +3,7 @@ using UnityEngine;
 namespace GalaxySeeker.Enemy.KingCannibalFlower {
     [System.Serializable]
     public class KCFVine : AKingCannibalFlowerComponent {
-        [SerializeField] float damage;
+        [SerializeField] float damage = 0f;
         int hits = 0;
         override public void OnStateEnter (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
             if (!Parent)
