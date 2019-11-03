@@ -446,6 +446,7 @@ AnimatorController:
   m_PrefabAsset: {fileID: 0}
   m_Name: Player
   serializedVersion: 5
+<<<<<<< HEAD
   m_AnimatorParameters:
   - m_Name: VelocityX
     m_Type: 1
@@ -1025,3 +1026,7 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+=======
+  m_AnimatorParameters: []
+  m_AnimatorLayers: []
+>>>>>>> 8188e7d93db4100dd5198c728d46b54c2d03bae0

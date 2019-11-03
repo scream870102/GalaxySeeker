@@ -4,10 +4,10 @@
 [System.Serializable]
 public class CharacterStats {
     /// <summary>Maximum amount of health</summary>
-    public float maxHealth;
+    [SerializeField] float maxHealth;
+    public float MaxHealth { get { return maxHealth; } }
     /// <summary> current amount of health</summary>
-    [SerializeField]
-    float currentHealth;
+    [SerializeField] float currentHealth;
     public float CurrentHealth { get { return currentHealth; } protected set { currentHealth = value; } }
     /// <summary>Event will call when character health reach zero</summary>
     public event System.Action OnHealthReachedZero = null;
@@ -31,13 +31,13 @@ public class CharacterStats {
                 OnHealthReachedZero ( );
         }
     }
-    public virtual void Init ( ) { CurrentHealth = maxHealth; }
+    public virtual void Init ( ) { CurrentHealth = MaxHealth; }
     /// <summary>Heal the character</summary>
     /// <param name="amount">how many point been heal</param>
     public void Heal (float amount) {
         // maxsure currenthealth less then maxHealth
         CurrentHealth += amount;
-        CurrentHealth = UnityEngine.Mathf.Clamp (CurrentHealth, 0, maxHealth);
+        CurrentHealth = UnityEngine.Mathf.Clamp (CurrentHealth, 0, MaxHealth);
         if (OnHealthChanged != null)
             OnHealthChanged (currentHealth);
     }

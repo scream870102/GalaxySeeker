@@ -818,7 +818,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &1731326972
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1643,11 +1643,11 @@ MonoBehaviour:
   - trigger: Vine
     probability: 100
     coolDown: 0
-    distance: Infinity
+    distance: 0
   - trigger: Bite
     probability: 100
     coolDown: 0
-    distance: Infinity
+    distance: 0
   - trigger: Needle
     probability: 100
     coolDown: 0
@@ -1662,9 +1662,14 @@ MonoBehaviour:
     distance: Infinity
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
-  vines: []
-  needles: []
+    m_Bits: 2048
+  vines:
+  - {fileID: 2168756471041291112}
+  - {fileID: 7367600838023110063}
+  - {fileID: 7651804929637122587}
+  - {fileID: 7723157956390093703}
+  needles:
+  - {fileID: 5561737183208221031}
 --- !u!60 &3615350411915677149
 PolygonCollider2D:
   m_ObjectHideFlags: 0
