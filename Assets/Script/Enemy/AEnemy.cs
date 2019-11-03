@@ -81,14 +81,14 @@ namespace GalaxySeeker.Enemy {
         }
 
         /// <summary>Update if player is at right direction and change the facing direction due to player position by setting scale </summary>
-        public void UpdateRenderDirectionWithPlayerPos ( ) {
+        public void UpdateRenderDirectionWithPlayerPos ( bool IsInvert=false) {
             IsFacingRight = Physics2D.IsRight (tf.position, Player.tf.position);
-            Render.ChangeDirection (IsFacingRight, tf);
+            Render.ChangeDirection (IsFacingRight, tf,IsInvert);
         }
 
-        public void UpdateRenderDirection (bool IsFacingRight) {
+        public void UpdateRenderDirection (bool IsFacingRight,bool IsInvert=false) {
             this.IsFacingRight = IsFacingRight;
-            Render.ChangeDirection (this.IsFacingRight, tf);
+            Render.ChangeDirection (this.IsFacingRight, tf,IsInvert);
         }
 
         public void UpdateRenderDirectionWithFlip (bool IsFacingRight, bool IsInvert = false) {
