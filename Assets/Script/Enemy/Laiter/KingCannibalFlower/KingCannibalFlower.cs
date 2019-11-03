@@ -28,9 +28,35 @@ namespace GalaxySeeker.Enemy.KingCannibalFlower {
         void OnDestroy ( ) {
             Stats.OnHealthChanged -= OnHealthChanged;
         }
-        public void UpdateRenderDirectionWithPlayerPosY ( ) {
+        public void UpdateRenderDirectionWithPlayerPosY (bool IsInvert = false) {
             IsFacingRight = Physics2D.IsRight (tf.position, Player.tf.position);
-            Render.ChangeDirectionY (IsFacingRight, tf);
+            Render.ChangeDirectionY (IsFacingRight, tf, IsInvert);
+        }
+
+        public int VineColTrigger ( ) {
+            int count = 0;
+            foreach (Collider2D col in vines) {
+                List<Collider2D> cols = new List<Collider2D> ( );
+                ContactFilter2D filter = new ContactFilter2D ( );
+                filter.SetLayerMask (PlayerLayer);
+                col.OverlapCollider (filter, cols);
+                foreach (Collider2D co in cols) 
+                    count++;
+            }
+            return count;
+        }
+
+        public int NeedleColTrigger ( ) {
+            int count = 0;
+            foreach (Collider2D col in needles) {
+                List<Collider2D> cols = new List<Collider2D> ( );
+                ContactFilter2D filter = new ContactFilter2D ( );
+                filter.SetLayerMask (PlayerLayer);
+                col.OverlapCollider (filter, cols);
+                foreach (Collider2D co in cols)
+                    count++;
+            }
+            return count;
         }
 
     }

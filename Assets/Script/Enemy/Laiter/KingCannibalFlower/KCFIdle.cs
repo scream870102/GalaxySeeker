@@ -8,7 +8,7 @@ namespace GalaxySeeker.Enemy.KingCannibalFlower {
                 Parent = animator.GetComponent<KingCannibalFlower> ( );
         }
         override public void OnStateUpdate (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-            Parent.UpdateRenderDirectionWithPlayerPosY ( );
+            Parent.UpdateRenderDirectionWithPlayerPosY (true);
         }
         override public void OnStateExit (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
             this.Parent.ChooseNextAction ( );
