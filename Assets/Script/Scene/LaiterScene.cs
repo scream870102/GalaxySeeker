@@ -4,6 +4,7 @@ using Cinemachine;
 
 using UnityEngine;
 using UnityEngine.Playables;
+using GalaxySeeker.Enemy;
 public class LaiterScene : Scene {
     // the global gravity of Laiter Planet
     [SerializeField] Vector2 gravity = Vector2.zero;
@@ -12,7 +13,7 @@ public class LaiterScene : Scene {
     // the wall will disappera after  all key point finish
     [SerializeField] GameObject wallBeforeBossFight = null;
     // ref for boss
-    [SerializeField] Enemy boss = null;
+    [SerializeField] AEnemy boss = null;
     // the elements should finish in this planet 
     List<bool> keyPoints = new List<bool> ( );
     // if all key point finish then can enter the boss fight

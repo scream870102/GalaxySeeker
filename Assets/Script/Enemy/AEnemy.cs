@@ -9,10 +9,12 @@ namespace GalaxySeeker.Enemy {
         Player player = null;
         Animator animator = null;
         new SpriteRenderer renderer = null;
+        protected bool bEnable = true;
         [SerializeField] List<Action> actions = new List<Action> ( );
         [SerializeField] LayerMask playerLayer = 0;
         public LayerMask PlayerLayer { get { return playerLayer; } }
         public List<Action> Actions { get { return actions; } protected set { actions = value; } }
+        public bool IsEnable { get { return bEnable; } set { bEnable = value; EnableEnemy ( ); } }
         public bool IsFacingRight { get; protected set; }
         public Player Player { get { return player; } }
         public float DistanceBetweenPlayer { get { return Vector2.Distance (this.tf.position, this.Player.tf.position); } }
@@ -81,14 +83,14 @@ namespace GalaxySeeker.Enemy {
         }
 
         /// <summary>Update if player is at right direction and change the facing direction due to player position by setting scale </summary>
-        public void UpdateRenderDirectionWithPlayerPos ( bool IsInvert=false) {
+        public void UpdateRenderDirectionWithPlayerPos (bool IsInvert = false) {
             IsFacingRight = Physics2D.IsRight (tf.position, Player.tf.position);
-            Render.ChangeDirection (IsFacingRight, tf,IsInvert);
+            Render.ChangeDirection (IsFacingRight, tf, IsInvert);
         }
 
-        public void UpdateRenderDirection (bool IsFacingRight,bool IsInvert=false) {
+        public void UpdateRenderDirection (bool IsFacingRight, bool IsInvert = false) {
             this.IsFacingRight = IsFacingRight;
-            Render.ChangeDirection (this.IsFacingRight, tf,IsInvert);
+            Render.ChangeDirection (this.IsFacingRight, tf, IsInvert);
         }
 
         public void UpdateRenderDirectionWithFlip (bool IsFacingRight, bool IsInvert = false) {
@@ -98,6 +100,11 @@ namespace GalaxySeeker.Enemy {
         public void UpdateRenderDirectionWithPlayerPosByFlip (bool IsInvert = false) {
             IsFacingRight = Physics2D.IsRight (tf.position, Player.tf.position);
             Render.ChangeDirectionXWithSpriteRender (IsInvert?!IsFacingRight : IsFacingRight, renderer);
+        }
+
+        protected virtual void EnableEnemy ( ) {
+            Animator.enabled = bEnable;
+            Renderer.enabled = bEnable;
         }
     }
 }

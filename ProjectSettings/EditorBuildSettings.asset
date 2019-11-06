@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Start.unity
     guid: d4ae808f045f65046934fb3ad7c36ec0
+  - enabled: 1
+    path: Assets/Test/LaiterTest.unity
+    guid: 0ecc905116faa4843ae832185fdf09c4
   m_configObjects: {}
