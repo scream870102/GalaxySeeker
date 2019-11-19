@@ -5,30 +5,25 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour {
-    /// <summary>Gameobject of whole dialogueObject</summary>
-    public GameObject dialoguePanel;
-    /// <summary>Text for display name</summary>
-    public Text nameText;
-    /// <summary>Text for dispaly</summary>
-    public Text dialogueText;
-    /// <summary>Parent RectTransform of dialogue Panel</summary>
-    public RectTransform dialogueUI;
+    [SerializeField] GameObject dialoguePanel = null;
+    [SerializeField] Text nameText = null;
+    [SerializeField] Text dialogueText = null;
+    [SerializeField] RectTransform dialogueUI = null;
+    [SerializeField] Vector2 offset = Vector2.zero; //the offset of dialogue panel UI in screen 
+    Camera mainCam = null;
     //sentences to show
-    Queue<string> sentences;
-    /// <summary>Event will invoke when dialogue finish</summary>
-    public event System.Action OnDialogueFinish;
-    //if player is talking to npc right now
-    bool bTalking;
-    //if first sentence finish
-    bool bFirstSentenceFin;
+    Queue<string> sentences = new Queue<string> ( );
+    bool bTalking = false;
+    bool bFirstSentenceFin = false;
     /// <summary>Property If player is talking to npc right now READONLY</summary>
     public bool IsTalking { get { return bTalking; } }
-    /// <summary>position offset from NPC position world coordinate</summary>
-    public Vector2 offset;
+    /// <summary>Event will invoke when dialogue finish</summary>
+    public event System.Action OnDialogueFinish = null;
 
     void Awake ( ) {
         Init ( );
         sentences = new Queue<string> ( );
+        mainCam = Camera.main;
     }
 
     void Update ( ) {
@@ -49,8 +44,8 @@ public class DialogueManager : MonoBehaviour {
         //Open DialoguePanel
         dialoguePanel.SetActive (true);
         //Set panel position
-        Vector2 screenPos = Camera.main.WorldToScreenPoint (pos);
-        //Debug.Log (screenPos + "   " + pos + " " + Camera.main.WorldToViewportPoint (pos));
+        Vector2 screenPos = mainCam.WorldToScreenPoint (pos);
+        //offset must calc with screen size
         dialogueUI.anchoredPosition = screenPos + offset;
         bTalking = true;
         nameText.text = dialogue.name;

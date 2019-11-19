@@ -14,7 +14,7 @@ namespace GalaxySeeker.Enemy.KingCannibalFlower {
             hits += Parent.VineColTrigger ( );
         }
         override public void OnStateExit (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-            if (hits >= Parent.Vines.Count) hits = Parent.Vines.Count;
+            if (hits >= Parent.Vines.GetLength(0)) hits = Parent.Vines.GetLength(0);
             for (int i = 0; i < hits; i++)
                 Parent.Player.TakeDamage (damage);
             this.Parent.ChooseNextAction ( );

@@ -3,12 +3,22 @@
 using UnityEngine;
 namespace GalaxySeeker.Enemy.KingCannibalFlower {
     public class KingCannibalFlower : AEnemy {
+        const int VINE_NUM = 2;
+        const int NEEDLE_NUM = 2;
         readonly string stage1String = "StageOne";
         readonly string stage2String = "StageTwo";
-        [SerializeField] List<Collider2D> vines = new List<Collider2D> ( );
-        [SerializeField] List<Collider2D> needles = new List<Collider2D> ( );
-        public List<Collider2D> Vines { get { return vines; } }
-        public List<Collider2D> Needles { get { return needles; } }
+        [SerializeField] Collider2D [] vines = new Collider2D [VINE_NUM];
+        [SerializeField] Collider2D [] needles = new Collider2D [NEEDLE_NUM];
+        [SerializeField] Transform [] needlesLaunchPoints = new Transform [NEEDLE_NUM];
+        [SerializeField] Transform scratchLaunchPoint = null;
+        [SerializeField] Collider2D scratchAsting = null;
+        public Collider2D [] Vines { get => vines; }
+        public Collider2D [] Needles { get => needles; }
+        public Collider2D ScratchASting { get => scratchAsting; }
+        public Transform [] NeedlesLaunchPoints { get => needlesLaunchPoints; }
+        public Transform ScratchLaunchPoint { get => scratchLaunchPoint; }
+
+        //public Transform[] NeedlesLaunchPoints{get=>RenderTextureCreationFlags needlesLaunchPoints;}
 
         void Awake ( ) {
             Init ( );
@@ -17,12 +27,12 @@ namespace GalaxySeeker.Enemy.KingCannibalFlower {
             Animator.SetBool (stage2String, false);
         }
         override protected void Dead ( ) {
-            Animator.SetBool("Dead",true);
+            Animator.SetBool ("Dead", true);
             Debug.Log ("I am KingCannibalFlowerI come from hell");
         }
 
         void OnHealthChanged (float health) {
-            Animator.SetTrigger("TakeDamage");
+            Animator.SetTrigger ("TakeDamage");
             if (health <= Stats.MaxHealth / 2f)
                 Animator.SetBool (stage2String, true);
         }
@@ -41,7 +51,7 @@ namespace GalaxySeeker.Enemy.KingCannibalFlower {
                 ContactFilter2D filter = new ContactFilter2D ( );
                 filter.SetLayerMask (PlayerLayer);
                 col.OverlapCollider (filter, cols);
-                foreach (Collider2D co in cols) 
+                foreach (Collider2D co in cols)
                     count++;
             }
             return count;
@@ -57,6 +67,17 @@ namespace GalaxySeeker.Enemy.KingCannibalFlower {
                 foreach (Collider2D co in cols)
                     count++;
             }
+            return count;
+        }
+
+        public int ScratchAStingColTrigger ( ) {
+            int count = 0;
+            List<Collider2D> cols = new List<Collider2D> ( );
+            ContactFilter2D filter = new ContactFilter2D ( );
+            filter.SetLayerMask (PlayerLayer);
+            scratchAsting.OverlapCollider (filter, cols);
+            foreach (Collider2D co in cols)
+                count++;
             return count;
         }
 

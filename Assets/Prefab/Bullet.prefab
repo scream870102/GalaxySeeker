@@ -61,6 +61,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -133,12 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e1b9feb1303ddd48926d74601bcec45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pool:
-    pooledObject: {fileID: 0}
-    poolParent: {fileID: 0}
-    pooledAmount: 0
-    IsGrow: 0
-  force: {x: 200, y: 0}
+  force: {x: 400, y: 0}
 --- !u!198 &7666736609621795633
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4824,6 +4820,7 @@ ParticleSystemRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0

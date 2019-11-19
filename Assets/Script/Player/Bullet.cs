@@ -5,8 +5,7 @@ using GalaxySeeker.Enemy;
 using UnityEngine;
 [RequireComponent (typeof (Collider2D), typeof (Rigidbody2D))]
 public class Bullet : MonoBehaviour, IObjectPoolAble {
-    /// <summary>how many force will add to bullet when it is being fired</summary>
-    public Vector2 force;
+    [SerializeField] Vector2 force;
     Rigidbody2D rb;
     Transform tf;
     ParticleSystem ptc;
