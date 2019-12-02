@@ -426,7 +426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   force: {x: 0, y: 20}
-  damage: 10000
+  damage: 10
   stingYpos: -0.11
   stingXOffset: 0.253
 --- !u!114 &3815384782340156221

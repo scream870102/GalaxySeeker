@@ -300,7 +300,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5092134866788237812}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.621, y: 0, z: 0}
+  m_LocalPosition: {x: -1.195, y: -0.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7175736436573342480}
@@ -313,7 +313,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5092134866788237812}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -729,24 +729,24 @@ MonoBehaviour:
     coolDown: 0
     distance: Infinity
   - trigger: Vine
-    probability: 0
-    coolDown: 0
-    distance: 0
+    probability: 50
+    coolDown: 2
+    distance: 8
   - trigger: Bite
-    probability: 0
-    coolDown: 0
-    distance: 0
+    probability: 200
+    coolDown: 2
+    distance: 5
   - trigger: Needle
-    probability: 100
-    coolDown: 0
+    probability: 25
+    coolDown: 2
     distance: Infinity
   - trigger: Scratch
-    probability: 0
-    coolDown: 0
+    probability: 20
+    coolDown: 5
     distance: Infinity
   - trigger: Sting
-    probability: 0
-    coolDown: 0
+    probability: 20
+    coolDown: 5
     distance: Infinity
   playerLayer:
     serializedVersion: 2

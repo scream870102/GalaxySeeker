@@ -36,7 +36,7 @@ MonoBehaviour:
   - m_Version: 1
     m_Start: 2.766666666666666
     m_ClipIn: 0
-    m_Asset: {fileID: -5，693192660422251648}
+    m_Asset: {fileID: 485377071998134621}
     m_Duration: 1.5
     m_TimeScale: 1
     m_ParentTrack: {fileID: -6907462002230551482}
@@ -542,6 +542,28 @@ MonoBehaviour:
     m_Framerate: 60
   m_DurationMode: 0
   m_MarkerTrack: {fileID: -6470855949494240533}
+--- !u!114 &485377071998134621
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 030f85c3f73729f4f976f66ffb23b875, type: 3}
+  m_Name: AnimationPlayableAsset
+  m_EditorClassIdentifier: 
+  m_Clip: {fileID: 7400000, guid: 18a51dbe5b7f93746acad3526ac3abb6, type: 2}
+  m_Position: {x: 0, y: 0, z: 0}
+  m_EulerAngles: {x: 0, y: 0, z: 0}
+  m_UseTrackMatchFields: 1
+  m_MatchTargetFields: 63
+  m_RemoveStartOffset: 1
+  m_ApplyFootIK: 1
+  m_Loop: 0
+  m_Version: 1
+  m_Rotation: {x: 0, y: 0, z: 0, w: 1}
 --- !u!114 &1253197060418585979
 MonoBehaviour:
   m_ObjectHideFlags: 1

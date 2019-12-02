@@ -22,10 +22,7 @@ namespace GalaxySeeker.Enemy.RedAirStingray {
         override public void ChooseNextAction ( ) {
             //if touched by player use skinAction
             if (IsTouchedByPlayer) {
-                //Player.tf.SetParent (tf);
-                //Player.Velocity = Vector2.zero;
                 this.Animator.SetTrigger (this.Actions [randMoveIndex].Trigger);
-                Debug.Log("touch by player");
             }
         }
         public bool GetTouchPlayer ( ) {

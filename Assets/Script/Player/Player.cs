@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿// TODO:
+// FIXME:
+// - 修正被抓跟被攻擊動畫同時出現的問題
+using System.Collections.Generic;
 
 using UnityEngine;
 /// <summary>Class is top class of player</summary>

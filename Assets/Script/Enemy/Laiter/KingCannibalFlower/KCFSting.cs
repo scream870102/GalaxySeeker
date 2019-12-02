@@ -4,6 +4,7 @@ namespace GalaxySeeker.Enemy.KingCannibalFlower {
     [System.Serializable]
     public class KCFSting : AKingCannibalFlowerComponent {
         bool bTouched = false;
+        bool bAttack = false;
         Transform stingTf = null;
         [SerializeField] Vector2 force = Vector2.zero;
         [SerializeField] float damage = 0f;
@@ -15,6 +16,7 @@ namespace GalaxySeeker.Enemy.KingCannibalFlower {
                 stingTf = Parent.ScratchASting.transform;
             }
             bTouched = false;
+            bAttack = false;
             Vector3 stingLaunchPos = Parent.Player.tf.position - Parent.tf.position;
             stingLaunchPos /= Parent.tf.localScale.x;
             stingLaunchPos.x += stingXOffset;
@@ -23,16 +25,20 @@ namespace GalaxySeeker.Enemy.KingCannibalFlower {
 
         }
         override public void OnStateUpdate (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-            if (!bTouched) {
+            if (!bTouched && Parent.ScratchASting.enabled) {
                 int hits = Parent.ScratchAStingColTrigger ( );
                 if (hits > 0) {
                     bTouched = true;
+                    bAttack = true;
                     Parent.Player.AddRelativeForce (force);
                     Parent.Player.TakeDamage (damage);
                 }
             }
         }
         override public void OnStateExit (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
+            if (bAttack) {
+
+            }
             this.Parent.ChooseNextAction ( );
         }
     }

@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
-  attackPoint: 100
+  attackPoint: 1
 --- !u!1102 &-3248758078549940332
 AnimatorState:
   serializedVersion: 5
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
-  traceDistance: 2.5
-  traceSpeed: 0.3
-  normalSpeed: 0.5
+  traceDistance: 3
+  traceSpeed: 1.5
+  normalSpeed: 1
   range: {x: 2, y: 2}
