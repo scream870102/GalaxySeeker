@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7590917970567461738}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.581, y: 0.21, z: 0}
+  m_LocalPosition: {x: 0.466, y: 0.773, z: 0}
   m_LocalScale: {x: 0.356454, y: 0.231728, z: 1}
   m_Children: []
   m_Father: {fileID: 7590917971240140282}
@@ -104,7 +104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7590917970956078617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.645, z: 0}
+  m_LocalPosition: {x: 0, y: -0.056, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7590917971240140282}
@@ -125,8 +125,8 @@ GameObject:
   - component: {fileID: 7590917971240140287}
   - component: {fileID: 7590917971240140286}
   - component: {fileID: 7590917971240140283}
-  - component: {fileID: 7590917971240140281}
   - component: {fileID: 1151903221}
+  - component: {fileID: 965099007}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -168,12 +168,16 @@ MonoBehaviour:
     currentHealth: 0
   props:
     WalkSpeed: 200
-    JumpForce: 20
-    AirSpeed: 50
-    ItemSpace: 2
+    CruochSpeed: 0
+    JumpForce: 19
+    AirSpeed: 100
     SwingForce: 0
     FlyingGasForce: 0
+    ItemSpace: 2
     Damage: 20
+    ReloadTime: 0.2
+    CoolDown: 0.05
+    MaxClipCapacity: 5
 --- !u!114 &7590917971240140285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,9 +214,6 @@ MonoBehaviour:
     poolParent: {fileID: 0}
     pooledAmount: 20
     IsGrow: 1
-  reloadTime: 2
-  coolDown: 0.1
-  maxClipCapacity: 10
 --- !u!114 &7590917971240140287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,10 +239,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 2.6767988
-  m_LinearDrag: 0
+  m_Mass: 1.6460898
+  m_LinearDrag: 0.5
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.75
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -296,23 +297,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!70 &7590917971240140281
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7590917971240140284}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 4b54550dff5bd7946812bb9168d5a1af, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.81, y: 1}
-  m_Direction: 0
+  m_SpriteSortPoint: 1
 --- !u!95 &1151903221
 Animator:
   serializedVersion: 3
@@ -332,3 +317,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &965099007
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7590917971240140284}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.019695163, y: 0.49434966}
+  m_Size: {x: 0.4812801, y: 0.9583417}
+  m_Direction: 0

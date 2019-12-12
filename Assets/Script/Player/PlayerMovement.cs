@@ -11,6 +11,7 @@ public class PlayerMovement : PlayerComponent {
     //
     ///<summary>define which layer is ground</summary>
     public List<LayerMask> groundLayer = new List<LayerMask> ( );
+    [SerializeField] float forwardAirNormalX = 0.7f;
     //
     //
     //const
@@ -34,23 +35,27 @@ public class PlayerMovement : PlayerComponent {
     bool bSwing = false;
     bool bFlying = false;
     bool bStun = false;
+    bool bCrouched = false;
     //store horizontal velocity
     float moveHorizontal = 0f;
     // which position does rope hook at
     Vector2 hookPoint = Vector2.zero;
 
     ///<summary>if player now stand on the ground</summary>
-    public bool IsGround { get { return bGround; } }
+    public bool IsGround => bGround;
     /// <summary>if player now facing at right direction
-    public bool IsFacingRight { get { return bFacingRight; } }
+    public bool IsFacingRight => bFacingRight;
     /// <summary>Define player is swinging with rope right now</summary>
-    public bool IsSwing { set { bSwing = value; } }
+    public bool IsSwing { set => bSwing = value; }
     /// <summary>define player is flying with jetpack right now</summary>
-    public bool IsFlying { set { bFlying = value; } }
+    public bool IsFlying { set => bFlying = value; }
     /// <summary>define player is stun or not if true player can't move and will keep at the same position by setting velocity to zero</summary>
-    public bool IsStun { get { return bStun; } set { bStun = value; } }
+    // public bool IsStun { get { return bStun; } set { bStun = value; } }
+    public bool IsStun { get => bStun; set => bStun = value; }
+    /// <summary>define if player is crouching</summary>
+    public bool IsCrouched => bCrouched;
     /// <summary>make rope can tell hook point for player
-    public Vector2 HookPoint { set { hookPoint = value; } }
+    public Vector2 HookPoint { set => hookPoint = value; }
 
     //set all info from props
     //set detectGround
@@ -63,10 +68,13 @@ public class PlayerMovement : PlayerComponent {
 
     protected override void Tick ( ) {
         IsGrounded ( );
+        //Crouching state
+        if (Input.GetButton ("Vertical"))
+            bCrouched = Input.GetAxisRaw ("Vertical") < 0.0f?true : false;
         //if player on ground set speed to airspeed
         moveHorizontal = Input.GetAxisRaw ("Horizontal") * (bGround?Parent.Props.WalkSpeed : Parent.Props.AirSpeed);
         //if player hit jump button call jump method
-        if (Input.GetButtonDown ("Jump") && IsGround)
+        if (Input.GetButtonDown ("Jump") && bGround)
             Jump ( );
     }
     //keep detect ground and call Move and Jump function 
@@ -83,18 +91,19 @@ public class PlayerMovement : PlayerComponent {
     //if can jump set bJump to true bGround false plus numNowJump
     void Jump ( ) {
         bJump = true;
-        bGround = false;
     }
 
     //get horizontal velocity and move rigidbody call in fixed update
     void Move ( ) {
+        if (IsTouchGroundForward ( ))
+            moveHorizontal = 0f;
         if (moveHorizontal != 0f)
             bFacingRight = moveHorizontal > 0f;
         //when player is swinging change its action mode
         if (bSwing) {
             if (moveHorizontal == 0f)
                 return;
-            Vector2 playerNormalVector = (hookPoint - (Vector2) transform.position).normalized;
+            Vector2 playerNormalVector = (hookPoint - (Vector2)transform.position).normalized;
             Vector2 swingDir = IsFacingRight?new Vector2 (playerNormalVector.y, -playerNormalVector.x) : new Vector2 (-playerNormalVector.y, playerNormalVector.x);
             rb.AddForce (swingDir * Parent.Props.SwingForce * Time.deltaTime, ForceMode2D.Force);
         }
@@ -112,8 +121,8 @@ public class PlayerMovement : PlayerComponent {
             }
             // when player stay in the air move it by add force
             else if (!bGround) {
-                Vector2 force = new Vector2 (moveHorizontal * Time.fixedDeltaTime, 0f);
-                rb.AddForce (force, ForceMode2D.Force);
+                Vector2 targetVelocity = new Vector2 (moveHorizontal * Time.fixedDeltaTime, rb.velocity.y);
+                rb.velocity = Vector2.SmoothDamp (rb.velocity, targetVelocity, ref refVelocity, smoothDamp);
             }
 
         }
@@ -122,9 +131,22 @@ public class PlayerMovement : PlayerComponent {
 
     }
 
+    bool IsTouchGroundForward ( ) {
+        if (!IsGround) {
+            List<ContactPoint2D> point2Ds = new List<ContactPoint2D> ( );
+            Parent.Col.GetContacts (point2Ds);
+            foreach (ContactPoint2D item in point2Ds) {
+                if (Mathf.Abs (item.normal.x) >= forwardAirNormalX)
+                    return true;
+            }
+        }
+        return false;
+    }
+
     //if can jump add force to rigidbody  call in fixed update
     void InJump ( ) {
-        if (bJump) {
+        if (bJump && bGround) {
+            bGround = false;
             Vector2 temp = rb.velocity;
             temp.y = 0.0f;
             rb.velocity = temp;
@@ -138,11 +160,12 @@ public class PlayerMovement : PlayerComponent {
     void IsGrounded ( ) {
         if (detectGround != null) {
             foreach (LayerMask layer in groundLayer) {
-                Collider2D [ ] colliders = UnityEngine.Physics2D.OverlapPointAll (detectGround.position, layer);
+                Collider2D [] colliders = UnityEngine.Physics2D.OverlapPointAll (detectGround.position, layer);
                 foreach (Collider2D collider in colliders) {
                     if (collider != gameObject) {
-                        bGround = true;
+                        bGround=true;
                         Parent.Anim.SetBool ("Jump", false);
+                        return;
                     }
                     else
                         bGround = false;

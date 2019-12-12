@@ -12,20 +12,22 @@ public class Player : Character {
     PlayerMovement movement = null;
     PlayerEquipment equipment = null;
     PlayerShooting shooting = null;
+    Collider2D col = null;
     //ref for all PlayerComponent
     List<PlayerComponent> components = new List<PlayerComponent> ( );
-    public Rigidbody2D Rb { get { return rb; } }
-    public Animator Anim { get { return anim; } }
-    public PlayerProps Props { get { return props; } }
-    public bool IsFacingRight { get { return movement.IsFacingRight; } }
+    public Collider2D Col => col;
+    public Rigidbody2D Rb => rb;
+    public Animator Anim => anim;
+    public PlayerProps Props => props;
+    public bool IsFacingRight => movement.IsFacingRight;
     /// <summary>Define player is swinging with rope right now</summary>
-    public bool IsSwing { set { movement.IsSwing = value; } }
+    public bool IsSwing { set => movement.IsSwing = value; }
     /// <summary>if player is flying state right now</summary>
-    public bool IsFlying { set { movement.IsFlying = value; } }
+    public bool IsFlying { set => movement.IsFlying = value; }
     /// <summary>properry to access the rope hookPoint it will be called when rope cast something</summary>
-    public Vector2 HookPoint { set { movement.HookPoint = value; } }
-    public Vector2 Velocity { get { return rb.velocity; } set { rb.velocity = value; } }
-    public bool IsOnGround { get { return movement.IsGround; } }
+    public Vector2 HookPoint { set => movement.HookPoint = value; }
+    public Vector2 Velocity { get => rb.velocity; set => rb.velocity = value; }
+    public bool IsOnGround => movement.IsGround;
     //Get all ref when player Awake
     //Add Dead function to OnHealthReachedZero
     void Awake ( ) {
@@ -36,11 +38,12 @@ public class Player : Character {
         SetComponent<PlayerShooting> (ref shooting);
         anim = GetComponent<Animator> ( );
         rb = GetComponent<Rigidbody2D> ( );
+        col = GetComponent<Collider2D> ( );
 
     }
 
     //method to init all playerComponent
-    void SetComponent<T> (ref T component) where T : PlayerComponent {
+    void SetComponent<T> (ref T component)where T : PlayerComponent {
         component = GetComponent<T> ( );
         component.Parent = this;
         components.Add (component);
@@ -48,9 +51,10 @@ public class Player : Character {
 
     //callback function will call when player health reached zero
     void Dead ( ) {
-        Anim.SetBool ("Dead",true);
+        Anim.SetBool ("Dead", true);
         Debug.Log ("already Dead");
     }
+
     public override void TakeDamage (float damage) {
         base.TakeDamage (damage);
         Anim.SetTrigger ("TakeDamage");
@@ -78,7 +82,7 @@ public class Player : Character {
     }
 
     /// <summary>Enable or Disable Specific PlayerComponent on Player</summary>
-    public void EnableComponent<T> (bool enable) where T : PlayerComponent {
+    public void EnableComponent<T> (bool enable)where T : PlayerComponent {
         System.Type tmp = typeof (T);
         foreach (PlayerComponent component in components) {
             System.Type tem = component.GetType ( );
@@ -107,18 +111,29 @@ public class Player : Character {
 /// <summary>define the property player will needed</summary>
 [System.Serializable]
 public class PlayerProps {
+    [Header ("Movement")]
     ///<summary>define how fast does player walk on the ground</summary>
     public float WalkSpeed;
+    /// <summary>define how fast will player move when it crouched</summary>
+    public float CruochSpeed;
     ///<summary>define how many force will add when player jump</summary>
     public float JumpForce;
     ///<summary>define how fast dose player move when player isn't on the ground</summary>
     public float AirSpeed;
-    ///<summary>how many item can player equip</summary>
-    public int ItemSpace;
     ///<summary> define how many force will add to player when player is swing with rope
     public float SwingForce;
     /// <summary> define how many force will add to player when player is flying with jetPack</summary>
     public float FlyingGasForce;
+    [Header ("Equipment")]
+    ///<summary>how many item can player equip</summary>
+    public int ItemSpace;
+    [Header ("Shooting")]
     /// <summary>the basic damage of player</summary>
     public float Damage;
+    /// <summary>how long should gun load</summary>
+    public float ReloadTime;
+    /// <summary>the time between two shot action</summary>
+    public float CoolDown;
+    /// <summary>max bullet clip capacity</summary>
+    public int MaxClipCapacity;
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7852252031459168184}
   - component: {fileID: 3572367430893316125}
   - component: {fileID: 3548214174369963871}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: SpargeShoes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ MonoBehaviour:
   name: SpargeShoes
   icon: {fileID: 21300000, guid: dd4636a4c61184d4eb3c18c8584d534e, type: 3}
   InitPos: {x: 0, y: -0.15, z: 0}
-  spargingForce: 5
+  spargingForce: 100
   coolDown: 3
   particleYOffset: 0.2
 --- !u!61 &6588665055893618261

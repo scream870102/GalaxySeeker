@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8101609542652266532}
   - component: {fileID: 1580935010}
   - component: {fileID: 1580935011}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Jetpack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 7746528416829112123}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.13, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -141,10 +141,11 @@ MonoBehaviour:
   InitPos: {x: -0.5, y: 0, z: 0}
   capacityOfGas: 5
   currentCapacityOfGas: 0
-  consumptionRate: 1
+  consumptionRate: 1.25
   recoverRate: 0.75
-  gasForce: 50
-  cooldown: 0.2
+  gasForce: 150
+  initGasForce: 3000
+  cooldown: 0.3
 --- !u!199 &1580935010
 ParticleSystemRenderer:
   serializedVersion: 6

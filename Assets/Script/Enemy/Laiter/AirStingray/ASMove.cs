@@ -7,12 +7,10 @@ using UnityEngine;
 namespace GalaxySeeker.Enemy.AirStingray {
     [System.Serializable]
     public class ASMove : AAirStingrayComponent {
-        [SerializeField] float moveSpeed = 0f;
-        [SerializeField] float moveRange = 0f;
         override public void OnStateEnter (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
             if (!Parent) {
                 Parent = animator.GetComponent<AirStingray> ( );
-                Parent.HoriMove = new PingPongMove (moveSpeed, moveRange, Parent.InitPos);
+                Parent.HoriMove = new PingPongMove (Parent.Props.speed, Parent.Props.range, Parent.InitPos);
             }
             Parent.HoriMove.SetVerticalPos (Parent.tf.position.y);
         }

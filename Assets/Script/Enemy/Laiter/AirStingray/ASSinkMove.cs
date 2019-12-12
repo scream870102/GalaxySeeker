@@ -7,7 +7,6 @@ using UnityEngine;
 namespace GalaxySeeker.Enemy.AirStingray {
     [System.Serializable]
     public class ASSinkMove : AAirStingrayComponent {
-        [SerializeField] float sinkSpeed = 0f;
         Transform target = null;
         override public void OnStateEnter (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
             if (!Parent) {
@@ -17,7 +16,7 @@ namespace GalaxySeeker.Enemy.AirStingray {
             Parent.Player.Velocity = Vector2.zero;
         }
         override public void OnStateUpdate (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-            Parent.HoriMove.SetVerticalPos (Parent.tf.position.y - sinkSpeed * Time.deltaTime);
+            Parent.HoriMove.SetVerticalPos (Parent.tf.position.y - Parent.Props.sinkSpeed * Time.deltaTime);
             CheckTouch ( );
             Parent.tf.position = Parent.HoriMove.GetNextPos (Parent.tf.position);
             Parent.UpdateRenderDirectionWithFlip (Parent.HoriMove.IsFacingRight, true);
@@ -27,8 +26,17 @@ namespace GalaxySeeker.Enemy.AirStingray {
         }
 
         void CheckTouch ( ) {
+            //if touch ground should change direction??
+            bool bTouchUnderGround = false;
+            ETouchType type = Parent.GetTouchGround (out bTouchUnderGround);
             //if touch by player
             Parent.IsTouchedByPlayer = Parent.GetTouchPlayer ( );
+            if (bTouchUnderGround&&target) {
+                target.SetParent (null);
+                target = null;
+                Parent.Stats.TakeDamage (Parent.Stats.CurrentHealth);
+                return;
+            }
             if (Parent.IsTouchedByPlayer) {
                 target = Parent.Player.tf;
                 target.SetParent (Parent.tf);
@@ -37,15 +45,10 @@ namespace GalaxySeeker.Enemy.AirStingray {
                 target.SetParent (null);
                 target = null;
             }
-            //if touch ground should change direction??
-            bool bTouchUnderGround = false;
-            ETouchType type = Parent.GetTouchGround (out bTouchUnderGround);
             if (type == ETouchType.LEFT)
                 Parent.HoriMove.IsFacingRight = true;
             else if (type == ETouchType.RIGHT)
                 Parent.HoriMove.IsFacingRight = false;
-            if (bTouchUnderGround)
-                Parent.HoriMove.SetVerticalPos (Parent.HoriMove.VerticalPos + sinkSpeed * Time.deltaTime);
         }
     }
 }

@@ -6,11 +6,6 @@ public class PlayerShooting : PlayerComponent {
     [SerializeField] Transform shootTf;
     //use object pool to manage bullet
     [SerializeField] ObjectPool Bullets = null;
-    [SerializeField] float reloadTime;
-    /// <summary>the time between two shooting action</summary>
-    [SerializeField] float coolDown;
-    /// <summary>how many bullets can weapon take</summary>
-    [SerializeField] int maxClipCapacity;
     //if player can shoot right now
     bool bShootAble;
     // field for current bullets in clip
@@ -22,9 +17,9 @@ public class PlayerShooting : PlayerComponent {
     void Awake ( ) {
         Bullets.Init ( );
         bShootAble = true;
-        clipCapacity = maxClipCapacity;
+        clipCapacity = Parent.Props.MaxClipCapacity;
         bReloading = false;
-        timer = new Timer (coolDown);
+        timer = new Timer (Parent.Props.CoolDown);
     }
 
     //if player hit shoot button shoot bullet 
@@ -49,12 +44,12 @@ public class PlayerShooting : PlayerComponent {
     void Reload ( ) {
         bReloading = true;
         Parent.Anim.SetTrigger ("Reload");
-        Invoke ("ReloadFinish", reloadTime);
+        Invoke ("ReloadFinish", Parent.Props.ReloadTime);
     }
 
     //method when reload is finish
     void ReloadFinish ( ) {
         bReloading = false;
-        clipCapacity = maxClipCapacity;
+        clipCapacity = Parent.Props.MaxClipCapacity;
     }
 }

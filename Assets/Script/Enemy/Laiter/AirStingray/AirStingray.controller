@@ -35,8 +35,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
-  moveSpeed: 2
-  moveRange: 5
 --- !u!1102 &-3373278131551302590
 AnimatorState:
   serializedVersion: 5
@@ -78,7 +76,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
-  sinkSpeed: 0.5
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -121,7 +118,7 @@ AnimatorStateMachine:
     m_Position: {x: 320, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3469648531591903543}
-    m_Position: {x: 290, y: 50, z: 0}
+    m_Position: {x: 320, y: 50, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions:

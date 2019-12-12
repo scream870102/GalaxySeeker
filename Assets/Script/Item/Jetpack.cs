@@ -1,24 +1,28 @@
 ﻿using Eccentric.Utils;
+
 using UnityEngine;
 public class Jetpack : Item {
-    /// <summary>max capacity of gas</summary>
-    public float capacityOfGas;
-    public float currentCapacityOfGas;
-    /// <summary>gas consumption rate per second</summary>
-    public float consumptionRate;
-    /// <summary>gas recover rate per second</summary>
-    public float recoverRate;
-    /// <summary>how many force will add to player per second</summary>
-    public int gasForce;
-    /// <summary>jetpack cooldown between each time</summary>
-    public float cooldown;
-    Timer timer;
+    //max capacity of gas
+    [SerializeField] float capacityOfGas = 5f;
+    //gas consumption rate per second
+    [SerializeField] float consumptionRate = 1.25f;
+    //gas recover rate per second
+    [SerializeField] float recoverRate = 0.75f;
+    //how many force will add to player per second
+    [SerializeField] int gasForce = 150;
+    //the gas force to init to player when it pressed every time
+    [SerializeField] int initGasForce = 2500;
+    //jetpack cooldown between each time
+    [SerializeField] float cooldown = 0.3f;
+    [Header ("Monitor")]
+    [SerializeField] float currentCapacityOfGas = 0f;
+    Timer timer = null;
     //if jetpack can use right now
-    bool bCanUse;
+    bool bCanUse = false;
     // if using jetpack rightnow
-    bool bUsing;
+    bool bUsing = false;
     // ref for ptc
-    ParticleSystem ptc;
+    ParticleSystem ptc = null;
 
     override protected void UsingItem ( ) {
         //if player hit jump button on air start to using jetPack if it can use right now
@@ -27,6 +31,8 @@ public class Jetpack : Item {
             owner.IsFlying = true;
             bUsing = true;
             bCanUse = false;
+            Debug.Log ("Add force");
+            owner.AddForce (new Vector2 (0, initGasForce), ForceMode2D.Force);
         }
         //if player release button let pack enter cd
         else if (Input.GetButtonUp ("Jump") && bUsing) {
@@ -59,7 +65,7 @@ public class Jetpack : Item {
     void ResetState ( ) {
         ptc.Stop ( );
         bUsing = false;
-        timer.Reset();
+        timer.Reset ( );
         owner.IsFlying = false;
     }
 
