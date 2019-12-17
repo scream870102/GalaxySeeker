@@ -16,7 +16,7 @@ public class DialogueManager : MonoBehaviour {
     bool bTalking = false;
     bool bFirstSentenceFin = false;
     /// <summary>Property If player is talking to npc right now READONLY</summary>
-    public bool IsTalking { get { return bTalking; } }
+    public bool IsTalking => bTalking;
     /// <summary>Event will invoke when dialogue finish</summary>
     public event System.Action OnDialogueFinish = null;
 

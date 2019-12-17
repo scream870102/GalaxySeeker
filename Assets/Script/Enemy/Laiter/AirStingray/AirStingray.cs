@@ -11,7 +11,6 @@ namespace GalaxySeeker.Enemy.AirStingray {
         [SerializeField] int sinkMoveIndex = 0;
         PingPongMove horiMove = null;
         bool bTouchedPlayer = false;
-        int groundLayer = 0;
         Vector2 initPos = Vector2.zero;
         new Collider2D collider = null;
         float yUnit = 0f;
@@ -25,7 +24,6 @@ namespace GalaxySeeker.Enemy.AirStingray {
             Init ( );
             collider = GetComponent<Collider2D> ( );
             initPos = tf.position;
-            groundLayer = LayerMask.NameToLayer ("Ground");
             yUnit = (collider as BoxCollider2D).size.y * tf.localScale.y * 0.5f;
             Debug.Log (yUnit);
         }
@@ -36,9 +34,10 @@ namespace GalaxySeeker.Enemy.AirStingray {
         }
         override public void ChooseNextAction ( ) {
             //if touched by player use skinAction
-            if (IsTouchedByPlayer) {
+            if (IsTouchedByPlayer) 
                 this.Animator.SetTrigger (this.Actions [sinkMoveIndex].Trigger);
-            }
+            else
+                this.Animator.ResetTrigger (this.Actions [sinkMoveIndex].Trigger);
         }
 
         public bool GetTouchPlayer ( ) {
@@ -56,12 +55,12 @@ namespace GalaxySeeker.Enemy.AirStingray {
 
         public ETouchType GetTouchGround (out bool IsUnder) {
             ETouchType type = ETouchType.NONE;
-            UE.RaycastHit2D result = UP2.Raycast (tf.position, Vector2.down, yUnit, 1 << groundLayer);
+            UE.RaycastHit2D result = UP2.Raycast (tf.position, Vector2.down, yUnit, 1 << GroundLayer);
             IsUnder = result.collider != null;
             List<ContactPoint2D> point2Ds = new List<ContactPoint2D> ( );
             Collider.GetContacts (point2Ds);
             foreach (ContactPoint2D item in point2Ds) {
-                if (item.collider.gameObject.layer == groundLayer) {
+                if (item.collider.gameObject.layer == GroundLayer) {
                     Vector2 offset = (item.point - (Vector2)tf.position).normalized;
                     if (offset.x != 0f) {
                         type = offset.x > 0f?ETouchType.RIGHT : ETouchType.LEFT;
@@ -76,10 +75,10 @@ namespace GalaxySeeker.Enemy.AirStingray {
     [System.Serializable]
     public class AirStingrayProps {
         [Header ("Move")]
-        public float speed = 2.0f;
-        public float range = 1.0f;
+        public float Speed = 2.0f;
+        public float Range = 1.0f;
         [Header ("SinkMove")]
-        public float sinkSpeed = 0.2f;
+        public float SinkSpeed = 0.2f;
     }
 
     public class AAirStingrayComponent : AEnemyComponent {

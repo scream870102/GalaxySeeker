@@ -16,7 +16,7 @@ namespace GalaxySeeker.Enemy.AirStingray {
             Parent.Player.Velocity = Vector2.zero;
         }
         override public void OnStateUpdate (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-            Parent.HoriMove.SetVerticalPos (Parent.tf.position.y - Parent.Props.sinkSpeed * Time.deltaTime);
+            Parent.HoriMove.SetVerticalPos (Parent.tf.position.y - Parent.Props.SinkSpeed * Time.deltaTime);
             CheckTouch ( );
             Parent.tf.position = Parent.HoriMove.GetNextPos (Parent.tf.position);
             Parent.UpdateRenderDirectionWithFlip (Parent.HoriMove.IsFacingRight, true);

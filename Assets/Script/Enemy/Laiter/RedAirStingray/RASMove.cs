@@ -5,13 +5,11 @@ using UnityEngine;
 namespace GalaxySeeker.Enemy.RedAirStingray {
     [System.Serializable]
     public class RASMove : ARedAirStingrayComponent {
-        [SerializeField] float moveSpeed = 0f;
-        [SerializeField] float moveRange = 0f;
         PingPongMove horiMove = null;
         override public void OnStateEnter (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
             if (!Parent) {
                 Parent = animator.GetComponent<RedAirStingray> ( );
-                horiMove = new PingPongMove (moveSpeed, moveRange, Parent.InitPos);
+                horiMove = new PingPongMove (Parent.Props.MoveSpeed, Parent.Props.MoveRange, Parent.InitPos);
             }
         }
         override public void OnStateUpdate (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {

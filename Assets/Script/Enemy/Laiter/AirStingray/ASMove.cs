@@ -10,7 +10,7 @@ namespace GalaxySeeker.Enemy.AirStingray {
         override public void OnStateEnter (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
             if (!Parent) {
                 Parent = animator.GetComponent<AirStingray> ( );
-                Parent.HoriMove = new PingPongMove (Parent.Props.speed, Parent.Props.range, Parent.InitPos);
+                Parent.HoriMove = new PingPongMove (Parent.Props.Speed, Parent.Props.Range, Parent.InitPos);
             }
             Parent.HoriMove.SetVerticalPos (Parent.tf.position.y);
         }

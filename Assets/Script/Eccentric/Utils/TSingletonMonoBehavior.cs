@@ -5,13 +5,13 @@ namespace Eccentric.Utils {
         static T instance = null;
 
         public static T Instance {
-            get { return instance ?? (instance = FindObjectOfType (typeof (T)) as T); }
+            get { return instance ?? (instance = FindObjectOfType (typeof (T))as T); }
             set { instance = value; }
         }
 
         protected virtual void Awake ( ) {
-            if (instance == null) instance = this as T;
-            if (instance == this) DontDestroyOnLoad (this);
+            if (instance == null)instance = this as T;
+            if (instance == this)DontDestroyOnLoad (this);
             else Destroy (this);
         }
 
@@ -20,3 +20,5 @@ namespace Eccentric.Utils {
         }
     }
 }
+
+

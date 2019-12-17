@@ -7,9 +7,9 @@ public class GameManager : TSingletonMonoBehavior<GameManager> {
     string currentScene = "";
     [SerializeField] GlobalProps globalProps = new GlobalProps ( );
     /// <summary>property of global Property READONLY</summary>
-    public GlobalProps G_Props { get { return globalProps; } }
+    public GlobalProps G_Props => globalProps;
     //ref for active Player
-    public Player Player { get { return player; } }
+    public Player Player => player;
     //when Game started which scene will be Load first
     public string InitScene = "";
     //field for dialogueManager

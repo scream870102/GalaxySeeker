@@ -4,11 +4,11 @@
 [System.Serializable]
 public class CharacterStats {
     /// <summary>Maximum amount of health</summary>
-    [SerializeField] float maxHealth;
+    [SerializeField] float maxHealth = 0f;
     public float MaxHealth { get { return maxHealth; } }
     /// <summary> current amount of health</summary>
-    [SerializeField] float currentHealth;
-    public float CurrentHealth { get { return currentHealth; } protected set { currentHealth = value; } }
+    [SerializeField] float currentHealth = 0f;
+    public float CurrentHealth { get => currentHealth; protected set { currentHealth = value; } }
     /// <summary>Event will call when character health reach zero</summary>
     public event System.Action OnHealthReachedZero = null;
     public event System.Action<float> OnHealthChanged = null;

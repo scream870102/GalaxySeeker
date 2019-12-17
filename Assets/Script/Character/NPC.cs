@@ -4,12 +4,11 @@
 [RequireComponent (typeof (Collider2D))]
 public class NPC : Character {
     //Dialogue which will interact with player
-    [SerializeField]
-    protected Dialogue dialogue;
-    public event System.Action<string,NPC> OnNPCDialogueFinish;
+    [SerializeField] protected Dialogue dialogue;
+    public event System.Action<string, NPC> OnNPCDialogueFinish;
     //if player stay in trigger can interact with player
     void OnTriggerStay2D (Collider2D other) {
-        if(dialogue.sentences.GetLength(0)>0)
+        if (dialogue.sentences.GetLength (0) > 0)
             Conversation (other);
     }
 
@@ -31,7 +30,7 @@ public class NPC : Character {
     protected virtual void DialogueFinish ( ) {
         GameManager.Instance.DialogueManager.OnDialogueFinish -= DialogueFinish;
         if (OnNPCDialogueFinish != null) {
-            OnNPCDialogueFinish (this.name,this);
+            OnNPCDialogueFinish (this.name, this);
         }
     }
 }
