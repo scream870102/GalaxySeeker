@@ -11,6 +11,7 @@ namespace GalaxySeeker.Enemy.RedAirStingray {
                 Parent = animator.GetComponent<RedAirStingray> ( );
                 horiMove = new PingPongMove (Parent.Props.MoveSpeed, Parent.Props.MoveRange, Parent.InitPos);
             }
+            horiMove.SetVerticalPos (Parent.tf.position.y);
         }
         override public void OnStateUpdate (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
             CheckTouch ( );
@@ -35,7 +36,6 @@ namespace GalaxySeeker.Enemy.RedAirStingray {
                 horiMove.IsFacingRight = true;
             else if (type == ETouchType.RIGHT)
                 horiMove.IsFacingRight = false;
-
         }
     }
 }

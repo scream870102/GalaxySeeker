@@ -5,14 +5,14 @@ using UE = UnityEngine;
 using UP2 = UnityEngine.Physics2D;
 namespace GalaxySeeker.Enemy.RedAirStingray {
     public class RedAirStingray : AEnemy {
-        [SerializeField]RedAirStingrayProps props=null;
+        [SerializeField] RedAirStingrayProps props = null;
         [SerializeField] int randMoveIndex = 0;
         bool bTouchedPlayer = false;
         Vector2 initPos = Vector2.zero;
         float yUnit = 0f;
         new Collider2D collider = null;
-        public Vector2 InitPos =>initPos;
-        public Collider2D Collider =>collider;
+        public Vector2 InitPos => initPos;
+        public Collider2D Collider => collider;
         public RedAirStingrayProps Props => props;
         public bool IsTouchedByPlayer { set { if (value != bTouchedPlayer) { bTouchedPlayer = value; } } get { return bTouchedPlayer; } }
         void Awake ( ) {
@@ -23,13 +23,16 @@ namespace GalaxySeeker.Enemy.RedAirStingray {
         }
         override protected void Dead ( ) {
             Debug.Log ("I am RedAirStingrayI come from hell");
+            this.gameObject.SetActive(false);
         }
         override public void ChooseNextAction ( ) {
             //if touched by player use skinAction
-            if (IsTouchedByPlayer) {
+            if (IsTouchedByPlayer)
                 this.Animator.SetTrigger (this.Actions [randMoveIndex].Trigger);
-            }
+            else
+                this.Animator.ResetTrigger (this.Actions [randMoveIndex].Trigger);
         }
+
         public bool GetTouchPlayer ( ) {
             List<ContactPoint2D> point2Ds = new List<ContactPoint2D> ( );
             Collider.GetContacts (point2Ds);
@@ -60,20 +63,19 @@ namespace GalaxySeeker.Enemy.RedAirStingray {
             }
             return type;
         }
-        public ETouchType GetTouchGround ( ) {
-            ETouchType type = ETouchType.NONE;
+        public bool GetTouchGround ( ) {
             List<Collider2D> colliders = new List<Collider2D> ( );
             Collider.OverlapCollider (new ContactFilter2D ( ), colliders);
             foreach (Collider2D collider in colliders) {
                 if (collider.gameObject.layer == LayerMask.NameToLayer ("Ground")) {
-                    type = ETouchType.TOUCHED;
-                    return type;
+                    return true;
                 }
             }
-            return type;
+            return false;
         }
 
     }
+
     [System.Serializable]
     public class RedAirStingrayProps {
         [Header ("Move")]

@@ -12,11 +12,11 @@ namespace GalaxySeeker.Enemy.KingCannibalFlower {
         [SerializeField] Transform [] needlesLaunchPoints = new Transform [NEEDLE_NUM];
         [SerializeField] Transform scratchLaunchPoint = null;
         [SerializeField] Collider2D scratchAsting = null;
-        public Collider2D [] Vines { get => vines; }
-        public Collider2D [] Needles { get => needles; }
-        public Collider2D ScratchASting { get => scratchAsting; }
-        public Transform [] NeedlesLaunchPoints { get => needlesLaunchPoints; }
-        public Transform ScratchLaunchPoint { get => scratchLaunchPoint; }
+        public Collider2D [] Vines => vines;
+        public Collider2D [] Needles => needles;
+        public Collider2D ScratchASting => scratchAsting;
+        public Transform [] NeedlesLaunchPoints => needlesLaunchPoints;
+        public Transform ScratchLaunchPoint => scratchLaunchPoint;
 
         //public Transform[] NeedlesLaunchPoints{get=>RenderTextureCreationFlags needlesLaunchPoints;}
 

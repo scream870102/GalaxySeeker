@@ -25,7 +25,6 @@ namespace GalaxySeeker.Enemy.AirStingray {
             collider = GetComponent<Collider2D> ( );
             initPos = tf.position;
             yUnit = (collider as BoxCollider2D).size.y * tf.localScale.y * 0.5f;
-            Debug.Log (yUnit);
         }
 
         override protected void Dead ( ) {

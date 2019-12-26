@@ -21,14 +21,20 @@ namespace GalaxySeeker.Enemy.RedAirStingray {
             this.Parent.ChooseNextAction ( );
         }
         void CheckTouch ( ) {
+            bool bTouchGroundUnder=false;
+            Parent.GetTouchGround(out bTouchGroundUnder);
+            if(bTouchGroundUnder){
+                Parent.Player.tf.SetParent(null);
+                Parent.Stats.TakeDamage(Parent.Stats.CurrentHealth);
+                return;
+            }
             bool tmp = Parent.GetTouchPlayer ( );
             if (tmp)
                 Parent.Player.tf.SetParent (Parent.tf);
             else
                 Parent.Player.tf.SetParent (null);
             Parent.IsTouchedByPlayer = tmp;
-            ETouchType type = Parent.GetTouchGround ( );
-            if (type != ETouchType.NONE)
+            if (Parent.GetTouchGround ( ))
                 randMove.FindNewTargetPos ( );
         }
     }

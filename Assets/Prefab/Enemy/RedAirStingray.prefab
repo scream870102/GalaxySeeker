@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4075996130843048014}
   - component: {fileID: 6746026953483466476}
   - component: {fileID: 9118315549795545519}
+  - component: {fileID: 1827877213}
   m_Layer: 10
   m_Name: RedAirStingray
   m_TagString: Enemy
@@ -27,9 +28,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4075996130843048008}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.3364, y: -0.1588, z: 0}
-  m_LocalScale: {x: 3.7877839, y: 1.072808, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -51,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -70,10 +71,11 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -206310933
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dd4636a4c61184d4eb3c18c8584d534e, type: 3}
-  m_Color: {r: 0.7264151, g: 0.28439835, b: 0.28439835, a: 1}
+  m_Sprite: {fileID: 7430862733671300158, guid: ea053d62545b6184dae2d732813a8290,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -92,22 +94,22 @@ BoxCollider2D:
   m_GameObject: {fileID: 4075996130843048008}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 330cd3cc9f8576548a0490e074782b41, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.059869766, y: -0.010263413}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 0.7065878, y: 0.12157416}
   m_EdgeRadius: 0
 --- !u!114 &6746026953483466476
 MonoBehaviour:
@@ -129,14 +131,19 @@ MonoBehaviour:
   - trigger: 
     probability: 0
     coolDown: 0
-    distance: 0
+    distance: Infinity
   - trigger: Rand
-    probability: 0
+    probability: 100
     coolDown: 0
-    distance: 0
+    distance: Infinity
   playerLayer:
     serializedVersion: 2
     m_Bits: 2048
+  props:
+    MoveSpeed: 2
+    MoveRange: 2
+    RandSpeed: 4
+    RandRange: {x: 4, y: 4}
   randMoveIndex: 1
 --- !u!95 &9118315549795545519
 Animator:
@@ -157,3 +164,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!50 &1827877213
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4075996130843048008}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

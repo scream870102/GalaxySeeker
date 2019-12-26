@@ -1,4 +1,6 @@
 using System;
+
+using UnityEngine;
 namespace Eccentric {
     public static class Math {
         /// <summary>check if a value between the two value or not</summary>
@@ -6,11 +8,11 @@ namespace Eccentric {
         /// <param name="value">the value you want to check</param>
         public static bool Between (float value, float a, float b) {
             if (a > b) {
-                if (value <= a && value >= b) return true;
+                if (value <= a && value >= b)return true;
                 else return false;
             }
             else {
-                if (value >= a && value <= b) return true;
+                if (value >= a && value <= b)return true;
                 else return false;
             }
         }
@@ -27,12 +29,12 @@ namespace Eccentric {
                 probability1 *= tmp;
                 probability2 *= tmp;
             }
-            Random rand = new Random (DateTime.Now.Millisecond);
-            float percentage = (float) rand.NextDouble ( );
-            if (percentage <= probability1) return option1;
+            System.Random rand = new System.Random (DateTime.Now.Millisecond);
+            float percentage = (float)rand.NextDouble ( );
+            if (percentage <= probability1)return option1;
             else return option2;
         }
-        
+
         /// <summary>return true if option1 being choose</summary>
         /// <param name="probability1">probability of option1</param>
         /// <param name="probability2">probability of option2</param>
@@ -42,9 +44,9 @@ namespace Eccentric {
                 probability1 *= tmp;
                 probability2 *= tmp;
             }
-            Random rand = new Random (DateTime.Now.Millisecond);
-            float percentage = (float) rand.NextDouble ( );
-            if (percentage <= probability1) return true;
+            System.Random rand = new System.Random (DateTime.Now.Millisecond);
+            float percentage = (float)rand.NextDouble ( );
+            if (percentage <= probability1)return true;
             else return false;
         }
 
@@ -68,8 +70,28 @@ namespace Eccentric {
         /// <summary>inverst the probability if give 0.3 will return 0.7</summary>
         /// <param name="origin">the probability you want to inverse</param>
         public static float InverseProbability (float origin) {
-            float tmp=UnityEngine.Mathf.Clamp01 (origin);
+            float tmp = UnityEngine.Mathf.Clamp01 (origin);
             return 1f - tmp;
+        }
+
+        /// <summary>return a random vector3</summary>
+        public static Vector3 RandomVec3 (float num) {
+            return new Vector3 (RandomNum (num), RandomNum (num), RandomNum (num));
+        }
+
+        /// <summary>return a random vector3</summary>
+        public static Vector3 RandomVec3 (Vector3 num) {
+            return new Vector3 (RandomNum (num.x), RandomNum (num.y), RandomNum (num.z));
+        }
+
+        /// <summary>return a random vector2</summary>
+        public static Vector2 RandomVec2 (float num) {
+            return new Vector2 (RandomNum (num), RandomNum (num));
+        }
+
+        /// <summary>return a random vector2</summary>
+        public static Vector2 RandomVec2 (Vector2 num) {
+            return new Vector3 (RandomNum (num.x), RandomNum (num.y));
         }
     }
 }

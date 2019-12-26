@@ -3,6 +3,8 @@
 // - 修正被抓跟被攻擊動畫同時出現的問題
 using System.Collections.Generic;
 
+using GalaxySeeker.Item;
+
 using UnityEngine;
 /// <summary>Class is top class of player</summary>
 public class Player : Character {
@@ -28,6 +30,7 @@ public class Player : Character {
     public Vector2 HookPoint { set => movement.HookPoint = value; }
     public Vector2 Velocity { get => rb.velocity; set => rb.velocity = value; }
     public bool IsOnGround => movement.IsGround;
+    public PlayerEquipment Equipment => equipment;
     //Get all ref when player Awake
     //Add Dead function to OnHealthReachedZero
     void Awake ( ) {

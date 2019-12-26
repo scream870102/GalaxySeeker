@@ -95,7 +95,6 @@ public class PlayerMovement : PlayerComponent {
 
     //get horizontal velocity and move rigidbody call in fixed update
     void Move ( ) {
-        Debug.Log(moveHorizontal);
         if (IsTouchGroundForward ( ))
             moveHorizontal = 0f;
         if (moveHorizontal != 0f)

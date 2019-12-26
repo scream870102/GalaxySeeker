@@ -15,10 +15,10 @@ public class GameManager : TSingletonMonoBehavior<GameManager> {
     //field for dialogueManager
     DialogueManager dialogueManager = null;
     /// <summary>Property for dialogueManager READONLY</summary>
-    public DialogueManager DialogueManager { get { return dialogueManager; } }
+    public DialogueManager DialogueManager => dialogueManager;
 
     [SerializeField] UIManager uiManager = null;
-    public UIManager UIManager { get { return uiManager; } }
+    public UIManager UIManager => uiManager;
     //field for active Player
     Player player = null;
     protected override void Awake ( ) {

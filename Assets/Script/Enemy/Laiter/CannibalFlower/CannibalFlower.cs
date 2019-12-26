@@ -4,7 +4,9 @@ using UnityEngine;
 namespace GalaxySeeker.Enemy.CannibalFlower {
     public class CannibalFlower : AEnemy {
         [SerializeField] List<Collider2D> needles = new List<Collider2D> ( );
-        public List<Collider2D> Needles { get { return needles; } }
+        [SerializeField] CannibalFlowerProps props;
+        public CannibalFlowerProps Props => props;
+        public List<Collider2D> Needles => needles;
         void Awake ( ) {
             Init ( );
         }
@@ -13,7 +15,17 @@ namespace GalaxySeeker.Enemy.CannibalFlower {
         }
 
     }
+
+    [System.Serializable]
+    public class CannibalFlowerProps {
+        [Header ("Bite")]
+        public float BiteAtkPoint = 0f;
+        [Header ("Needle")]
+        public float NeedleAtkPoint = 0f;
+    }
+
     public class ACannibalFlowerComponent : AEnemyComponent {
         public CannibalFlower Parent { get { return this.parent as CannibalFlower; } protected set { this.parent = value; } }
     }
+
 }

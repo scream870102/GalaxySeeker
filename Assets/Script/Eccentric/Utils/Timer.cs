@@ -13,10 +13,16 @@ namespace Eccentric.Utils {
                 else return 0f;
             }
         }
+        /// <summary>return the cd range from 0 to 1 0 means timer finished </summary>
+        public float Remain01 {
+            get {
+                return Remain / timeSection;
+            }
+        }
         /// <summary>if this countdown finished or not</summary>
         public bool IsFinished {
             get {
-                if (timer <= UnityEngine.Time.time) return true;
+                if (timer <= UnityEngine.Time.time)return true;
                 else return false;
             }
         }
