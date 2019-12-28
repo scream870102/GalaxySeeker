@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 6e03ae1f41d3513428b9e190fd21641e
+guid: 8354b1b0aa00d3d49aea8039ec721a52
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
   fontSize: 16
-  forceTextureCase: -1
+  forceTextureCase: -2
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
   fontName: Silver
   fontNames:
-  - Silver
+  - Silver normal
   fallbackFontReferences: []
   customCharacters: 
-  fontRenderingMode: 2
-  ascentCalculationMode: 0
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
-  shouldRoundAdvanceValue: 0
+  shouldRoundAdvanceValue: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 

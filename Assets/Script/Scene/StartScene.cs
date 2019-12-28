@@ -19,10 +19,14 @@ public class StartScene : Scene {
     #endregion Animation
     //field to store all button include Text and Action
     [SerializeField] List<Button> buttons = new List<Button> ( );
+    [SerializeField] Canvas controlGroup = null;
+    bool bControlPanelOn = false;
 
     void Start ( ) {
         currentIndex = 0;
         maxIndex = buttons.Count - 1;
+        bControlPanelOn = false;
+        controlGroup.enabled = false;
     }
 
     void Update ( ) {
@@ -42,6 +46,10 @@ public class StartScene : Scene {
         if (Input.GetButtonDown ("Interact")) {
             buttons [currentIndex].action.Invoke ( );
         }
+        if (bControlPanelOn && Input.GetButtonDown ("Jump")) {
+            controlGroup.enabled = false;
+            bControlPanelOn = false;
+        }
     }
 
     //set color of button due to boolean which define this option being selected or not
@@ -52,13 +60,15 @@ public class StartScene : Scene {
     /// <summary>action when start button being pressed</summary>
     /// <summary>Will load Scene Spaceship</summary>
     public void StartBtnAction ( ) {
-        GameManager.Instance.SetScene (EScene.SPACE_SHIP);
+        GameManager.Instance.SetScene (EScene.LAITER);
     }
 
     /// <summary>action when option button being pressed</summary>
     /// <remarks>NOT DEFINED</remarks>
-    public void OptionBtnAction ( ) {
+    public void ControlBtnAction ( ) {
         Debug.Log ("Option being Pressed");
+        controlGroup.enabled = true;
+        bControlPanelOn = true;
     }
 
     /// <summary>action when exit button being pressed</summary>

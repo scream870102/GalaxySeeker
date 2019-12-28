@@ -64,7 +64,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6e03ae1f41d3513428b9e190fd21641e, type: 3}
+    m_Font: {fileID: 12800000, guid: 8354b1b0aa00d3d49aea8039ec721a52, type: 3}
     m_FontSize: 34
     m_FontStyle: 1
     m_BestFit: 0
@@ -213,7 +213,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 6e03ae1f41d3513428b9e190fd21641e, type: 3}
+    m_Font: {fileID: 12800000, guid: 8354b1b0aa00d3d49aea8039ec721a52, type: 3}
     m_FontSize: 40
     m_FontStyle: 1
     m_BestFit: 0
@@ -443,18 +443,6 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 256
   InitScene: 2
-  uiManager:
-    refs:
-    - itemType: 0
-      sprite: {fileID: 21300000, guid: be6c463a7bcb96b4ba6cb2f098df51c5, type: 3}
-    - itemType: 1
-      sprite: {fileID: 21300000, guid: 0e9c6de3a635f3c4ca92b991906b7164, type: 3}
-    healthObj: {fileID: 0}
-    healthBar: {fileID: 0}
-    itemUp: {fileID: 0}
-    itemDown: {fileID: 0}
-    airPackBar: {fileID: 0}
-    airPackUI: {fileID: 0}
 --- !u!114 &1985013473
 MonoBehaviour:
   m_ObjectHideFlags: 0
