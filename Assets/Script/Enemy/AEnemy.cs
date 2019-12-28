@@ -6,7 +6,7 @@ namespace GalaxySeeker.Enemy {
     [RequireComponent (typeof (Animator))]
     [RequireComponent (typeof (SpriteRenderer))]
     public abstract class AEnemy : Character {
-        Player player = null;
+        [SerializeField] Player player = null;
         Animator animator = null;
         new SpriteRenderer renderer = null;
         int groundLayer = 0;
@@ -17,7 +17,7 @@ namespace GalaxySeeker.Enemy {
         public List<Action> Actions { get { return actions; } protected set { actions = value; } }
         public bool IsEnable { get { return bEnable; } set { bEnable = value; EnableEnemy ( ); } }
         public bool IsFacingRight { get; protected set; }
-        public Player Player => player;
+        public Player Player { get { if (player == null)player = GameManager.Instance.Player; return player; } }
         public float DistanceBetweenPlayer => Vector2.Distance (this.tf.position, this.Player.tf.position);
         public Animator Animator { get { return animator; } protected set { animator = value; } }
         public SpriteRenderer Renderer { get { return renderer; } protected set { renderer = value; } }

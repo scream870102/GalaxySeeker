@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿// TODO:
+// FIXME:
+// Fix how load the scene
+using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,13 +23,12 @@ public class StartScene : Scene {
     void Start ( ) {
         currentIndex = 0;
         maxIndex = buttons.Count - 1;
-        GameManager.Instance.UIManager.EnableHealthUI (false);
     }
 
     void Update ( ) {
         //Get User Input
         if (Input.GetButtonDown ("Vertical")) {
-            currentIndex -= (int) Input.GetAxisRaw ("Vertical");
+            currentIndex -= (int)Input.GetAxisRaw ("Vertical");
             if (currentIndex > maxIndex)
                 currentIndex = 0;
             else if (currentIndex < 0)
@@ -50,7 +52,7 @@ public class StartScene : Scene {
     /// <summary>action when start button being pressed</summary>
     /// <summary>Will load Scene Spaceship</summary>
     public void StartBtnAction ( ) {
-        GameManager.Instance.SetScene ("Spaceship");
+        GameManager.Instance.SetScene (EScene.SPACE_SHIP);
     }
 
     /// <summary>action when option button being pressed</summary>

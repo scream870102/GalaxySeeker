@@ -9,40 +9,40 @@ public class GameManager : TSingletonMonoBehavior<GameManager> {
     /// <summary>property of global Property READONLY</summary>
     public GlobalProps G_Props => globalProps;
     //ref for active Player
-    public Player Player => player;
+    public Player Player {
+        get {
+            if (player == null)
+                FindPlayer ( );
+            return player;
+        }
+    }
     //when Game started which scene will be Load first
-    public string InitScene = "";
-    //field for dialogueManager
+    public EScene InitScene = EScene.LAITER;
     DialogueManager dialogueManager = null;
     /// <summary>Property for dialogueManager READONLY</summary>
     public DialogueManager DialogueManager => dialogueManager;
-
-    [SerializeField] UIManager uiManager = null;
-    public UIManager UIManager => uiManager;
-    //field for active Player
     Player player = null;
     protected override void Awake ( ) {
         base.Awake ( );
         FindPlayer ( );
         SetScene (InitScene);
         dialogueManager = GetComponent<DialogueManager> ( );
-        uiManager.Init ( );
-
+        //uiManager.Init ( );
     }
     void Start ( ) { }
-
-    void Update ( ) {
-
-    }
+    void Update ( ) { }
 
     /// <summary>Call this method to load Other scene</summary>
     /// <remarks>make sure scene is in buildSetting</remarks>
-    public void SetScene (string sceneName) {
-        if (SceneManager.GetActiveScene ( ).name != sceneName) {
-            SceneManager.LoadScene (sceneName);
-            this.currentScene = sceneName;
+    public void SetScene (EScene sceneName, bool IsForceLoad = false) {
+        if (!IsForceLoad && SceneManager.GetActiveScene ( ).buildIndex != (int)sceneName) {
+            SceneManager.LoadScene ((int)sceneName);
+            this.currentScene = sceneName.ToString ( );
         }
-
+        else if (IsForceLoad) {
+            SceneManager.LoadScene ((int)sceneName);
+            this.currentScene = sceneName.ToString ( );
+        }
     }
 
     //method for find Player 
@@ -54,4 +54,16 @@ public class GameManager : TSingletonMonoBehavior<GameManager> {
         }
         return false;
     }
+
+    void Init ( ) {
+        if (player == null)
+            FindPlayer ( );
+        if (dialogueManager == null)
+            dialogueManager = GetComponent<DialogueManager> ( );
+    }
+}
+public enum EScene {
+    START,
+    SPACE_SHIP,
+    LAITER,
 }

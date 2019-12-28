@@ -17,9 +17,6 @@ namespace GalaxySeeker.Enemy.KingCannibalFlower {
         public Collider2D ScratchASting => scratchAsting;
         public Transform [] NeedlesLaunchPoints => needlesLaunchPoints;
         public Transform ScratchLaunchPoint => scratchLaunchPoint;
-
-        //public Transform[] NeedlesLaunchPoints{get=>RenderTextureCreationFlags needlesLaunchPoints;}
-
         void Awake ( ) {
             Init ( );
             Stats.OnHealthChanged += OnHealthChanged;
@@ -79,6 +76,9 @@ namespace GalaxySeeker.Enemy.KingCannibalFlower {
             foreach (Collider2D co in cols)
                 count++;
             return count;
+        }
+        public void OnDeadAnimFin ( ) {
+            this.gameObject.SetActive (false);
         }
 
     }

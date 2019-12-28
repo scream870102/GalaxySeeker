@@ -11,6 +11,13 @@ public class DialogueManager : MonoBehaviour {
     [SerializeField] RectTransform dialogueUI = null;
     [SerializeField] Vector2 offset = Vector2.zero; //the offset of dialogue panel UI in screen 
     Camera mainCam = null;
+    Camera Cam {
+        get {
+            if (mainCam == null)
+                mainCam = Camera.main;
+            return mainCam;
+        }
+    }
     //sentences to show
     Queue<string> sentences = new Queue<string> ( );
     bool bTalking = false;
@@ -44,7 +51,7 @@ public class DialogueManager : MonoBehaviour {
         //Open DialoguePanel
         dialoguePanel.SetActive (true);
         //Set panel position
-        Vector2 screenPos = mainCam.WorldToScreenPoint (pos);
+        Vector2 screenPos = Cam.WorldToScreenPoint (pos);
         //offset must calc with screen size
         dialogueUI.anchoredPosition = screenPos + offset;
         bTalking = true;

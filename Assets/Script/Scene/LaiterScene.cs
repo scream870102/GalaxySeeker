@@ -2,9 +2,10 @@
 
 using Cinemachine;
 
+using GalaxySeeker.Enemy;
+
 using UnityEngine;
 using UnityEngine.Playables;
-using GalaxySeeker.Enemy;
 public class LaiterScene : Scene {
     // the global gravity of Laiter Planet
     [SerializeField] Vector2 gravity = Vector2.zero;
@@ -18,27 +19,41 @@ public class LaiterScene : Scene {
     List<bool> keyPoints = new List<bool> ( );
     // if all key point finish then can enter the boss fight
     bool bAllKeyNPCFin = false;
+    bool bGameEnd = false;
     [SerializeField] Cinemachine.CinemachineBrain cinCamera = null;
     [SerializeField] PlayableDirector director = null;
     [SerializeField] CinemachineVirtualCamera bossVCam = null;
-
+    [SerializeField] CinemachineVirtualCamera playerVCam = null;
+    [SerializeField] PlayerUI playerUI = null;
+    [SerializeField] GameEndUI gameEndUI = null;
+    [SerializeField] BossUI bossUI = null;
     //change the planet gravity
     void Awake ( ) {
         Physics2D.gravity = gravity;
     }
     // Start is called before the first frame update
     void Start ( ) {
-        GameManager.Instance.UIManager.InitValue ( );
-        GameManager.Instance.UIManager.EnableHealthUI (true);
+        playerUI.Init ( );
+        gameEndUI.Init ( );
+        bossUI.Init ( );
+        playerUI.EnableHealthUI (true);
+        bossUI.Enable = false;
+        GameManager.Instance.Player.Stats.OnHealthReachedZero += OnPlayerDead;
         foreach (NPC npc in npcS)
             npc.OnNPCDialogueFinish += KeyNpcDialogueFinish;
         for (int i = 0; i < npcS.Count; i++)
             keyPoints.Add (false);
         if (boss) {
-            boss.Stats.OnHealthReachedZero += BossDead;
+            boss.Stats.OnHealthReachedZero += OnBossDead;
             boss.IsEnable = false;
         }
 
+    }
+
+    void Update ( ) {
+        if (bGameEnd && Input.GetButtonDown ("Shoot")) {
+            GameManager.Instance.SetScene (EScene.LAITER, true);
+        }
     }
 
     //callback method when key npc finish its dialogue
@@ -57,16 +72,24 @@ public class LaiterScene : Scene {
         director.Play ( );
         wallBeforeBossFight.SetActive (false);
         boss.IsEnable = true;
+        bossUI.Enable = true;
     }
 
     //callback method when boss dead
     //set global gravity to default back
-    void BossDead ( ) {
+    void OnBossDead ( ) {
         Debug.Log ("Hey I am the boss and I am dead");
         Physics2D.gravity = GameManager.Instance.G_Props.DefaultGravity;
         bossVCam.gameObject.SetActive (false);
-        //GameManager.Instance.SetScene ("Start");
+        playerVCam.gameObject.SetActive (true);
+        bossUI.Enable = false;
+    }
 
+    void OnPlayerDead ( ) {
+        gameEndUI.Enable = true;
+        bGameEnd = true;
+        GameManager.Instance.Player.gameObject.SetActive (false);
+        Debug.Log ("GameOver");
     }
 
 }

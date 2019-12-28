@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿// TODO:
+// FIXME:
+//  FIX HOW load another scene
+
+using System.Collections.Generic;
 
 using GalaxySeeker;
 
@@ -9,7 +13,7 @@ public class ControlPanel : MonoBehaviour, IInteractable {
     //if select panel enable or not
     bool bSelectPanelEnable = false;
     //all planets player can choose
-    [SerializeField] List<GameObject> planet = new List<GameObject> ( );
+    [SerializeField] List<EScene> planet = new List<EScene> ( );
     //which planet player current choosing
     int currentIndex = 0;
     //max #of planet
@@ -42,7 +46,7 @@ public class ControlPanel : MonoBehaviour, IInteractable {
             }
             //Enter specifc scene due to player chosen
             if (Input.GetButtonDown ("Interact") && bChoosing) {
-                GameManager.Instance.SetScene (planet [currentIndex].name);
+                GameManager.Instance.SetScene (planet [currentIndex]);
             }
             //if player press switch button turn chosen panel of
             if (Input.GetButtonDown ("Switch") && bChoosing) {
