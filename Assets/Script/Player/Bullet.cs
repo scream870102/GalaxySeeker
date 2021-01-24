@@ -8,10 +8,10 @@ public class Bullet : MonoBehaviour, IObjectPoolAble {
     [SerializeField] Vector2 force;
     Rigidbody2D rb;
     Transform tf;
-    ParticleSystem ptc;
+    //ParticleSystem ptc;
     //ref for particle system shapemodule
     //this is for change the particle emitter scale
-    ParticleSystem.ShapeModule ptcShape;
+    //ParticleSystem.ShapeModule ptcShape;
     /// <summary>which pool is this bullet belongs to</summary>
     public ObjectPool Pool { get; set; }
     float damage;
@@ -19,20 +19,20 @@ public class Bullet : MonoBehaviour, IObjectPoolAble {
     void Awake ( ) {
         rb = GetComponent<Rigidbody2D> ( );
         tf = this.transform;
-        ptc = GetComponent<ParticleSystem> ( );
-        ptcShape = ptc.shape;
-        ptc.Pause ( );
+        //ptc = GetComponent<ParticleSystem> ( );
+        //ptcShape = ptc.shape;
+        //ptc.Pause ( );
     }
 
     //other class will call this when firing the bullet
     //add force to bullet and play the particle
     public void Fire (Vector2 direction, Vector3 position, float damage) {
         this.damage = damage;
-        ptcShape.scale = new Vector3 (1f, direction == Vector2.right?1f: -1f, 1f);
+        //ptcShape.scale = new Vector3 (1f, direction == Vector2.right?1f: -1f, 1f);
         tf.position = position;
         rb.velocity = new Vector2 ( );
         rb.AddForce (force * direction);
-        ptc.Play ( );
+        //ptc.Play ( );
 
     }
 
@@ -40,7 +40,7 @@ public class Bullet : MonoBehaviour, IObjectPoolAble {
     //and bullets will disappear after 5 seconds
     public void Init<T> (T data) {
         tf.localPosition = new Vector2 ( );
-        ptc.Pause ( );
+        //ptc.Pause ( );
         CancelInvoke ( );
         Invoke ("Recycle", 5f);
     }

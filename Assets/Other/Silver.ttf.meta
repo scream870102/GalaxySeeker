@@ -4,14 +4,15 @@ TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
   fontSize: 16
-  forceTextureCase: -1
+  forceTextureCase: -2
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
   fontName: Silver
   fontNames:
   - Silver
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 8354b1b0aa00d3d49aea8039ec721a52, type: 3}
   customCharacters: 
   fontRenderingMode: 2
   ascentCalculationMode: 0

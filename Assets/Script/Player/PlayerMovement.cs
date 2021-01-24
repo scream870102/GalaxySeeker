@@ -12,6 +12,7 @@ public class PlayerMovement : PlayerComponent {
     ///<summary>define which layer is ground</summary>
     public List<LayerMask> groundLayer = new List<LayerMask> ( );
     [SerializeField] float forwardAirNormalX = 0.7f;
+    [SerializeField] float fallingGravity=0f;
     //
     //
     //const

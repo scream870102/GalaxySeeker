@@ -3,6 +3,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameManager : TSingletonMonoBehavior<GameManager> {
+    public AudioClip BossFightClip = null;
+    public AudioClip NormalClip = null;
+    new AudioSource audio = null;
     //field to store currentScene
     string currentScene = "";
     [SerializeField] GlobalProps globalProps = new GlobalProps ( );
@@ -21,16 +24,17 @@ public class GameManager : TSingletonMonoBehavior<GameManager> {
     DialogueManager dialogueManager = null;
     /// <summary>Property for dialogueManager READONLY</summary>
     public DialogueManager DialogueManager => dialogueManager;
+    public AudioSource Audio => audio;
     Player player = null;
     protected override void Awake ( ) {
         base.Awake ( );
         FindPlayer ( );
         SetScene (InitScene);
         dialogueManager = GetComponent<DialogueManager> ( );
-        //uiManager.Init ( );
+        audio = GetComponent<AudioSource> ( );
     }
     void Start ( ) { }
-    void Update ( ) { }
+    void Update ( ) {     }
 
     /// <summary>Call this method to load Other scene</summary>
     /// <remarks>make sure scene is in buildSetting</remarks>

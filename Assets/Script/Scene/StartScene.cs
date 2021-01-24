@@ -32,6 +32,7 @@ public class StartScene : Scene {
     void Update ( ) {
         //Get User Input
         if (Input.GetButtonDown ("Vertical")) {
+            Debug.Log("AAA");
             currentIndex -= (int)Input.GetAxisRaw ("Vertical");
             if (currentIndex > maxIndex)
                 currentIndex = 0;

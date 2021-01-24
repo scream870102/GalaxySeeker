@@ -51,7 +51,7 @@ public class LaiterScene : Scene {
     }
 
     void Update ( ) {
-        if (bGameEnd && Input.GetButtonDown ("Shoot")) {
+        if (bGameEnd && Input.GetButtonDown ("Interact")) {
             GameManager.Instance.SetScene (EScene.LAITER, true);
         }
     }
@@ -73,6 +73,8 @@ public class LaiterScene : Scene {
         wallBeforeBossFight.SetActive (false);
         boss.IsEnable = true;
         bossUI.Enable = true;
+        GameManager.Instance.Audio.clip = GameManager.Instance.BossFightClip;
+        GameManager.Instance.Audio.Play();
     }
 
     //callback method when boss dead
@@ -83,6 +85,8 @@ public class LaiterScene : Scene {
         bossVCam.gameObject.SetActive (false);
         playerVCam.gameObject.SetActive (true);
         bossUI.Enable = false;
+        GameManager.Instance.Audio.clip = GameManager.Instance.NormalClip;
+        GameManager.Instance.Audio.Play();
     }
 
     void OnPlayerDead ( ) {

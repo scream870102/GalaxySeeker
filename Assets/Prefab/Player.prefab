@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7590917970567461738}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.466, y: 0.773, z: 0}
+  m_LocalPosition: {x: 0.508, y: 0.676, z: 0}
   m_LocalScale: {x: 0.356454, y: 0.231728, z: 1}
   m_Children: []
   m_Father: {fileID: 7590917971240140282}
@@ -104,7 +104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7590917970956078617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.056, z: 0}
+  m_LocalPosition: {x: 0, y: -0.015, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7590917971240140282}
@@ -170,7 +170,7 @@ MonoBehaviour:
     WalkSpeed: 200
     CruochSpeed: 0
     JumpForce: 19
-    AirSpeed: 100
+    AirSpeed: 175
     SwingForce: 0
     FlyingGasForce: 0
     ItemSpace: 2
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootTf: {fileID: 7590917970567461739}
   Bullets:
-    pooledObject: {fileID: 1618754911638075279, guid: 1ac0cae3a7da2fd43b60e79c698a70a7,
+    pooledObject: {fileID: 1618754911638075279, guid: ef351712ac875ba4cb732a81fafcaf96,
       type: 3}
     poolParent: {fileID: 0}
     pooledAmount: 20
@@ -240,14 +240,14 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 1.6460898
+  m_Mass: 1.6562575
   m_LinearDrag: 0.5
   m_AngularDrag: 0.05
-  m_GravityScale: 1.75
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!212 &7590917971240140283
 SpriteRenderer:
@@ -285,9 +285,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 690144625
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8203105371051595670, guid: 9316d200af4b4cd4f9b5654d3154d574,
+  m_Sprite: {fileID: 7347780325245424254, guid: d8ba896ed099a5848994d96725242c8e,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -331,6 +331,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.019695163, y: 0.49434966}
-  m_Size: {x: 0.4812801, y: 0.9583417}
+  m_Offset: {x: 0.07, y: 0.49170887}
+  m_Size: {x: 0.4812801, y: 0.9636233}
   m_Direction: 0

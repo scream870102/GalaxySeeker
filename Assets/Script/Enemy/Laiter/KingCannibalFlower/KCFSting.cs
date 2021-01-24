@@ -31,13 +31,12 @@ namespace GalaxySeeker.Enemy.KingCannibalFlower {
                     bTouched = true;
                     bAttack = true;
                     Parent.Player.AddRelativeForce (force);
-                    Parent.Player.TakeDamage (damage);
                 }
             }
         }
         override public void OnStateExit (Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
             if (bAttack) {
-
+                Parent.Player.TakeDamage (damage);
             }
             this.Parent.ChooseNextAction ( );
         }
